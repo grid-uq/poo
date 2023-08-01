@@ -1,0 +1,3 @@
+// {type:class}
+
+[Torneo|numeroParticipantes:Entero;nombre:Texto;limiteEdad:Entero;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;valorInscripcion:Entero;fechaInicio:Fecha]
