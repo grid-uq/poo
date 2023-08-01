@@ -18,3 +18,5 @@ buildNumber.properties
 
 # Visual estudio Core
 .vscode
+
+.DS_Store
