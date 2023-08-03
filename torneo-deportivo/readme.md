@@ -11,6 +11,7 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 - [junit 5.10.0](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api/5.10.0)
 - [maven](https://maven.apache.org)
 - [yUML](https://yuml.me)
+- [Marp for VS Code](https://marp.app)
 
 ### Opcional
 
