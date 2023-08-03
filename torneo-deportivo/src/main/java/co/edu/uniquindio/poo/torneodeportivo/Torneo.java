@@ -15,5 +15,6 @@ public record Torneo(String nombre, LocalDate fechaInicio, LocalDate fechaInicio
         assert valorInscripcion >= 0;
         assert fechaInicio.isAfter(fechaInicioInscripciones) && 
             fechaInicio.isAfter(fechaCierreInscripciones);
+        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);    
     }
 }
