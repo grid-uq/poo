@@ -12,5 +12,6 @@ public record Torneo(String nombre, LocalDate fechaInicio, LocalDate fechaInicio
         assert fechaCierreInscripciones != null;
         assert numeroParticipantes >= 0;
         assert limiteEdad >= 0;
+        assert valorInscripcion >= 0;
     }
 }
