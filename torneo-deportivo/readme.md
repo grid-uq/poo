@@ -19,6 +19,9 @@ Almacenar la información de un torneo. La información que se requiere es: núm
     - Extension Pack for Java Versión 0.25.12 -- Microsoft
     - yUML (UML diagramming tool based on the yUML syntax) - Versión 3.5.1 -- Jaime Olivares
 
+### Nota
+Para visualizar adecuadamente la presentación realizada en Marp for VS Code debe habilitar la opción de aceptar HTML en la configuración de la extensión.
+
 ## Construcción y pruebas
 
 Para compilar el proyecto puede usar el comando:
