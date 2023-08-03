@@ -96,4 +96,18 @@ public class TorneoTest {
         LOG.info("Fin de prueba inscripción negativa...");
     }
 
+    /**
+     * Verificar que la clase Torneo valide que el ingreso de inscripciones posteriores a la 
+     * fecha de inicio del torneo
+     * 
+     */
+    @Test
+    public void inscripcionTardia() {
+        LOG.info("Inicio de prueba inscripción tardia...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-11-01|2023-11-15|24|0|0
+        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 11, 01), LocalDate.of(2023, 11, 15), (byte)24, (byte)0, 0));
+        
+        LOG.info("Fin de prueba inscripción tardia...");
+    }
+
 }
