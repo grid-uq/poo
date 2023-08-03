@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class TorneoTest {
     /**
-     * Instacia para el menejo de logs
+     * Instancia para el manejo de logs
      */
     private static final Logger LOG = Logger.getLogger(TorneoTest.class.getName());
     
