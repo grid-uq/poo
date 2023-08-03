@@ -563,6 +563,39 @@ public record Torneo(String nombre,
 
 ---
 
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
+  }
+</style>
+
+```java
+    /**
+     * Verificar que la clase Torneo valide que el 
+     * ingreso de limites de edades negativo 
+     * 
+     */
+    @Test
+    public void limiteEdadesNegativo() {
+        LOG.info("Inicio de prueba limites de edades negativo...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|-1|0
+        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
+              LocalDate.of(2023, 8, 01), LocalDate.of(2023, 10, 15), (byte)24, (byte)-1, 0));
+        
+        LOG.info("Fin de prueba  limites de edades negativo...");
+    }
+```
+
+<div style="position: absolute; left: 75%; top:26%; ">
+
+
+![width:200](imagenes/test/test06.png)
+</div>
+
+---
+
+
 <!-- 
 _header: ''
 _footer: '' 
