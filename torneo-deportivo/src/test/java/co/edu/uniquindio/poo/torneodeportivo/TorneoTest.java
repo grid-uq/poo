@@ -56,4 +56,17 @@ public class TorneoTest {
         
         LOG.info("Fin de prueba datos nulos...");
     }
+
+    /**
+     * Verificar que la clase Torneo valide que el ingreso de número de participantes negativo 
+     * 
+     */
+    @Test
+    public void participantesNegativos() {
+        LOG.info("Inicio de prueba número de participantes negativo...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|-24|0|0
+        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 01), LocalDate.of(2023, 10, 15), (byte)-24, (byte)0, 0));
+        
+        LOG.info("Fin de prueba  número de participantes negativo...");
+    }
 }
