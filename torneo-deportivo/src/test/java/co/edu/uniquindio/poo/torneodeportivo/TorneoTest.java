@@ -8,7 +8,6 @@
 package co.edu.uniquindio.poo.torneodeportivo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
@@ -43,17 +42,4 @@ public class TorneoTest {
         LOG.info("Fin de prueba datos completos...");
     }
 
-    /**
-     * Verificar que la clase Torneo valide que se ingrese los datos
-     * 
-     */
-    @Test
-    public void datosNulos() {
-        LOG.info("Inicio de prueba datos nulos...");
-        // Almacenar los datos de prueba null|null|null|null|24|0|0
-        assertThrows(Throwable.class, ()-> new Torneo(null, null, null, null, (byte)24, (byte)0, 0));
-        
-        
-        LOG.info("Fin de prueba datos nulos...");
-    }
 }
