@@ -393,6 +393,74 @@ public record Torneo(String nombre,
 
 ---
 
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+package co.edu.uniquindio.poo.torneodeportivo;
+
+import java.time.LocalDate;
+
+public record Torneo(String nombre, 
+			 LocalDate fechaInicio, 
+			 LocalDate fechaInicioInscripciones,
+			 LocalDate fechaCierreInscripciones, 
+			 byte numeroParticipantes, 
+			 byte limiteEdad, 
+			 int valorInscripcion) {
+
+    public Torneo{
+        assert nombre != null;
+        assert fechaInicio != null;
+        assert fechaInicioInscripciones != null;
+        assert fechaCierreInscripciones != null;
+    }
+}
+```
+
+<div style="position: absolute; left: 80%; top:25%; ">
+
+
+![width:200](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero])
+</div>
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
+  }
+</style>
+
+```java
+    /**
+     * Verificar que la clase Torneo valide que se ingrese los datos
+     * 
+     */
+    @Test
+    public void datosNulos() {
+        LOG.info("Inicio de prueba datos nulos...");
+        // Almacenar los datos de prueba null|null|null|null|24|0|0
+        assertThrows(Throwable.class, ()-> new Torneo(null, null, null, null, (byte)24, (byte)0, 0));
+        
+        
+        LOG.info("Fin de prueba datos nulos...");
+    }
+```
+
+<div style="position: absolute; left: 75%; top:28%; ">
+
+
+![width:200](imagenes/test/test03.png)
+</div>
+
+---
+
 <!-- 
 _header: ''
 _footer: '' 
