@@ -806,6 +806,81 @@ public record Torneo(String nombre,
 
 ---
 
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+package co.edu.uniquindio.poo.torneodeportivo;
+
+import java.time.LocalDate;
+
+public record Torneo(String nombre, 
+			 LocalDate fechaInicio, 
+			 LocalDate fechaInicioInscripciones,
+			 LocalDate fechaCierreInscripciones, 
+			 byte numeroParticipantes, 
+			 byte limiteEdad, 
+			 int valorInscripcion) {
+
+    public Torneo{
+        assert nombre != null;
+        assert fechaInicio != null;
+        assert fechaInicioInscripciones != null;
+        assert fechaCierreInscripciones != null;
+        assert numeroParticipantes >= 0;
+        assert limiteEdad >= 0;
+        assert valorInscripcion >= 0;
+        assert fechaInicio.isAfter(fechaInicioInscripciones) && 
+            fechaInicio.isAfter(fechaCierreInscripciones);        
+    }
+}
+```
+
+<div style="position: absolute; left: 80%; top:25%; ">
+
+
+![width:200](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero])
+</div>
+
+---
+
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
+  }
+</style>
+
+```java
+    /**
+     * Verificar que la clase Torneo valide que el 
+     * ingreso de inscripciones posteriores a la fecha de inicio del torneo
+     * 
+     */
+    @Test
+    public void inscripcionTardia() {
+        LOG.info("Inicio de prueba inscripción tardia...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-11-01|2023-11-15|24|0|0
+        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
+              LocalDate.of(2023, 11, 01), LocalDate.of(2023, 11, 15), (byte)24, (byte)0, 0));
+        
+        LOG.info("Fin de prueba inscripción tardia...");
+    }
+
+```
+
+<div style="position: absolute; left: 75%; top:26%; ">
+
+
+![width:200](imagenes/test/test11.png)
+</div>
+
+---
+
 <!-- 
 _header: ''
 _footer: '' 
