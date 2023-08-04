@@ -332,8 +332,8 @@ problemas  haciendo uso de:
 
 # Estructura de las soluciones
 
-- Dos paquetes
-  - (**src**) para almacenar el código.
+- Un directorio (**src**) que se subdivide en
+  - (**main**) para almacenar el código.
   - (**test**) para almacenar las pruebas automatizadas
 
 El código fuente deberá estar con la documentación interna necesaria, comenzando con:
