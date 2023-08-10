@@ -811,7 +811,7 @@ Lo que se busca es ir explicando los conceptos que se requieren en el momento ju
 <!-- VSCode: Repositorio -->
 <style scoped>
 .texto:after {
-    content: 'Escriba "https://github.com/grid-ud/poo"';
+    content: 'Escriba "https://github.com/grid-uq/poo"';
   }
 </style>
 
