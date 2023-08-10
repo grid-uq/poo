@@ -1136,6 +1136,180 @@ public class TorneoModificarFechasTest {
 ---
 
 
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+package co.edu.uniquindio.poo.torneodeportivo;
+
+import java.time.LocalDate;
+
+public class Torneo {
+    private final String nombre;
+    private LocalDate fechaInicio;
+    private LocalDate fechaInicioInscripciones;
+    private LocalDate fechaCierreInscripciones;
+    private final byte numeroParticipantes;
+    private final byte limiteEdad;
+    private final int valorInscripcion;
+
+}
+```
+
+<div style="position: absolute; left: 68%; top:19%; ">
+
+
+![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)])
+</div>
+
+---
+
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+
+
+    public Torneo(String nombre, LocalDate fechaInicio,
+            LocalDate fechaInicioInscripciones,
+            LocalDate fechaCierreInscripciones, 
+            byte numeroParticipantes,
+            byte limiteEdad, int valorInscripcion) {
+        assert nombre != null;
+        assert fechaInicio != null;
+        assert fechaInicioInscripciones != null;
+        assert fechaCierreInscripciones != null;
+        assert numeroParticipantes >= 0;
+        assert limiteEdad >= 0;
+        assert valorInscripcion >= 0;
+        assert fechaInicio.isAfter(fechaInicioInscripciones) &&
+                fechaInicio.isAfter(fechaCierreInscripciones);
+        assert fechaCierreInscripciones
+                .isAfter(fechaInicioInscripciones);
+        this.nombre = nombre;
+        this.fechaInicio = fechaInicio;
+        this.fechaInicioInscripciones = fechaInicioInscripciones;
+        this.fechaCierreInscripciones = fechaCierreInscripciones;
+        this.numeroParticipantes = numeroParticipantes;
+        this.limiteEdad = limiteEdad;
+        this.valorInscripcion = valorInscripcion;
+    }
+
+```
+
+
+<div style="position: absolute; left: 65%; top:19%; ">
+
+
+![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)])
+</div>
+
+---
+
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public LocalDate getFechaInicioInscripciones() {
+        return fechaInicioInscripciones;
+    }
+
+    public LocalDate getFechaCierreInscripciones() {
+        return fechaCierreInscripciones;
+    }
+
+    public byte getNumeroParticipantes() {
+        return numeroParticipantes;
+    }
+
+    public byte getLimiteEdad() {
+        return limiteEdad;
+    }
+
+    public int getValorInscripcion() {
+        return valorInscripcion;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+
+```
+
+
+
+<div style="position: absolute; left: 64%; top:19%; ">
+
+
+![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)])
+</div>
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
+  }
+</style>
+
+```java
+    /**
+     * Verificar que la clase Torneo permita la modificación de la fecha de inicio 
+     * 
+     */
+    @Test
+    public void modificarFechaInicio() {
+        LOG.info("Inicio de prueba modificar fecha de inicio valida...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0
+        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
+
+        // Modificación de la fecha 
+        // Error: el método setFechaInicio no existe
+        torneo.setFechaInicio(LocalDate.of(2023, 10, 12));
+        
+        assertEquals(LocalDate.of(2023, 10, 12),torneo.fechaInicio());
+        
+        
+        LOG.info("Fin de prueba modificar fecha de inicio valida...");
+    }
+
+```
+
+<div style="position: absolute; left: 75%; top:28%; ">
+
+
+![width:200](imagenes/test/test14.png)
+</div>
+
+---
+
+
 <!-- 
 _header: ''
 _footer: '' 

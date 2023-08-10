@@ -32,13 +32,13 @@ public class TorneoTest {
         Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
 
         // Recuperación y verificación de datos
-        assertEquals("Copa Mundo",torneo.nombre());
-        assertEquals(LocalDate.of(2023, 10, 1),torneo.fechaInicio());
-        assertEquals(LocalDate.of(2023, 8, 1),torneo.fechaInicioInscripciones());
-        assertEquals(LocalDate.of(2023, 9, 15),torneo.fechaCierreInscripciones());
-        assertEquals((byte)24,torneo.numeroParticipantes());
-        assertEquals((byte)0,torneo.limiteEdad());
-        assertEquals(0,torneo.valorInscripcion());
+        assertEquals("Copa Mundo",torneo.getNombre());
+        assertEquals(LocalDate.of(2023, 10, 1),torneo.getFechaInicio());
+        assertEquals(LocalDate.of(2023, 8, 1),torneo.getFechaInicioInscripciones());
+        assertEquals(LocalDate.of(2023, 9, 15),torneo.getFechaCierreInscripciones());
+        assertEquals((byte)24,torneo.getNumeroParticipantes());
+        assertEquals((byte)0,torneo.getLimiteEdad());
+        assertEquals(0,torneo.getValorInscripcion());
         
         LOG.info("Fin de prueba datos completos...");
     }

@@ -34,7 +34,7 @@ public class TorneoModificarFechasTest {
         // Modificación de la fecha
         torneo.setFechaInicio(LocalDate.of(2023, 10, 12));
         
-        assertEquals(LocalDate.of(2023, 10, 12),torneo.fechaInicio());
+        assertEquals(LocalDate.of(2023, 10, 12),torneo.getFechaInicio());
         
         
         LOG.info("Fin de prueba modificar fecha de inicio valida...");
