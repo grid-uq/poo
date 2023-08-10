@@ -49,7 +49,7 @@ Torneo deportivo - Requerimiento 01 <br />
 ---
 
 
-<style scoped>
+<style >
 .texto:after {
     content: 'Problema:';
   }
@@ -57,10 +57,16 @@ Torneo deportivo - Requerimiento 01 <br />
 
 Un importante promotor deportivo le ha solicitado que diseñe un sistema para la gestión de las inscripciones a torneos deportivos. El necesita que la aplicación permita:
 
+---
 
+## RQ 01
 
 Almacenar la información de un torneo. La información que se requiere es: número máximo de equipos participantes, el nombre del torneo, el límite de edad de los jugadores (en caso de tenerlo), la fecha de inicio de las inscripciones, la fecha de cierre de las inscripciones, el valor de la inscripción y la fecha de inicio del torneo.
 
+---
+## RQ 02
+
+Debido a la planeación de los torneos en ocasiones es necesario modificar las fechas de inscripción e inicio del mismo. Por lo anterior, el promotor solicita que exista la posibilidad de poder modificar dichos datos despues de su creación. 
 
 ---
 
@@ -71,6 +77,7 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 </style>
 
 - Almacenar la información de un torneo
+- Modificar fechas de incripción e inicio del torneo
 
 
 ---
@@ -118,6 +125,7 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 
 - Almacenar la información de un torneo
 - Recuperar la información de un torneo
+- Modificar las fechas de inscripción e inicio del torneo
 
 
 
@@ -157,6 +165,24 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 
 ---
 
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+</style>
+
+- Modificar las fechas de inscripción e inicio 
+del torneo
+
+<div style="position: absolute; left: 60%; top:15%; ">
+
+
+![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)])
+</div>
+
+---
+
 <style scoped>
 .texto:after {
     content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
@@ -166,6 +192,9 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 - Almacenar datos de prueba
 - Recuperar los datos de prueba
 - Verificar que los datos almacenados coinciden con los datos recuperados
+- Modificar datos de la prueba
+- Recuperar datos de la prueba
+- Verificar que los datos almacenados y modificados coinciden con los datos recuperados
 
 
 ---
@@ -178,6 +207,7 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 </style>
 
 <div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
 
 | Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
 |---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
@@ -193,6 +223,49 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 
 ---
 
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Modificar fecha inicio, valido | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  <br/> Nueva fecha de inicio 2023-10-12 | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0   <br/> Torneo con los datos modificados Copa Mundo\|2023-10-12\|2023-08-01\|2023-09-15\|24\|0\|0 |
+| Modificar fecha inicio, con null | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  <br/>  Nueva fecha de inicio null      | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0  <br/>  Error la fecha de inicio no puede ser null                                               |
+| Modificar fecha inicio, con fecha de inicio anterior a las inscripciones | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  Nueva fecha de inicio 2023-07-01 | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0  Error la fecha de inicio es anterior a las inscripciones                                 |
+| Modificar fecha inicio de inscripciones, valido | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  <br/> Nueva fecha de inicio de inscripciones 2023-08-10 | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0   <br/> Torneo con los datos modificados Copa Mundo\|2023-10-01\|2023-08-10\|2023-09-15\|24\|0\|0 |
+| Modificar fecha inicio de inscripciones con null | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  <br/>  Nueva fecha de inicio de inscripciones null      | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0  <br/>  Error la fecha de inicio de inscripciones no puede ser null                                               |
+
+
+</div>
+
+---
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Modificar fecha inicio de inscripciones con fecha de inicio posterior a la fecha de cierre de inscripciones | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  Nueva fecha de inicio de inscripciones 2023-09-16 | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0  Error la fecha de inicio de inscripciones no puede ser posterior a la fecha de cierre                                  |
+| Modificar fecha de cierre de inscripciones, valido | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  <br/> Nueva fecha de cierre de inscripciones 2023-09-16 | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0   <br/> Torneo con los datos modificados Copa Mundo\|2023-10-01\|2023-08-10\|2023-09-16\|24\|0\|0 |
+| Modificar fecha de cierre de inscripciones con null | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  <br/>  Nueva fecha de cierre de inscripciones null      | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0  <br/>  Error la fecha de cierre de inscripciones no puede ser null                                               |
+| Modificar fecha de cierre de inscripciones con fecha posterior a la fecha de inicio del torneo | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  Nueva fecha de cierre de inscripciones 2023-10-02 | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0  Error la fecha de cierre de inscripciones no puede ser posterior a la fecha de inicio del torneo                                  |
+| Modificar fecha de cierre de inscripciones con fecha anterior a la fecha de inicio de inscripciones | Copa Mundo\|2023-10-01\| 2023-08-01\|2023-09-15\|24\|0\|0  Nueva fecha de cierre de inscripciones 2023-07-30 | Torneo creado con los datos proporcionados Copa Mundo\|2023-10-01\|2023-08-01\|2023-09-15\|24\|0\|0  Error la fecha de cierre de inscripciones no puede ser anterior a la fecha de inicio de inscripciones                                  |
+
+</div>
+
+---
 
 <style scoped>
 .texto:after {
