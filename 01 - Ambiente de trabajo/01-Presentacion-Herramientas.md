@@ -789,9 +789,9 @@ Esto permite llevar un control de un proyecto a nivel profesional, especialmente
 
 # Clonado el repositorio del curso en GitHub
 
-Todo el material del curso, desarrollado paso a paso se encuentra de forma pública en el repositorio de **GitHub** https://github.com/grid-ud/poo 
+Todo el material del curso, desarrollado paso a paso se encuentra de forma pública en el repositorio de **GitHub** https://github.com/grid-uq/poo 
 
-Allí encontrará desde esta presentación (creada entreramente con **Marp**), así como el análisis, el diseño, la codificación y las pruebas de los diferentes requisitos por cada ejercicio desarrollado en el curso.
+Allí encontrará desde esta presentación (creada enteramente con **Marp**), así como el análisis, el diseño, la codificación y las pruebas de los diferentes requisitos por cada ejercicio desarrollado en el curso.
 
 Lo que se busca es ir explicando los conceptos que se requieren en el momento justo de tal forma que se puedan resolver los problemas propuestos con sus diferentes requisitos.
 
