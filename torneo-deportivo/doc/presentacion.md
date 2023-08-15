@@ -1651,6 +1651,51 @@ public void modificarFechaInicioInscripciones() {
 
 <style scoped>
 .texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+
+
+    public Torneo(String nombre, LocalDate fechaInicio,
+            LocalDate fechaInicioInscripciones,
+            LocalDate fechaCierreInscripciones, 
+            byte numeroParticipantes,
+            byte limiteEdad, int valorInscripcion) {
+        assert nombre != null;
+        assert fechaCierreInscripciones != null;
+        assert numeroParticipantes >= 0;
+        assert limiteEdad >= 0;
+        assert valorInscripcion >= 0;
+        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
+        this.nombre = nombre;
+        
+        setFechaInicioInscripciones(fechaInicioInscripciones);
+        this.fechaCierreInscripciones = fechaCierreInscripciones;
+        setFechaInicio(fechaInicio);
+        this.numeroParticipantes = numeroParticipantes;
+        this.limiteEdad = limiteEdad;
+        this.valorInscripcion = valorInscripcion;
+    }
+
+    public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
+        assert fechaInicioInscripciones != null;
+        this.fechaInicioInscripciones = fechaInicioInscripciones;
+    }
+```
+
+
+<div style="position: absolute; left: 70%; top:15%; ">
+
+
+![width:340](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)])
+</div>
+
+---
+
+<style scoped>
+.texto:after {
     content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
   }
 </style>
@@ -1681,8 +1726,9 @@ public void modificarFechaInicioInscripcionesNull() {
 <div style="position: absolute; left: 78%; top:17%; ">
 
 
-![width:200](imagenes/test/test20.png)
+![width:200](imagenes/test/test21.png)
 </div>
+
 
 ---
 

@@ -24,7 +24,7 @@ public class Torneo {
             byte limiteEdad, int valorInscripcion) {
         assert nombre != null;
         
-        assert fechaInicioInscripciones != null;
+        
         assert fechaCierreInscripciones != null;
         assert numeroParticipantes >= 0;
         assert limiteEdad >= 0;
@@ -33,7 +33,7 @@ public class Torneo {
         assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
         this.nombre = nombre;
         
-        this.fechaInicioInscripciones = fechaInicioInscripciones;
+        setFechaInicioInscripciones(fechaInicioInscripciones);
         this.fechaCierreInscripciones = fechaCierreInscripciones;
         setFechaInicio(fechaInicio);
         this.numeroParticipantes = numeroParticipantes;
@@ -77,6 +77,7 @@ public class Torneo {
     }
 
     public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
+        assert fechaInicioInscripciones != null;
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
 
