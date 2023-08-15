@@ -1434,6 +1434,42 @@ public class Torneo {
 ---
 
 
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
+  }
+</style>
+
+```java
+    /**
+     * Verificar que la clase Torneo no permita la modificación de 
+     * la fecha de inicio con una fecha anterior a la de las inscripciones
+     * 
+     */
+    @Test
+    public void modificarFechaInicioAnteriorInscripciones() {
+        LOG.info("Inicio de prueba modificar fecha de inicio anterior a inscripciones...");
+        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0
+        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
+            LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
+
+        // Modificación de la fecha
+        assertThrows(Throwable.class,()->torneo.setFechaInicio(LocalDate.of(2023, 7, 1)));
+        
+        LOG.info("Fin de prueba modificar fecha de inicio anterior a inscripciones...");
+    }
+```
+
+<div style="position: absolute; left: 78%; top:20%; ">
+
+
+![width:200](imagenes/test/test17.png)
+</div>
+
+---
+
+
+
 <!-- 
 _header: ''
 _footer: '' 
