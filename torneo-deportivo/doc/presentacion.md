@@ -1466,8 +1466,6 @@ public class Torneo {
 
 ---
 
----
-
 <style scoped>
 .texto:after {
     content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
