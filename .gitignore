@@ -20,3 +20,5 @@ buildNumber.properties
 .vscode
 
 .DS_Store
+
+.idea
