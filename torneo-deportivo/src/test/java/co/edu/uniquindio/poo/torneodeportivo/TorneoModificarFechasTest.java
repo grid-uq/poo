@@ -83,9 +83,9 @@ public class TorneoModificarFechasTest {
         Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
 
         // Modificación de la fecha
-        torneo.setFechaInicioInscripciones(LocalDate.of(2023, 10, 12));
+        torneo.setFechaInicioInscripciones(LocalDate.of(2023, 8, 10));
         
-        assertEquals(LocalDate.of(2023, 10, 12),torneo.getFechaInicio());
+        assertEquals(LocalDate.of(2023, 8, 10),torneo.getFechaInicioInscripciones());
         
         
         LOG.info("Fin de prueba modificar fecha de inicio de inscripciones valida...");

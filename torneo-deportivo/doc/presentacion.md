@@ -1568,9 +1568,10 @@ public class Torneo {
 
         // Modificación de la fecha
         // Error: El método setFechaInicioInscripciones no existe
-        torneo.setFechaInicioInscripciones(LocalDate.of(2023, 10, 12));
+        // Modificación de la fecha
+        torneo.setFechaInicioInscripciones(LocalDate.of(2023, 8, 10));
         
-        assertEquals(LocalDate.of(2023, 10, 12),torneo.getFechaInicio());
+        assertEquals(LocalDate.of(2023, 8, 10),torneo.getFechaInicioInscripciones());
         
         
         LOG.info("Fin de prueba modificar fecha de inicio de inscripciones valida...");
