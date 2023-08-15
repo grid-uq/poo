@@ -311,6 +311,9 @@ Facultad de Ingeniería
 .texto:after {
     content: '';
   }
+  section{
+    font-size:20pt
+  }
 </style>
 
 
@@ -323,9 +326,18 @@ Facultad de Ingeniería
 
   - Actualizar el ejemplo de la prueba a la nueva versión
 
-- (opcionalmente) eliminar los *plugins* que no usaremos, dejando solamente:
+- Elimine los *plugins* que no usaremos, dejando solamente:
   - *maven-compiler-plugin* (utilizado para compilar el proyecto) v. 3.11.0
+    <div style="font-size:12pt">
+
+    https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin
+    </div>
+
   - *maven-surefire-plugin* (utilizado para ejecutar las pruebas) v. 3.1.2
+    <div style="font-size:12pt">
+
+    https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin
+    </div>
 
 ---
 
