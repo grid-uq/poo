@@ -76,4 +76,9 @@ public class Torneo {
         this.fechaInicio = fechaInicio;
     }
 
+    public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
+        this.fechaInicioInscripciones = fechaInicioInscripciones;
+    }
+
+    
 }

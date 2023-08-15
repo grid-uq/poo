@@ -1580,6 +1580,75 @@ public class Torneo {
 
 ---
 
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+section{
+  font-size: 15pt
+}
+</style>
+
+```java
+
+public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
+    this.fechaInicioInscripciones = fechaInicioInscripciones;
+}
+
+```
+
+
+<div style="position: absolute; left: 70%; top:15%; ">
+
+
+![width:340](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)])
+</div>
+
+---
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
+  }
+</style>
+
+```java
+
+
+/**
+ * Verificar que la clase Torneo permita la modificación 
+ * de la fecha de inicio de inscripciones
+ * 
+ */
+@Test
+public void modificarFechaInicioInscripciones() {
+    LOG.info("Inicio de prueba modificar fecha de inicio  de inscripciones valida");
+    // Almacenar los datos de prueba Copa Mundo|2023-10-01|
+    //  2023-08-01|2023-09-15|24|0|0
+    Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
+                    LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
+
+    // Modificación de la fecha
+    // Error: El método setFechaInicioInscripciones no existe
+    // Modificación de la fecha
+    torneo.setFechaInicioInscripciones(LocalDate.of(2023, 8, 10));
+    
+    assertEquals(LocalDate.of(2023, 8, 10),torneo.getFechaInicioInscripciones());
+    
+    
+    LOG.info("Fin de prueba modificar fecha de inicio de inscripciones valida...");
+}
+
+```
+
+<div style="position: absolute; left: 78%; top:16%; ">
+
+
+![width:200](imagenes/test/test19.png)
+</div>
+
+---
+
 
 <!-- 
 _header: ''
