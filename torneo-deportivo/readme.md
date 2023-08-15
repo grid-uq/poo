@@ -4,6 +4,8 @@ Un importante promotor deportivo le ha solicitado que diseñe un sistema para la
 
 Almacenar la información de un torneo. La información que se requiere es: número máximo de equipos participantes, el nombre del torneo, el límite de edad de los jugadores (en caso de tenerlo), la fecha de inicio de las inscripciones, la fecha de cierre de las inscripciones, el valor de la inscripción y la fecha de inicio del torneo.
 
+## Ejercicio
+En el caso de la creación de la planificación y registro de los torneos se contempla la creación de nuevos Torneos por venir. Genere las pruebas necesarias para validar que no se creen Torneos que ya hayan pasado y realice las modificaciones al código del Torneo con el fin de pasar las pruebas realizadas.
 
 ## Herramientas
 
