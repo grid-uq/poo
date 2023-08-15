@@ -313,11 +313,7 @@ sets
 * Licencia GNU/GPL V3.0 (https://www.gnu.org/licenses/lgpl-3.0.html#license-text)
 */
 package co.edu.uniquindio.poo.torneodeportivo;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.time.LocalDate;
 import java.util.logging.Logger;
-import org.junit.jupiter.api.Test;
 
 public class TorneoTest {
    /**
