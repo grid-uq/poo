@@ -6,6 +6,8 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 
 Debido a la planeación de los torneos en ocasiones es necesario modificar las fechas de inscripción e inicio del mismo. Por lo anterior, el promotor solicita que exista la posibilidad de poder modificar dichos datos despues de su creación. 
 
+Se desea incluir entre la información del torneo, el tipo de torneo según si es de carácter local, regional, nacional o mundial.
+
 ## Herramientas
 
 - [java 17](https://adoptium.net/es)
