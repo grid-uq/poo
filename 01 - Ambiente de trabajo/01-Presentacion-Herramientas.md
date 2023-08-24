@@ -163,7 +163,7 @@ Ingrese al siguiente enlace y descargue la última versión de LTS (*Long Term S
   }
 </style>
 
-![bg 50%](capturas/12.png)
+![bg 45%](capturas/12.png)
 
 ---
 
