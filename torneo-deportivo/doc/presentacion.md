@@ -764,6 +764,180 @@ public void modificarFechaInicioInscripcionesNull() {
 ---
 
 
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+package co.edu.uniquindio.poo.torneodeportivo;
+
+public enum TipoTorneo {
+    LOCAL,
+    REGIONAL,
+    NACIONAL,
+    MUNDIAL
+}
+
+```
+
+<div style="position: absolute; left: 68%; top:19%; ">
+
+
+![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);+setTipoTorneo(tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+</div>
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+package co.edu.uniquindio.poo.torneodeportivo;
+
+public class Torneo {
+    private final String nombre;
+    private LocalDate fechaInicio;
+    private LocalDate fechaInicioInscripciones;
+    private LocalDate fechaCierreInscripciones;
+    private final byte numeroParticipantes;
+    private final byte limiteEdad;
+    private final int valorInscripcion;
+    private final TipoTorneo tipoTorneo;
+    // . . .
+}
+```
+
+<div style="position: absolute; left: 68%; top:19%; ">
+
+
+![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);+setTipoTorneo(tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+</div>
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+
+public Torneo(String nombre, LocalDate fechaInicio,
+            LocalDate fechaInicioInscripciones,
+            LocalDate fechaCierreInscripciones, byte numeroParticipantes,
+            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo) {
+        assert nombre != null;
+        
+        
+        assert fechaCierreInscripciones != null;
+        assert numeroParticipantes >= 0;
+        assert limiteEdad >= 0;
+        assert valorInscripcion >= 0;
+        
+        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
+        this.nombre = nombre;
+        
+        setFechaInicioInscripciones(fechaInicioInscripciones);
+        this.fechaCierreInscripciones = fechaCierreInscripciones;
+        setFechaInicio(fechaInicio);
+        this.numeroParticipantes = numeroParticipantes;
+        this.limiteEdad = limiteEdad;
+        this.valorInscripcion = valorInscripcion;
+        this.tipoTorneo = tipoTorneo;
+    }
+
+```
+
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
+  }
+</style>
+
+```java
+
+
+  public String getNombre() {
+      return nombre;
+  }
+
+  public LocalDate getFechaInicio() {
+      return fechaInicio;
+  }
+
+  public LocalDate getFechaInicioInscripciones() {
+      return fechaInicioInscripciones;
+  }
+
+  public LocalDate getFechaCierreInscripciones() {
+      return fechaCierreInscripciones;
+  }
+
+  public byte getNumeroParticipantes() {
+      return numeroParticipantes;
+  }
+
+  public byte getLimiteEdad() {
+      return limiteEdad;
+  }
+
+  public int getValorInscripcion() {
+      return valorInscripcion;
+  }
+
+  public TipoTorneo getTipoTorneo() {
+      return tipoTorneo;
+  }
+
+  public void setFechaInicio(LocalDate fechaInicio) {
+      assert fechaInicio != null;
+      assert ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
+              ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) );
+      this.fechaInicio = fechaInicio;
+  }
+
+  public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
+      assert fechaInicioInscripciones != null;
+      this.fechaInicioInscripciones = fechaInicioInscripciones;
+  }
+
+```
+
+<div style="position: absolute; left: 68%; top:19%; ">
+
+
+![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);+setTipoTorneo(tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+</div>
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
+  }
+</style>
+
+
+
+![bg width:500](imagenes/test/test22.png)
+
+
+---
+
+
 
 <!-- 
 _header: ''

@@ -50,8 +50,8 @@ public class TorneoTest {
     @Test
     public void datosNulos() {
         LOG.info("Inicio de prueba datos nulos...");
-        // Almacenar los datos de prueba null|null|null|null|24|0|0|null
-        assertThrows(Throwable.class, ()-> new Torneo(null, null, null, null, (byte)24, (byte)0, 0));
+        // Almacenar los datos de prueba null|null|null|null|24|0|0|null|LOCAL
+        assertThrows(Throwable.class, ()-> new Torneo(null, null, null, null, (byte)24, (byte)0, 0,TipoTorneo.LOCAL));
         
         
         LOG.info("Fin de prueba datos nulos...");
