@@ -8,6 +8,10 @@ Debido a la planeación de los torneos en ocasiones es necesario modificar las f
 
 Se desea incluir entre la información del torneo, el tipo de torneo según si es de carácter local, regional, nacional o mundial.
 
+## Ejercicio 
+
+Adicione las pruebas que se requieran para verificar que no se ingresen tipos de torneos nulos
+
 ## Herramientas
 
 - [java 17](https://adoptium.net/es)
