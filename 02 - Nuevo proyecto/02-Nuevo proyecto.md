@@ -70,395 +70,159 @@ Facultad de Ingeniería
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Seleccione "Maven create from archetype"';
+    content: 'VSCode: Cree un nuevo proyecto Java';
   }
 </style>
 
-![bg 80%](capturas/04.png)
-
-
+![bg 50%](capturas/93.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Seleccione "maven-archetype-quickstart"';
+    content: 'Seleccionar un proyecto Maven';
   }
 </style>
 
-![bg 80%](capturas/06.png)
+![bg 88%](capturas/94.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Seleccione la Versión más actual, en este caso 1.4';
+    content: 'Seleccionar "arquetipo-poo-uq"';
   }
 </style>
 
-![bg 80%](capturas/08.png)
+![bg 88%](capturas/95.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Escriba el "group id" para el caso co.edu.uniquindio.poo';
+    content: 'Confirmar la versión del proyecto';
   }
 </style>
 
-![bg 80%](capturas/09.png)
+![bg 88%](capturas/96.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Escriba el nombre del proyecto, por ejemplo "nombreproyecto"';
+    content: 'Indicar el Group ID, por ejemplo: "co.edu.uniquindio.poo"';
   }
 </style>
 
-![bg 80%](capturas/10.png)
-
+![bg 88%](capturas/97.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Cree una carpeta de trabajo, por ejemplo "Proyecto"';
+    content: 'Ingresar el nombre del proyecto';
   }
 </style>
 
-![bg 80%](capturas/11.png)
-
+![bg 88%](capturas/98.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Seleccione la carpeta de trabajo para el caso "Proyecto"';
+    content: 'Seleccionar la carpeta destino para el proyecto, por ejemplo, Workspace-Proyecto';
   }
 </style>
 
-![bg 80%](capturas/12.png)
-
+![bg 67%](capturas/99.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Espere mientras se creen el proyecto';
+    content: 'Confirmar los datos en la terminal <Enter>';
   }
 </style>
 
-![bg 80%](capturas/13.png)
-
+![bg 80%](capturas/100.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Espere mientras se descargan ciertos elementos necesarios';
+    content: 'Esperar que el proyecto se cree correctamente...';
   }
 </style>
 
-![bg 80%](capturas/14.png)
-
+![bg 70%](capturas/101.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Ingrese la versión del proyecto, por ejemplo 1.0 (parte inferior en la TERMINAL)';
+    content: 'Abra el proyecto recién creado';
   }
 </style>
 
-![bg 80%](capturas/15.png)
-
+![bg 80%](capturas/102.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Acepte la creación del paquete "co.edu.uniquindio.poo" (parte inferior)';
+    content: 'Observe la estructura del nuevo proyecto';
   }
 </style>
 
-![bg 80%](capturas/16.png)
-
+![bg 45%](capturas/103.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Espere mientras se terminan de crear y configurar el proyecto';
+    content: 'App.java';
   }
 </style>
 
-![bg 80%](capturas/17.png)
-
+![bg 70%](capturas/104.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Clic "Open Folder" en la opción  "EXPLORER" y seleccione la carpeta del proyecto';
+    content: 'AppTest.java';
   }
 </style>
 
-![bg 80%](capturas/18.png)
-
+![bg 50%](capturas/105.png)
 
 ---
 
-<!--  -->
+<!-- Arquetipo MAVEN -->
 <style scoped>
 .texto:after {
-    content: 'Observe al lado izquierdo (nombre del proyecto, carpeta src y un archivo pom.xml)';
+    content: 'Ejecute la prueba generada';
   }
 </style>
 
-![bg 80%](capturas/19.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Dentro de la carpeta src está un ejemplo "App.java" y "AppTest.java"';
-  }
-</style>
-
-![bg 80%](capturas/20.png)
-
+![bg 70%](capturas/108.png)
 
 ---
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: '"App.java" es un ejemplo que imprime en pantalla "Hello World!"';
-  }
-</style>
-
-![bg 80%](capturas/21.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Si lo desea lo puede ejecutar el ejemplo con el icono en forma triángulo parte superior derecha';
-  }
-</style>
-
-![bg 80%](capturas/22.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: '"AppTest.java" es un ejemplo de una prueba';
-  }
-</style>
-
-![bg 80%](capturas/23.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Puede ejecutar la prueba usando el icono en forma de botella de laboratorio (a la izquierda y en el medio) y en el triángulo de la prueba';
-  }
-</style>
-
-![bg 80%](capturas/24.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Observe el archivo de configuración del proyecto Maven (pom.xml)';
-  }
-</style>
-
-![bg 80%](capturas/25.png)
-
-
----
-<style scoped>
-.texto:after {
-    content: '';
-  }
-  section{
-    font-size:20pt
-  }
-</style>
-
-
-# Actualizando el archivo de configuración **pom.xml**
-
-
-- Número de la versión a de Java que se utilizará, para nuestro caso, 17.
-
-- Cambiar la versión del componente de pruebas a **JUnit Jupiter**.
-
-  - Actualizar el ejemplo de la prueba a la nueva versión
-
-- Elimine los *plugins* que no usaremos, dejando solamente:
-  - *maven-compiler-plugin* (utilizado para compilar el proyecto) v. 3.11.0
-    <div style="font-size:12pt">
-
-    https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin
-    </div>
-
-  - *maven-surefire-plugin* (utilizado para ejecutar las pruebas) v. 3.1.2
-    <div style="font-size:12pt">
-
-    https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin
-    </div>
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Actualice el número de la versión de Java a utilizar, para nosotros será 17';
-  }
-</style>
-
-![bg 80%](capturas/26.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Busque en Internet "junit-jupiter maven"';
-  }
-</style>
-
-![bg 80%](capturas/29.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Clic en la última versión, para el caso 5.10.0';
-  }
-</style>
-
-![bg 80%](capturas/30.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Seleccione y copie las líneas para la configuración Maven ';
-  }
-</style>
-
-![bg 80%](capturas/32.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Elimine del archivo pom.xml la dependencia junit 4.11';
-  }
-</style>
-
-![bg 80%](capturas/33.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Pegue en el mismo lugar del archivo pom.xml las líneas que copió de Internet junit-jupiter';
-  }
-</style>
-
-![bg 80%](capturas/34.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Seleccione "Always" para sincronizar los cambios en el proyecto';
-  }
-</style>
-
-![bg 80%](capturas/35.png)
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Deje los plugins que utilizaremos y actualice la versión según la imágen';
-  }
-</style>
-
-![bg 80%](capturas/41.png)
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Ajuste el archivo de la prueba para nueva versión';
-  }
-</style>
-
-![bg 80%](capturas/36.png)
-
-
----
-
-<!--  -->
-<style scoped>
-.texto:after {
-    content: 'Ejecute nuevamente la prueba';
-  }
-</style>
-
-![bg 80%](capturas/38.png)
-
-
----
-
 
 <!--  -->
 <style scoped>
@@ -480,6 +244,17 @@ Facultad de Ingeniería
 </style>
 
 ![bg 80%](capturas/40.png)
+
+---
+
+<!-- Arquetipo MAVEN -->
+<style scoped>
+.texto:after {
+    content: 'Cierre la carpeta de trabajo';
+  }
+</style>
+
+![bg 25%](capturas/110.png)
 
 ---
 
