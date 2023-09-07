@@ -66,12 +66,18 @@ Almacenar la información de un torneo. La información que se requiere es: núm
 ---
 ## RQ 02
 
-Debido a la planeación de los torneos en ocasiones es necesario modificar las fechas de inscripción e inicio del mismo. Por lo anterior, el promotor solicita que exista la posibilidad de poder modificar dichos datos despues de su creación. 
+Debido a la planeación de los torneos en ocasiones es necesario modificar las fechas de inscripción e inicio del mismo. Por lo anterior, el promotor solicita que exista la posibilidad de poder modificar dichos datos después de su creación. 
 
 ---
 ## RQ 03
 
 Se desea incluir entre la información del torneo, el tipo de torneo según si es de carácter local, regional, nacional o mundial. 
+
+---
+
+## RQ 04
+
+Se desea incluir los equipos que participaran en el torneo, para lo cual se requiere una forma de registrar cada uno de los equipos. Cada equipo se espera conocer el nombre del equipo y su representante de quien se requiere su nombre, apellido, email y número de celular. Durante el registro se debe tener en cuenta que no debe excederse el número máximo de equipos y que la inscripción se realice dentro de las fechas permitidas. Así mismo, no se permiten dos equipos con el mismo nombre en el torneo. 
 
 ---
 
@@ -82,7 +88,8 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 </style>
 
 - Almacenar la información de un torneo
-- Modificar fechas de incripción e inicio del torneo
+- Modificar fechas de inscripción e inicio del torneo
+- Realizar inscripción de equipos para el torneo
 
 
 ---
@@ -108,17 +115,32 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 
 <style scoped>
 .texto:after {
+    content: 'Abstracción: ¿Qué información es relevante dado el problema anterior?';
+  }
+</style>
+
+- nombre del equipo 
+- nombre del representante
+- apellido del representante
+- email del representante
+- número de celular del representante
+
+---
+<style scoped>
+.texto:after {
     content: 'Abstracción: ¿Cómo se agrupa la información relevante?';
   }
 </style>
 
 - Torneo
 - TipoTorneo
+- Equipo
+- Representante
 
 <div style="position: absolute; left: 40%; top:30%; ">
 
 
-![](https://yuml.me/diagram/class;scale:150/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+![](https://yuml.me/diagram/class;scale:150/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1equipos-*>[Equipo|nombre:Texto]<>1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto])
 </div>
 
 ---
@@ -133,8 +155,11 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 - Almacenar la información de un torneo
 - Recuperar la información de un torneo
 - Modificar las fechas de inscripción e inicio del torneo
-
-
+- Almacenar la información de los equipos y su representante
+  - Validar que no se debe excederse el número máximo de equipos
+  - Validar que la inscripción se realice dentro de las fechas permitidas
+  - Validar que no se permita registrar un equipo con el mismo nombre de uno ya registrado
+- Recuperar la información de los equipos y su representante
 
 ---
 
@@ -147,10 +172,10 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 
 - Almacenar la información de un torneo
 
-<div style="position: absolute; left: 60%; top:30%; ">
+<div style="position: absolute; left: 50%; top:30%; ">
 
 
-![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarTorneo(torneo:Torneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1equipos-*>[Equipo|nombre:Texto],[Equipo]<>1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto])
 </div>
 
 ---
