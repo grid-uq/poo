@@ -8,9 +8,7 @@ Debido a la planeación de los torneos en ocasiones es necesario modificar las f
 
 Se desea incluir entre la información del torneo, el tipo de torneo según si es de carácter local, regional, nacional o mundial.
 
-## Ejercicio 
-
-Adicione las pruebas que se requieran para verificar que no se ingresen tipos de torneos nulos
+Se desea inclir los equipos que participaran en el torneo, para lo cual se requiere una forma de registrar cada uno de los equipos. Cada equipo se espera conocer el nombre del equipo y su representante de quien se requiere si nombre y apellido, su email y número de celular. Durante el registro se debe tener en cuenta que no debe excederse el número maximo de equipos y que la inscripción se realice dentro de las fechas permitidas. Así mismo, no se permiten dos equipos con el mismo nombre en el torneo. Es importante que se verifique que la inscripción del equipo se este realiando dentro de las fechas establecidas para tal fin.
 
 ## Herramientas
 
