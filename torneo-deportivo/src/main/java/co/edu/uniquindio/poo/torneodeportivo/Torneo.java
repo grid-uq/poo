@@ -8,6 +8,12 @@
 package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Optional;
+import java.util.function.BooleanSupplier;
+import java.util.function.Predicate;
 
 public class Torneo {
     private final String nombre;
@@ -18,6 +24,7 @@ public class Torneo {
     private final byte limiteEdad;
     private final int valorInscripcion;
     private final TipoTorneo tipoTorneo;
+    private final Collection<Equipo> equipos;
 
     public Torneo(String nombre, LocalDate fechaInicio,
             LocalDate fechaInicioInscripciones,
@@ -41,6 +48,7 @@ public class Torneo {
         this.limiteEdad = limiteEdad;
         this.valorInscripcion = valorInscripcion;
         this.tipoTorneo = tipoTorneo;
+        this.equipos = new LinkedList<>();
     }
 
     public String getNombre() {
@@ -86,5 +94,23 @@ public class Torneo {
         assert fechaInicioInscripciones != null;
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
+
+    public void registrarEquipo(Equipo equipo) {
+        boolean existeEquipo = buscarEquipoPorNombre(equipo.nombre()).isPresent();
+        assert !existeEquipo:"El equipo ya esta registrado"; 
+
+        boolean inscripcionAbierta = fechaInicioInscripciones.isBefore(LocalDate.now()) && fechaCierreInscripciones.isAfter(LocalDate.now());
+        assert inscripcionAbierta:"Las inscripciones no estan abiertas"; 
+
+        equipos.add(equipo);
+    }
+
+    public Collection<Equipo> getEquipos() {
+        return Collections.unmodifiableCollection(equipos);
+    }
     
+    public Optional<Equipo> buscarEquipoPorNombre(String nombre){
+        Predicate<Equipo> condicion = equipo->equipo.nombre().equals(nombre);
+        return equipos.stream().filter(condicion).findAny();
+    }
 }
