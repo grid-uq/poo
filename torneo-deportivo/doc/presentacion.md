@@ -90,7 +90,11 @@ Se desea incluir los equipos que participaran en el torneo, para lo cual se requ
 - Almacenar la información de un torneo
 - Modificar fechas de inscripción e inicio del torneo
 - Realizar inscripción de equipos para el torneo
-
+- Almacenar la información de los equipos y su representante
+  - Validar que no se debe excederse el número máximo de equipos
+  - Validar que la inscripción se realice dentro de las fechas permitidas
+  - Validar que no se permita registrar un equipo con el mismo nombre de uno ya registrado
+- Recuperar la información de los equipos y su representante
 
 ---
 
@@ -175,7 +179,7 @@ Se desea incluir los equipos que participaran en el torneo, para lo cual se requ
 <div style="position: absolute; left: 50%; top:30%; ">
 
 
-![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarTorneo(torneo:Torneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1equipos-*>[Equipo|nombre:Texto],[Equipo]<>1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto])
+![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1equipos-*>[Equipo|nombre:Texto],[Equipo]<>1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]) 
 </div>
 
 ---
@@ -192,7 +196,9 @@ Se desea incluir los equipos que participaran en el torneo, para lo cual se requ
 <div style="position: absolute; left: 60%; top:15%; ">
 
 
-![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+![height:500](https://yuml.me/diagram/scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]1equipos-*>[Equipo|nombre:Texto]1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto])
+
+
 </div>
 
 ---
@@ -204,14 +210,87 @@ Se desea incluir los equipos que participaran en el torneo, para lo cual se requ
   }
 </style>
 
+<!--
+_header: ''
+_footer: '' 
+-->
+
+
+<div style="position: absolute; left: 5%; top:0%; ">
+
+
+![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]1equipos-*>[Equipo|nombre:Texto]1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto])
+</div>
+
+<div style="position: absolute; left: 50%; top:8%; ">
+
 - Modificar las fechas de inscripción e inicio 
 del torneo
-
-<div style="position: absolute; left: 60%; top:15%; ">
-
-
-![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
 </div>
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+</style>
+
+<!--
+_header: ''
+_footer: '' 
+-->
+
+
+<div style="position: absolute; left: 5%; top:0%; ">
+
+
+![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]1equipos-*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Representante)]1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto)])
+</div>
+
+<div style="position: absolute; left: 60%; top:0%; font-size: 16pt ">
+
+- Almacenar la información de los equipos y su representante
+  - Validar que no se debe excederse el número máximo de equipos
+  - Validar que la inscripción se realice dentro de las fechas permitidas
+  - Validar que no se permita registrar un equipo con el mismo nombre de uno ya registrado
+</div>
+
+
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+</style>
+
+<!--
+_header: ''
+_footer: '' 
+-->
+
+
+<div style="position: absolute; left: 5%; top:0%; ">
+
+
+![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]1equipos-*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Representante);getNombre():Texto;getRepresentante():Representante]1representante-1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto])
+</div>
+
+<div style="position: absolute; left: 60%; top:5%; font-size: 16pt ">
+
+- Recuperar la información de los equipos y su representante
+
+</div>
+
+
+
+
+
+
 
 ---
 
@@ -299,670 +378,27 @@ del torneo
 
 ---
 
-<style scoped>
-.texto:after {
-    content: 'Reconocimiento de patrones: ¿Qué puede reutilizar?';
-  }
-</style>
-
-- No aplica
-
-
----
 
 <style scoped>
 .texto:after {
-    content: 'Codificación: ';
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
   }
 </style>
 
-<h1>Usando una clase</h1>
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
 
-Constructor con todos los atributos + métodos gets y 
-sets
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Registrar un equipo en el torneo                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|[Equipo{uniquindio,{Robinson,Pulgarin,rpulgarin@email.com,6067359300}}] |
+| Registrar un equipo con nombre repetido                     | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}, Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}                          | Error, el equipo ya existe                                                     |
+| Registro cuando las inscripciones ya cerraron               | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual-1 día\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}                           | Error: Las inscripciones ya cerraron                      |
+| Registro cuando las inscripciones no han abierto  | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual + 1 día\|fechaActual+15 días\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}                           | Error: Las inscripciones no han abierto                      |
 
 
-<div style="position: absolute; left: 60%; top:15%; ">
-
-
-![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);+setTipoTorneo(tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
 </div>
 
 ---
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-/**
-* Clase para probar el funcionamiento del Torneo
-* @author Área de programación UQ
-* @since 2023-08
-*
-* Licencia GNU/GPL V3.0 (https://www.gnu.org/licenses/lgpl-3.0.html#license-text)
-*/
-package co.edu.uniquindio.poo.torneodeportivo;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.time.LocalDate;
-import java.util.logging.Logger;
-import org.junit.jupiter.api.Test;
-
-public class TorneoTest {
-   /**
-    * Instacia para el menejo de logs
-    */
-   private static final Logger LOG = Logger.getLogger(TorneoTest.class.getName());
-}
-```
-
-
----
-
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-   /**
-    * Verificar que la clase Torneo almacene y recupere los datos
-    *
-    */
-   @Test
-   public void datosCompletos() {
-       LOG.info("Inicio de prueba datos completos...");
-       // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0|LOCAL
-       // ERROR: Esta linea falla porque no se ha incluido el atributo tipo torneo en Torneo y no se ha creado la enumeración TipoTorneo
-       Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
-
-       // Recuperación y verificación de datos
-       assertEquals("Copa Mundo",torneo.getNombre());
-       assertEquals(LocalDate.of(2023, 10, 1),torneo.getFechaInicio());
-       assertEquals(LocalDate.of(2023, 8, 1),torneo.getFechaInicioInscripciones());
-       assertEquals(LocalDate.of(2023, 9, 15),torneo.getFechaCierreInscripciones());
-       assertEquals((byte)24,torneo.getNumeroParticipantes());
-       assertEquals((byte)0,torneo.getLimiteEdad());
-       assertEquals(0,torneo.getValorInscripcion());
-       assertEquals(TipoTorneo.LOCAL,torneo.getTipoTorneo())
-       LOG.info("Fin de prueba datos completos...");
-   }
-```
-
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo valide que se ingrese los datos
-     * 
-     */
-    @Test
-    public void datosNulos() {
-        LOG.info("Inicio de prueba datos nulos...");
-        // Almacenar los datos de prueba null|null|null|null|24|0|0|null
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        assertThrows(Throwable.class, ()-> new Torneo(null, null, null, null, (byte)24, (byte)0, 0,null));
-        
-        
-        LOG.info("Fin de prueba datos nulos...");
-    }
-```
-
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo valide que el ingreso de número 
-     * de participantes negativo 
-     * 
-     */
-    @Test
-    public void participantesNegativos() {
-        LOG.info("Inicio de prueba número de participantes negativo...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|-24|0|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-              LocalDate.of(2023, 8, 01), LocalDate.of(2023, 10, 15), (byte)-24, (byte)0, 0,TipoTorneo.LOCAL));
-        
-        LOG.info("Fin de prueba  número de participantes negativo...");
-    }
-```
-
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo valide que el 
-     * ingreso de limites de edades negativo 
-     * 
-     */
-    @Test
-    public void limiteEdadesNegativo() {
-        LOG.info("Inicio de prueba limites de edades negativo...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|-1|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-              LocalDate.of(2023, 8, 01), LocalDate.of(2023, 10, 15), (byte)24, (byte)-1, 0,TipoTorneo.LOCAL));
-        
-        LOG.info("Fin de prueba  limites de edades negativo...");
-    }
-```
-
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo valide que el 
-     * ingreso de valor de inscripción negativa
-     * 
-     */
-    @Test
-    public void inscripcionNegativa() {
-        LOG.info("Inicio de prueba inscripción negativa...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|-1|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-              LocalDate.of(2023, 8, 01), LocalDate.of(2023, 10, 15), (byte)24, (byte)0, -1,TipoTorneo.LOCAL));
-        
-        LOG.info("Fin de prueba inscripción negativa...");
-    }
-```
-
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo valide que el 
-     * ingreso de inscripciones posteriores a la fecha de inicio del torneo
-     * 
-     */
-    @Test
-    public void inscripcionTardia() {
-        LOG.info("Inicio de prueba inscripción tardia...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-11-01|2023-11-15|24|0|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-              LocalDate.of(2023, 11, 01), LocalDate.of(2023, 11, 15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL));
-        
-        LOG.info("Fin de prueba inscripción tardia...");
-    }
-
-```
-
----
-
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo valide que el ingreso 
-     * de inicio inscripciones posteriores a la fecha 
-     * de cierre de inscripciones
-     * 
-     */
-    @Test
-    public void cierreInscripcionAnteriorInicio() {
-        LOG.info("Inicio de prueba Cierre inscripción anterior al inicio...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-11-01|2023-11-15|24|0|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        assertThrows(Throwable.class, ()-> new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-              LocalDate.of(2023, 8, 15), LocalDate.of(2023, 8, 1), (byte)24, (byte)0, 0,TipoTorneo.LOCAL));
-        
-        LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
-    }
-```
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-/**
- * Clase para probar la modificación de fechas en el Torneo
- * @author Área de programación UQ
- * @since 2023-08
- * 
- * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
- */
-package co.edu.uniquindio.poo.torneodeportivo;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.time.LocalDate;
-import java.util.logging.Logger;
-
-import org.junit.jupiter.api.Test;
-
-public class TorneoModificarFechasTest {
-    /**
-     * Instancia para el manejo de logs
-     */
-    private static final Logger LOG = Logger.getLogger(TorneoModificarFechasTest.class.getName());
-    
-
-}
-
-```
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo permita la modificación de la fecha de inicio 
-     * 
-     */
-    @Test
-    public void modificarFechaInicio() {
-        LOG.info("Inicio de prueba modificar fecha de inicio valida...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
-
-        // Modificación de la fecha 
-        torneo.setFechaInicio(LocalDate.of(2023, 10, 12));
-        
-        assertEquals(LocalDate.of(2023, 10, 12),torneo.fechaInicio());
-        
-        
-        LOG.info("Fin de prueba modificar fecha de inicio valida...");
-    }
-
-```
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo no permita la modificación de 
-     * la fecha de inicio con un null
-     * 
-     */
-    @Test
-    public void modificarFechaInicioNull() {
-        LOG.info("Inicio de prueba modificar fecha de inicio null...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-        LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
-
-        // Modificación de la fecha
-        assertThrows(Throwable.class,()->torneo.setFechaInicio(null));
-        
-        LOG.info("Fin de prueba modificar fecha de inicio null...");
-    }
-
-
-```
-
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo no permita la modificación de 
-     * la fecha de inicio con una fecha anterior a la de las inscripciones
-     * 
-     */
-    @Test
-    public void modificarFechaInicioAnteriorInscripciones() {
-        LOG.info("Inicio de prueba modificar fecha de inicio anterior a inscripciones...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-            LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
-
-        // Modificación de la fecha
-        assertThrows(Throwable.class,()->torneo.setFechaInicio(LocalDate.of(2023, 7, 1)));
-        
-        LOG.info("Fin de prueba modificar fecha de inicio anterior a inscripciones...");
-    }
-```
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-    /**
-     * Verificar que la clase Torneo permita la modificación de la fecha de inicio de inscripciones
-     * 
-     */
-    @Test
-    public void modificarFechaInicioInscripciones() {
-        LOG.info("Inicio de prueba modificar fecha de inicio de inscripciones valida...");
-        // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0|LOCAL
-        // Error porque no existe constructor con el parámetro tipo de torneo
-        Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), 
-                        LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
-
-        // Modificación de la fecha
-        torneo.setFechaInicioInscripciones(LocalDate.of(2023, 8, 10));
-        
-        assertEquals(LocalDate.of(2023, 8, 10),torneo.getFechaInicioInscripciones());
-        
-        
-        LOG.info("Fin de prueba modificar fecha de inicio de inscripciones valida...");
-    }
-```
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-
-
-/**
- * Verificar que la clase Torneo no permita la modificación de la fecha de inicio 
- * de inscripciones con un null
- * 
- */
-@Test
-public void modificarFechaInicioInscripcionesNull() {
-    LOG.info("Inicio de prueba modificar fecha de inicio de inscripciones null...");
-    // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0|LOCAL
-    // Error porque no existe constructor con el parámetro tipo de torneo
-    Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), 
-                        LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
-
-    // Modificación de la fecha
-    assertThrows(Throwable.class,()->torneo.setFechaInicioInscripciones(null));
-    
-    LOG.info("Fin de prueba modificar fecha de inicio de inscripciones null...");
-}
-
-```
-
----
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-```java
-
-
-/**
- * Verificar que la clase Torneo no permita la modificación de la fecha de inicio 
- * de inscripciones con un null
- * 
- */
-@Test
-public void modificarFechaInicioInscripcionesNull() {
-    LOG.info("Inicio de prueba modificar fecha de inicio de inscripciones null...");
-    // Almacenar los datos de prueba Copa Mundo|2023-10-01|2023-08-01|2023-09-15|24|0|0
-    Torneo torneo = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), 
-                        LocalDate.of(2023, 9, 15), (byte)24, (byte)0, 0);
-
-    // Modificación de la fecha
-    assertThrows(Throwable.class,()->torneo.setFechaInicioInscripciones(null));
-    
-    LOG.info("Fin de prueba modificar fecha de inicio de inscripciones null...");
-}
-
-```
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
-  }
-</style>
-
-```java
-package co.edu.uniquindio.poo.torneodeportivo;
-
-public enum TipoTorneo {
-    LOCAL,
-    REGIONAL,
-    NACIONAL,
-    MUNDIAL
-}
-
-```
-
-<div style="position: absolute; left: 68%; top:19%; ">
-
-
-![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);+setTipoTorneo(tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
-</div>
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
-  }
-</style>
-
-```java
-package co.edu.uniquindio.poo.torneodeportivo;
-
-public class Torneo {
-    private final String nombre;
-    private LocalDate fechaInicio;
-    private LocalDate fechaInicioInscripciones;
-    private LocalDate fechaCierreInscripciones;
-    private final byte numeroParticipantes;
-    private final byte limiteEdad;
-    private final int valorInscripcion;
-    private final TipoTorneo tipoTorneo;
-    // . . .
-}
-```
-
-<div style="position: absolute; left: 68%; top:19%; ">
-
-
-![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);+setTipoTorneo(tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
-</div>
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
-  }
-</style>
-
-```java
-
-public Torneo(String nombre, LocalDate fechaInicio,
-            LocalDate fechaInicioInscripciones,
-            LocalDate fechaCierreInscripciones, byte numeroParticipantes,
-            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo) {
-        assert nombre != null;
-        
-        
-        assert fechaCierreInscripciones != null;
-        assert numeroParticipantes >= 0;
-        assert limiteEdad >= 0;
-        assert valorInscripcion >= 0;
-        
-        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
-        this.nombre = nombre;
-        
-        setFechaInicioInscripciones(fechaInicioInscripciones);
-        this.fechaCierreInscripciones = fechaCierreInscripciones;
-        setFechaInicio(fechaInicio);
-        this.numeroParticipantes = numeroParticipantes;
-        this.limiteEdad = limiteEdad;
-        this.valorInscripcion = valorInscripcion;
-        this.tipoTorneo = tipoTorneo;
-    }
-
-```
-
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo escribo la solución en JAVA?';
-  }
-</style>
-
-```java
-
-
-  public String getNombre() {
-      return nombre;
-  }
-
-  public LocalDate getFechaInicio() {
-      return fechaInicio;
-  }
-
-  public LocalDate getFechaInicioInscripciones() {
-      return fechaInicioInscripciones;
-  }
-
-  public LocalDate getFechaCierreInscripciones() {
-      return fechaCierreInscripciones;
-  }
-
-  public byte getNumeroParticipantes() {
-      return numeroParticipantes;
-  }
-
-  public byte getLimiteEdad() {
-      return limiteEdad;
-  }
-
-  public int getValorInscripcion() {
-      return valorInscripcion;
-  }
-
-  public TipoTorneo getTipoTorneo() {
-      return tipoTorneo;
-  }
-
-  public void setFechaInicio(LocalDate fechaInicio) {
-      assert fechaInicio != null;
-      assert ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
-              ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) );
-      this.fechaInicio = fechaInicio;
-  }
-
-  public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
-      assert fechaInicioInscripciones != null;
-      this.fechaInicioInscripciones = fechaInicioInscripciones;
-  }
-
-```
-
-<div style="position: absolute; left: 68%; top:19%; ">
-
-
-![width:380](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);+setTipoTorneo(tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
-</div>
-
----
-
-
-<style scoped>
-.texto:after {
-    content: 'Codificación: ¿Cómo pruebo la solución en JAVA?';
-  }
-</style>
-
-
-
-![bg width:500](imagenes/test/test22.png)
-
-
----
-
-
 
 <!-- 
 _header: ''
