@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Optional;
-import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 
 public class Torneo {
@@ -95,20 +94,48 @@ public class Torneo {
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
 
+    /**
+     * Permite registrar un equipo en el torneo
+     * @param equipo Equipo a ser registrado
+     * @throws Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no esten abiertas.
+     */
     public void registrarEquipo(Equipo equipo) {
-        boolean existeEquipo = buscarEquipoPorNombre(equipo.nombre()).isPresent();
-        assert !existeEquipo:"El equipo ya esta registrado"; 
+        validarEquipoExiste(equipo); 
 
-        boolean inscripcionAbierta = fechaInicioInscripciones.isBefore(LocalDate.now()) && fechaCierreInscripciones.isAfter(LocalDate.now());
-        assert inscripcionAbierta:"Las inscripciones no estan abiertas"; 
+        validarInscripciopnesAbiertas(); 
 
         equipos.add(equipo);
     }
 
+    /**
+     * Valida que las inscripciones del torneo esten abiertas, en caso de no estarlo genera un assertion error.
+     */
+    private void validarInscripciopnesAbiertas() {
+        boolean inscripcionAbierta = fechaInicioInscripciones.isBefore(LocalDate.now()) && fechaCierreInscripciones.isAfter(LocalDate.now());
+        assert inscripcionAbierta:"Las inscripciones no estan abiertas";
+    }
+
+    /**
+     * Valida que no exista ya un equipo registrado con el mismo nombre, en caso de haberlo genera un assertion error.
+     */
+    private void validarEquipoExiste(Equipo equipo) {
+        boolean existeEquipo = buscarEquipoPorNombre(equipo.nombre()).isPresent();
+        assert !existeEquipo:"El equipo ya esta registrado";
+    }
+
+    /**
+     * Permite obtener una copia no modificable de la lista de los equipos registrados.
+     * @return Collection<Equipo> no modificable de los equipos registrados en el torneo.
+     */
     public Collection<Equipo> getEquipos() {
         return Collections.unmodifiableCollection(equipos);
     }
     
+    /**
+     * Permite buscar un equipo por su nomnbre entre los equipos registrados en el torneo
+     * @param nombre Nombre del equipo que se está buscando
+     * @return Un Optional<Equipo> con el equipo cuyo nombre sea igual al nombre buscado, o un Optional vacio en caso de no encontrar un equipo con nombre igual al dado.
+     */
     public Optional<Equipo> buscarEquipoPorNombre(String nombre){
         Predicate<Equipo> condicion = equipo->equipo.nombre().equals(nombre);
         return equipos.stream().filter(condicion).findAny();
