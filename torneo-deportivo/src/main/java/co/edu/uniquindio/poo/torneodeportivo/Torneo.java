@@ -23,15 +23,15 @@ public class Torneo {
             LocalDate fechaInicioInscripciones,
             LocalDate fechaCierreInscripciones, byte numeroParticipantes,
             byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo) {
-        assert nombre != null;
+        assert nombre != null: "El nombre es requerido";
         
         
-        assert fechaCierreInscripciones != null;
-        assert numeroParticipantes >= 0;
-        assert limiteEdad >= 0;
-        assert valorInscripcion >= 0;
+        assert fechaCierreInscripciones != null: "La fecha de cierre de inscripciones del torneo es requerida";
+        assert numeroParticipantes >= 0 : "El número de participantes debe ser mayor o igual a 0";
+        assert limiteEdad >= 0: "El limite de edad debe ser mayor o igual a 0";;
+        assert valorInscripcion >= 0 : "El valor de la inscripción debe ser mayor o igual a 0";
         
-        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
+        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones) : "La fecha de cierre de inscripciones no puede ser anterior al inicio de las mismas";
         this.nombre = nombre;
         
         setFechaInicioInscripciones(fechaInicioInscripciones);
@@ -76,15 +76,22 @@ public class Torneo {
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
-        assert fechaInicio != null;
+        assert fechaInicio != null : "La fecha de inicio del torneo es requerida";
         assert ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
-                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) );
+                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) ) : "La fecha de inicio del torneo debe ser posterior a las de inicio y cierre de inscripciones";
         this.fechaInicio = fechaInicio;
     }
 
     public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
-        assert fechaInicioInscripciones != null;
+        assert fechaInicioInscripciones != null : "La fecha de inicio de inscripciones al torneo es requerida";
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Torneo [nombre=" + nombre + ", fechaInicio=" + fechaInicio + ", fechaInicioInscripciones="
+                + fechaInicioInscripciones + ", fechaCierreInscripciones=" + fechaCierreInscripciones
+                + ", numeroParticipantes=" + numeroParticipantes + ", limiteEdad=" + limiteEdad + ", valorInscripcion="
+                + valorInscripcion + ", tipoTorneo=" + tipoTorneo + "]";
+    }
 }
