@@ -12,6 +12,11 @@ Se desea incluir los equipos que participaran en el torneo, para lo cual se requ
 
 El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, para lo cual se debe proporcionar un mecanismo de registro de cada jugador con la siguiente información: el nombre y apellido, fecha de nacimiento, email y el número celular. Debe validarse que la edad del jugador inscrito sea acorde con la aceptada en el torneo. Solamente se pueden inscribir jugadores si aún se está en las fechas de inscripción. Tampoco se aceptan nombre nulos o vacíos. Finalmente y para evitar confusiones, no se aceptan jugadores que tengan el mismo nombre y apellido, independiente del equipo al que pertenezcan.
 
+## Ejercicio
+Diseñe y codifique pruebas que: 
+- Permitan verificar que los datos del torneo no sean nulos y en blanco.
+- Verifiquen que no se registren jugadores con el mismo correo.
+
 ## Herramientas
 
 - [java 17](https://adoptium.net/es)
