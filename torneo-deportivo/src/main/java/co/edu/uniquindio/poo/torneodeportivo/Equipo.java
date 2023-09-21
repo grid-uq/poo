@@ -12,10 +12,12 @@ import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
+
 public record Equipo(String nombre,Persona representante,Collection<Jugador> jugadores) {
     public Equipo{
-        assert nombre != null && !nombre.isBlank() : "El nombre es requerido";
-        assert representante != null : "El representante es requerido";
+        ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
+        ASSERTION.assertion( representante != null , "El representante es requerido");
     }
 
     public Equipo(String nombre,Persona representante){
@@ -48,6 +50,6 @@ public record Equipo(String nombre,Persona representante,Collection<Jugador> jug
      */
     private void validarJugadorExiste(Jugador jugador) {
         boolean existeJugador = buscarJugador(jugador).isPresent();
-        assert !existeJugador:"El jugador ya esta registrado";
+        ASSERTION.assertion( !existeJugador,"El jugador ya esta registrado");
     }
 }

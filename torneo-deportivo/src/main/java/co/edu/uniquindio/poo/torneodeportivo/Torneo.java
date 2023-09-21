@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Predicate;
+import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public class Torneo {
     private final String nombre;
@@ -29,13 +30,14 @@ public class Torneo {
             LocalDate fechaInicioInscripciones,
             LocalDate fechaCierreInscripciones, byte numeroParticipantes,
             byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo) {
-        assert nombre != null;
+        
+        ASSERTION.assertion( nombre != null , "El nombre es requerido");
         
         
         
-        assert numeroParticipantes >= 0;
-        assert limiteEdad >= 0;
-        assert valorInscripcion >= 0;
+        ASSERTION.assertion( numeroParticipantes >= 0, "El número de participantes no puede ser negativo");
+        ASSERTION.assertion( limiteEdad >= 0,"El limite de edad no puede ser negativo");
+        ASSERTION.assertion( valorInscripcion >= 0,"El valor de la inscripción no puede ser negativo");
         
         
         this.nombre = nombre;
@@ -83,9 +85,9 @@ public class Torneo {
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
-        assert fechaInicio != null;
-        assert ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
-                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) );
+        ASSERTION.assertion( fechaInicio != null , "La fecha de inicio es requerida");
+        ASSERTION.assertion( ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
+                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) ),"La fecha de inicio no es válida" );
         this.fechaInicio = fechaInicio;
     }
 
@@ -119,7 +121,7 @@ public class Torneo {
      */
     private void validarInscripciopnesAbiertas() {
         boolean inscripcionAbierta = fechaInicioInscripciones.isBefore(LocalDate.now()) && fechaCierreInscripciones.isAfter(LocalDate.now());
-        assert inscripcionAbierta:"Las inscripciones no estan abiertas";
+        ASSERTION.assertion( inscripcionAbierta,"Las inscripciones no están abiertas");
     }
 
     /**
@@ -127,7 +129,7 @@ public class Torneo {
      */
     private void validarEquipoExiste(Equipo equipo) {
         boolean existeEquipo = buscarEquipoPorNombre(equipo.nombre()).isPresent();
-        assert !existeEquipo:"El equipo ya esta registrado";
+        ASSERTION.assertion( !existeEquipo,"El equipo ya esta registrado");
     }
 
     /**
@@ -168,7 +170,7 @@ public class Torneo {
      * @param jugador Jugador que se desea registrar.
      */
     public void registrarJugador(Equipo equipo, Jugador jugador) {
-        assert !LocalDate.now().isAfter(fechaCierreInscripciones) : "No se pueden registrar jugadores después del a fecha de cierre de inscripciones";
+        ASSERTION.assertion( !LocalDate.now().isAfter(fechaCierreInscripciones) , "No se pueden registrar jugadores después del a fecha de cierre de inscripciones");
         validarLimiteEdadJugador(jugador); 
         validarJugadorExiste(jugador);
         equipo.registrarJugador(jugador);
@@ -192,7 +194,7 @@ public class Torneo {
      */
     private void validarJugadorExiste(Jugador jugador) {
         boolean existeJugador = buscarJugador(jugador).isPresent();
-        assert !existeJugador:"El jugador ya esta registrado";
+        ASSERTION.assertion( !existeJugador,"El jugador ya esta registrado");
     }
 
     /**
@@ -200,7 +202,6 @@ public class Torneo {
      */
     private void validarLimiteEdadJugador(Jugador jugador) {
         var edadAlInicioTorneo = jugador.calcularEdad(fechaInicio);
-        assert limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo : "No se pueden registrar jugadores que excedan el limite de edad del torneo"; 
+        ASSERTION.assertion( limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo , "No se pueden registrar jugadores que excedan el limite de edad del torneo"); 
     }
-
 }
