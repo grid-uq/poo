@@ -1,5 +1,5 @@
 /**
- * Registro que agrupa los datos de un Torneo
+ * Clase que agrupa los datos de un Torneo
  * @author Área de programación UQ
  * @since 2023-08
  * 
@@ -32,16 +32,16 @@ public class Torneo {
         assert nombre != null;
         
         
-        assert fechaCierreInscripciones != null;
+        
         assert numeroParticipantes >= 0;
         assert limiteEdad >= 0;
         assert valorInscripcion >= 0;
         
-        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
+        
         this.nombre = nombre;
         
         setFechaInicioInscripciones(fechaInicioInscripciones);
-        this.fechaCierreInscripciones = fechaCierreInscripciones;
+        setFechaCierreInscripciones(fechaCierreInscripciones); 
         setFechaInicio(fechaInicio);
         this.numeroParticipantes = numeroParticipantes;
         this.limiteEdad = limiteEdad;
@@ -94,6 +94,13 @@ public class Torneo {
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
 
+
+    public void setFechaCierreInscripciones(LocalDate fechaCierreInscripciones) {
+        assert fechaCierreInscripciones != null;
+        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
+        this.fechaCierreInscripciones = fechaCierreInscripciones;
+    }
+    
     /**
      * Permite registrar un equipo en el torneo
      * @param equipo Equipo a ser registrado
@@ -140,4 +147,60 @@ public class Torneo {
         Predicate<Equipo> condicion = equipo->equipo.nombre().equals(nombre);
         return equipos.stream().filter(condicion).findAny();
     }
+
+    /**
+     * Permite registrar un jugador en el equipo siempre y cuando este dentro de las fechas validas de registro, 
+     * no exista ya un jugador registrado con el mismo nombre y apellido y el jugador no exceda el limite de edad del torneo.
+     *  
+     * @param nombre Nombre del equipo en que se desea registrar el jugador
+     * @param jugador Jugador que se desea registrar.
+     */
+    public void registrarJugador(String nombre, Jugador jugador) {
+        var equipo = buscarEquipoPorNombre(nombre);
+        equipo.ifPresent( (e)->registrarJugador(e, jugador) );
+    }
+
+    /**
+     * Permite registrar un jugador en el equipo siempre y cuando este dentro de las fechas validas de registro, 
+     * no exista ya un jugador registrado con el mismo nombre y apellido y el jugador no exceda el limite de edad del torneo.
+     * 
+     * @param equipo Equipo en el que se desea registrar el jugador.
+     * @param jugador Jugador que se desea registrar.
+     */
+    public void registrarJugador(Equipo equipo, Jugador jugador) {
+        assert !LocalDate.now().isAfter(fechaCierreInscripciones) : "No se pueden registrar jugadores después del a fecha de cierre de inscripciones";
+        validarLimiteEdadJugador(jugador); 
+        validarJugadorExiste(jugador);
+        equipo.registrarJugador(jugador);
+    }
+
+    /**
+     * Permite buscar un jugador basado en su nombre y apellido en todos los equipos registrados en el torneo.
+     * @param jugador Jugador que se desea buscar
+     * @return Optional con el jugador encontrado o un optional vacío en caso de no haber encontrado un jugador con el nombre y apellido del jugador buscado.
+     */
+    public Optional<Jugador> buscarJugador(Jugador jugador){
+        return equipos.stream()
+            .map(equipo->equipo.buscarJugador(jugador))
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .findAny();
+    }
+
+    /**
+     * Valida que no exista ya un jugador registrado con el mismo nombre y apellido, en caso de haberlo genera un assertion error.
+     */
+    private void validarJugadorExiste(Jugador jugador) {
+        boolean existeJugador = buscarJugador(jugador).isPresent();
+        assert !existeJugador:"El jugador ya esta registrado";
+    }
+
+    /**
+     * Valida que no exista se puedan registrar jugadores que al momento del inicio del torneo excedan el limite de edad.
+     */
+    private void validarLimiteEdadJugador(Jugador jugador) {
+        var edadAlInicioTorneo = jugador.calcularEdad(fechaInicio);
+        assert limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo : "No se pueden registrar jugadores que excedan el limite de edad del torneo"; 
+    }
+
 }

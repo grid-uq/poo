@@ -34,7 +34,7 @@ public class EquipoTest {
         
         Torneo torneo = new Torneo("Copa Mundo", LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
 
-        var representante = new Representante("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
+        var representante = new Persona("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
 
         var equipo = new Equipo("Uniquindio", representante);
 
@@ -58,7 +58,7 @@ public class EquipoTest {
         
         Torneo torneo = new Torneo("Copa Mundo", LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
 
-        var representante = new Representante("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
+        var representante = new Persona("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
 
         var equipo = new Equipo("Uniquindio", representante);
         var equipo2 = new Equipo("Uniquindio", representante);
@@ -81,7 +81,7 @@ public class EquipoTest {
         
         Torneo torneo = new Torneo("Copa Mundo", LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().minusDays(1), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
 
-        var representante = new Representante("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
+        var representante = new Persona("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
 
         var equipo = new Equipo("Uniquindio", representante);
 
@@ -102,7 +102,7 @@ public class EquipoTest {
         
         Torneo torneo = new Torneo("Copa Mundo", LocalDate.now().plusMonths(1), LocalDate.now().plusDays(1), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL);
 
-        var representante = new Representante("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
+        var representante = new Persona("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
 
         var equipo = new Equipo("Uniquindio", representante);
 
