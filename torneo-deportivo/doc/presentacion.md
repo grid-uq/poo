@@ -83,7 +83,7 @@ Se desea incluir los equipos que participaran en el torneo, para lo cual se requ
 
 ## RQ 05
 
-El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, para lo cual se debe proporcionar un mecanismo de registro de cada jugador con la siguiente información: número de identificación, el nombre y apellido, fecha de nacimiento, email y el número celular. Debe validarse que la edad del jugador inscrito sea acorde con la aceptada en el torneo.
+El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, para lo cual se debe proporcionar un mecanismo de registro de cada jugador con la siguiente información: el nombre y apellido, fecha de nacimiento, email y el número celular. Debe validarse que la edad del jugador inscrito sea acorde con la aceptada en el torneo. Solamente se pueden inscribir jugadores si aún se está en las fechas de inscripción. Tampoco se aceptan nombre nulos o vacíos. Finalmente y para evitar confusiones, no se aceptan jugadores que tengan el mismo nombre y apellido, independiente del equipo al que pertenezcan.
 
 ---
 
@@ -91,7 +91,7 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 .texto:after {
     content: 'Abstracción: ¿Qué se solicita finalmente? (problema)';
   }
-  section{font-size:20pt}
+  section{font-size:16pt}
 </style>
 
 - Almacenar la información de un torneo
@@ -104,6 +104,9 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 - Recuperar la información de los equipos y su representante
 - Almacenar la información de los jugadores de cada equipo
   - Validar que la edad del jugador no exceda el limite de edad del torneo.
+  - Validar que el registro del jugador se realice dentro de las fechas permitidas
+  - Validar que no se acepten nombre nulos o en blanco.
+  - Validar que dos jugadores no tengan el mismo nombre y apellido, independiente del equipo.
 - Recuperar la información de los jugadores  
 ---
 
@@ -303,6 +306,36 @@ _footer: ''
 .texto:after {
     content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
   }
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+</style>
+
+<!--
+_header: ''
+_footer: '' 
+
+-->
+
+
+- Almacenar la información de los jugadores
+
+
+![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo;+registrarJugador(equipo:Equipo,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha)],[Equipo]<>1-jugadores*>[Jugador])
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
 </style>
 
 <!--
@@ -310,18 +343,9 @@ _header: ''
 _footer: '' 
 -->
 
+- Recuperar la información de los jugadores
 
-<div style="position: absolute; left: 5%; top:0%; ">
-
-
-![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo;+registrarJugador(equipo:Equipo,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha)],[Equipo]<>1-jugadores*>[Jugador])
-</div>
-
-<div style="position: absolute; left: 60%; top:5%; font-size: 16pt ">
-
-- Almacenar la información de los jugadores
-
-</div>
+![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo;+registrarJugador(equipo:Equipo,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha);+getFechaNacimiento():Fecha;+calcularEdad():Entero],[Equipo]<>1-jugadores*>[Jugador])
 
 
 ---
@@ -427,7 +451,45 @@ _footer: ''
 | Registro cuando las inscripciones ya cerraron               | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual-1 día\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}                           | Error: Las inscripciones ya cerraron                      |
 | Registro cuando las inscripciones no han abierto  | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual + 1 día\|fechaActual+15 días\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}                           | Error: Las inscripciones no han abierto                      |
 
+---
 
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }  
+</style>
+
+<div style="font-size: 7.5pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Registrar un jugador en un equipo desde el equipo      | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años} | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL\|[Equipo{uniquindio,{Robinson,Pulgarin,rpulgarin@email.com,6067359300}} Jugador {Christian,Candela,chrcandela@email.com,6067431234}] |
+| Registrar un jugador en un equipo desde el torneo      | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años} | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL\|[Equipo{uniquindio,{Robinson,Pulgarin,rpulgarin@email.com,6067359300}} Jugador {Christian,Candela,chrcandela@email.com,6067431234}] |
+| Registrar un jugador en un torneo sin limite de edad (0)      | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 21 años} | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 21 años} |
+| Registrar un jugador mayor a la edad permitida (desde el torneo)      | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 21 años} | Error, el jugador es mayor a la edad límite. |
+| Registrar un jugador mayor a la edad permitida (desde el equipo)      | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 21 años} | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL\|[Equipo{uniquindio,{Robinson,Pulgarin,rpulgarin@email.com,6067359300}} Jugador {Christian,Candela,chrcandela@email.com,6067431234}]|
+
+</div>
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Registro de un jugador si las inscripciones ya cerraron               | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual-1 día\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}                          | Error: Las inscripciones ya cerraron                      |
+| Registro jugador si las inscripciones no han abierto  | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual + 1 día\|fechaActual+15 días\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300} Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}                          | Error: Las inscripciones no han abierto                      |
+| Registrar dos jugadores con nombre y apellido idénticos en el mismo equipo (desde el equipo) | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}, Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}                         | Error, el jugador ya existe                                                     |
+| Registrar dos jugadores con nombre y apellido idénticos en equipos diferentes  (desde el torneo) | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|18\|0\|LOCAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300},  Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}, Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}, Equipo{Quindío}    | Error, el jugador ya existe                                                     |
 </div>
 
 ---
