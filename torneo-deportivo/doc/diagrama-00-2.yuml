@@ -1,7 +1,0 @@
-// {type:class}
-
-[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*-tipoTorneo1> [<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL] 
-[Torneo]<>1-equipos*>[Equipo|nombre:Texto] 
-[Equipo]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]
-[Persona]^-[Jugador|fechaNacimiento:Fecha]
-[Equipo]<>1-jugador*>[Jugador|nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha]

@@ -1,7 +1,9 @@
 // {type:class}
-
-[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL]
-[Torneo]1-equipos*>[Equipo|nombre:Texto] 
-[Equipo]1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]
+[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante)]*-tipoTorneo1> [<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL] 
+[Torneo]<>1-participantes*>[<<Interface>>;Participante]
+[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]
 [Persona]^-[Jugador|fechaNacimiento:Fecha]
 [Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha]
+[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL]
+[<<Interface>>;Participante]^-[Jugador]
+[<<Interface>>;Participante]^-[Equipo]

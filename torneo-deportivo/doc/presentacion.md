@@ -87,6 +87,19 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 
 ---
 
+## RQ 06 - RQ 07 - RQ 08
+
+Ver proyecto final.
+
+---
+
+## RQ 09
+
+Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos sino también torneos de carácter individual. Esto implica que los participantes en un torneo pueden ser grupos (si es grupal) o jugadores si es un torneo individual.
+
+---
+
+
 <style scoped>
 .texto:after {
     content: 'Abstracción: ¿Qué se solicita finalmente? (problema)';
@@ -108,6 +121,7 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
   - Validar que no se acepten nombre nulos o en blanco.
   - Validar que dos jugadores no tengan el mismo nombre y apellido, independiente del equipo.
 - Recuperar la información de los jugadores  
+- Soportar torneos individuales (Un jugador sin representante) y grupales.
 ---
 
 <style scoped>
@@ -124,6 +138,7 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 - límite de edad de los jugadores (en caso de tenerlo) : Entero 
 - valor de la inscripción : Entero
 - tipo de torneo: Tipo de Torneo (local, regional, nacional o mundial)
+- carácter del torneo (individual, grupal)
 
 
 
@@ -156,25 +171,6 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 - fecha nacimiento del jugador
 
 ---
-<style scoped>
-.texto:after {
-    content: 'Abstracción: ¿Cómo se agrupa la información relevante?';
-  }
-</style>
-
-- Torneo
-- TipoTorneo
-- Equipo
-- Representante
-- Jugador
-
-<div style="position: absolute; left: 40%; top:20%; ">
-
-
-![](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto]<>1-representante1>[Representante|nombre:Texto;apellido:Texto;email:Texto;celular:Texto],[Equipo]<>1-jugador*>[Jugador|nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha])
-</div>
-
----
 
 <style scoped>
 .texto:after {
@@ -187,11 +183,13 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 - Equipo
 - Persona
 - Jugador
+- CatacterTorneo
+- Participante
 
 <div style="position: absolute; left: 23%; top:20%; ">
 
 
-![](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha])
+![](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 </div>
 
 ---
@@ -204,7 +202,8 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 
 - Almacenar la información de un torneo
 
-![](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto],[Equipo]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador]) 
+
+![](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 
 ---
 
@@ -217,7 +216,7 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 
 - Recuperar la información de un torneo
 
-![height:450](https://yuml.me/diagram/scale:110;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugadores*>[Jugador])
+![height:450](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;getCaracter():CaracterTorneo]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 
 ---
 
@@ -237,8 +236,8 @@ _footer: ''
 - Modificar las fechas de inscripción e inicio 
 del torneo
 
+![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 
-![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugadores*>[Jugador])
 
 
 ---
@@ -256,13 +255,13 @@ _footer: ''
 -->
 
 
-<div style="position: absolute; left: 5%; top:15%; ">
+<div style="position: absolute; left: 5%; top:25%; ">
 
+![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto)]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 
-![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto)]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugadores*>[Jugador])
 </div>
 
-<div style="position: absolute; left: 60%; top:0%; font-size: 16pt ">
+<div style="position: absolute; left: 25%; top:1%; font-size: 16pt ">
 
 - Almacenar la información de los equipos y su representante
   - Validar que no se debe excederse el número máximo de equipos
@@ -287,10 +286,9 @@ _footer: ''
 -->
 
 
-<div style="position: absolute; left: 5%; top:0%; ">
+<div style="position: absolute; left: 1%; top:15%; ">
 
-
-![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugadores*>[Jugador])
+![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 </div>
 
 <div style="position: absolute; left: 60%; top:5%; font-size: 16pt ">
@@ -322,8 +320,7 @@ _footer: ''
 
 - Almacenar la información de los jugadores
 
-
-![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha)],[Equipo]<>1-jugadores*>[Jugador])
+![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha)],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 
 ---
 
@@ -345,8 +342,7 @@ _footer: ''
 
 - Recuperar la información de los jugadores
 
-![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarEquipo(equipo:Equipo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getEquipos():Equipo［*］;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarEquipo(nombre:Texto):Equipo;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-equipos*>[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha);+getFechaNacimiento():Fecha;+calcularEdad(fecha:Fecha):Entero],[Equipo]<>1-jugadores*>[Jugador])
-
+![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha);+getFechaNacimiento():Fecha;+calcularEdad(fecha:Fecha):Entero],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
 
 ---
 
