@@ -15,6 +15,10 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 ## PROYECTO FINAL - PARTE 1
 Se desea realizar torneos que permitan la inclusión de diversos géneros, torneos solo para hombres, torneos solo para mujeres o torneos mixtos. Para ello deberá incluir en la información del torneo el genero. Así mismo también deberá incluirse este dato en los jugadores y validarlo al momento de su registro.
 
+## PROYECTO FINAL - PARTE 2
+Se quiere poder tener un registro de los jueces que participarán en el torneo. De cada uno de ellos se cuenta con la siguiente información:  licencia de juez, el nombre y apellido, email y el número celular.
+
+
 ## Herramientas
 
 - [java 17](https://adoptium.net/es)
