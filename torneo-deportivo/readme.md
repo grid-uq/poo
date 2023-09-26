@@ -18,6 +18,20 @@ Se desea realizar torneos que permitan la inclusión de diversos géneros, torne
 ## PROYECTO FINAL - PARTE 2
 Se quiere poder tener un registro de los jueces que participarán en el torneo. De cada uno de ellos se cuenta con la siguiente información:  licencia de juez, el nombre y apellido, email y el número celular.
 
+## PROYECTO FINAL - PARTE 3
+
+Se desea poder agendar los enfrentamientos, indicando el lugar donde se realizará el enfrentamiento (nombre, ubicación), la fecha y hora del enfrentamiento, los equipos que se enfrentarán, el juez o jueces que arbitraran el encuentro, el resultado del enfrentamiento cuando haya concluido (puntos realizados por cada equipo) y el estado del enfrentamiento. Los posibles estados de un enfrentamiento son:
+
+- PENDIENTE: Estado inicial de un enfrentamiento, será posible asignarlo a los enfrentamientos que se registran pero que según su fecha y hora programada aun no se han jugado.
+- EN JUEGO: Estado que indica que el enfrentamiento ya inició. Solo es posible asignar este estado si según la fecha y hora de inicio del enfrentamiento es oportuno hacerlo.
+- FINALIZADO: Estado que indica que el enfrentamiento ha concluido, el sistema debe cambiar de forma automática a dicho estado cuando se registra el resultado del enfrentamiento. Sin dicho resultado no es posible asignar éste estado.
+- APLAZADO: Este estado indica que por alguna razón el enfrentamiento no se puede jugar.
+
+Se desea brindar información de sus enfrentamientos a cada equipo, por lo que se espera poder obtener un listado de los enfrentamiento de un equipos dado su nombre.
+
+Así mismo es importante brindar a los jueces información relacionada con los enfrentamientos de los cuales hará parte, por lo que se debe poder obtener un listado de los enfrentamientos en que participará un juez basado en su número de licencia.
+
+Por último, se desea poder obtener un listado de los equipos y el número total de enfrentamientos ganados, empatados y perdidos. Dicho listado debe estar en orden descendente según el número de victorias, empates y perdidas.
 
 ## Herramientas
 
