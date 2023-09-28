@@ -14,6 +14,16 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 
 Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos sino también torneos de carácter individual. Esto implica que los participantes en un torneo pueden ser grupos (si es grupal) o jugadores si es un torneo individual.
 
+## Ejercicio
+
+- Diseñe las pruebas, construyalas y haga las modificaciones pertinentes para:
+
+    - Verificar que no se registren jugadores en un equipo cuando el torneo es de carácter individual.
+    - Validar la edad de los participantes cuando el torneo es de carácter individual.
+    - Validar que no se registren dos participantes con el mismo email cuando el torneo es de carácter individual.
+
+- Se desea que la lista de participantes sea devuelta en orden alfabético. Diseñe y construya las pruebas para verificar que el método getParticipantes funcione de esta forma y realice las modificaciones pertinentes para lograr que así sea.
+
 ## PROYECTO FINAL - PARTE 1
 Se desea realizar torneos que permitan la inclusión de diversos géneros, torneos solo para hombres, torneos solo para mujeres o torneos mixtos. Para ello deberá incluir en la información del torneo el genero. Así mismo también deberá incluirse este dato en los jugadores y validarlo al momento de su registro.
 
