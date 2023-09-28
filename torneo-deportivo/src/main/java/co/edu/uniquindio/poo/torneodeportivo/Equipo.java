@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public record Equipo(String nombre,Persona representante,Collection<Jugador> jugadores) {
+public record Equipo(String nombre,Persona representante,Collection<Jugador> jugadores) implements Participante {
     public Equipo{
         ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
         ASSERTION.assertion( representante != null , "El representante es requerido");
@@ -51,5 +51,10 @@ public record Equipo(String nombre,Persona representante,Collection<Jugador> jug
     private void validarJugadorExiste(Jugador jugador) {
         boolean existeJugador = buscarJugador(jugador).isPresent();
         ASSERTION.assertion( !existeJugador,"El jugador ya esta registrado");
+    }
+
+    @Override
+    public String getNombreCompleto() {
+        return nombre;
     }
 }

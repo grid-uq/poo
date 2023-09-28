@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
@@ -24,12 +25,13 @@ public class Torneo {
     private final byte limiteEdad;
     private final int valorInscripcion;
     private final TipoTorneo tipoTorneo;
-    private final Collection<Equipo> equipos;
+    private final Collection<Participante> participantes;
+    private final CaracterTorneo caracter;
 
     public Torneo(String nombre, LocalDate fechaInicio,
             LocalDate fechaInicioInscripciones,
             LocalDate fechaCierreInscripciones, byte numeroParticipantes,
-            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo) {
+            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo,CaracterTorneo caracter) {
         
         ASSERTION.assertion( nombre != null , "El nombre es requerido");
         
@@ -49,7 +51,8 @@ public class Torneo {
         this.limiteEdad = limiteEdad;
         this.valorInscripcion = valorInscripcion;
         this.tipoTorneo = tipoTorneo;
-        this.equipos = new LinkedList<>();
+        this.participantes = new LinkedList<>();
+        this.caracter = Objects.requireNonNull(caracter,"El carácter del torneo es requerido");
     }
 
     public String getNombre() {
@@ -84,6 +87,10 @@ public class Torneo {
         return tipoTorneo;
     }
 
+    public CaracterTorneo getCaracter() {
+        return caracter;
+    }
+
     public void setFechaInicio(LocalDate fechaInicio) {
         ASSERTION.assertion( fechaInicio != null , "La fecha de inicio es requerida");
         ASSERTION.assertion( ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
@@ -104,16 +111,25 @@ public class Torneo {
     }
     
     /**
-     * Permite registrar un equipo en el torneo
-     * @param equipo Equipo a ser registrado
-     * @throws Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no esten abiertas.
+     * Permite registrar un participante en el torneo
+     * @param participante Participante a ser registrado
+     * @throws Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no estén abiertas.
      */
-    public void registrarEquipo(Equipo equipo) {
-        validarEquipoExiste(equipo); 
+    public void registrarParticipante(Participante participante) {
+        validarParticipanteExiste(participante); 
 
         validarInscripciopnesAbiertas(); 
+        validarCaracter(participante);
 
-        equipos.add(equipo);
+        participantes.add(participante);
+    }
+
+    /**
+     * Valida que el participante sea acorde con el carácter del torneo.
+     * @param participante Participante a ser registrado
+     */
+    private void validarCaracter(Participante participante) {
+        ASSERTION.assertion( caracter.esValido(participante),"Las inscripciones no están abiertas");
     }
 
     /**
@@ -127,27 +143,27 @@ public class Torneo {
     /**
      * Valida que no exista ya un equipo registrado con el mismo nombre, en caso de haberlo genera un assertion error.
      */
-    private void validarEquipoExiste(Equipo equipo) {
-        boolean existeEquipo = buscarEquipoPorNombre(equipo.nombre()).isPresent();
+    private void validarParticipanteExiste(Participante participante) {
+        boolean existeEquipo = buscarParticipantePorNombre(participante.getNombreCompleto()).isPresent();
         ASSERTION.assertion( !existeEquipo,"El equipo ya esta registrado");
     }
 
     /**
-     * Permite obtener una copia no modificable de la lista de los equipos registrados.
-     * @return Collection<Equipo> no modificable de los equipos registrados en el torneo.
+     * Permite obtener una copia no modificable de la lista de los participantes registrados.
+     * @return Collection<Participante> no modificable de los participantes registrados en el torneo.
      */
-    public Collection<Equipo> getEquipos() {
-        return Collections.unmodifiableCollection(equipos);
+    public Collection<Participante> getParticipantes() {
+        return Collections.unmodifiableCollection(participantes);
     }
     
     /**
-     * Permite buscar un equipo por su nomnbre entre los equipos registrados en el torneo
-     * @param nombre Nombre del equipo que se está buscando
-     * @return Un Optional<Equipo> con el equipo cuyo nombre sea igual al nombre buscado, o un Optional vacio en caso de no encontrar un equipo con nombre igual al dado.
+     * Permite buscar un participante por su nombre entre los participantes registrados en el torneo
+     * @param nombre Nombre del participante que se está buscando
+     * @return Un Optional<Participante> con el participante cuyo nombre sea igual al nombre buscado, o un Optional vacío en caso de no encontrar un participante con nombre igual al dado.
      */
-    public Optional<Equipo> buscarEquipoPorNombre(String nombre){
-        Predicate<Equipo> condicion = equipo->equipo.nombre().equals(nombre);
-        return equipos.stream().filter(condicion).findAny();
+    public Optional<Participante> buscarParticipantePorNombre(String nombre){
+        Predicate<Participante> condicion = participante->participante.getNombreCompleto().equals(nombre);
+        return participantes.stream().filter(condicion).findAny();
     }
 
     /**
@@ -158,8 +174,13 @@ public class Torneo {
      * @param jugador Jugador que se desea registrar.
      */
     public void registrarJugador(String nombre, Jugador jugador) {
-        var equipo = buscarEquipoPorNombre(nombre);
-        equipo.ifPresent( (e)->registrarJugador(e, jugador) );
+        var participante = buscarParticipantePorNombre(nombre);
+        
+        participante.ifPresent( (e)->{
+            if( e instanceof Equipo equipo){
+                registrarJugador(equipo, jugador);
+            }
+        } );
     }
 
     /**
@@ -182,7 +203,9 @@ public class Torneo {
      * @return Optional con el jugador encontrado o un optional vacío en caso de no haber encontrado un jugador con el nombre y apellido del jugador buscado.
      */
     public Optional<Jugador> buscarJugador(Jugador jugador){
-        return equipos.stream()
+        return participantes.stream()
+            .filter(p->p instanceof Equipo)
+            .map(p->(Equipo)p)
             .map(equipo->equipo.buscarJugador(jugador))
             .filter(Optional::isPresent)
             .map(Optional::get)

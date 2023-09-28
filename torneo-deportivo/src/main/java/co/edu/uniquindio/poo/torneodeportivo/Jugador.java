@@ -10,7 +10,7 @@ package co.edu.uniquindio.poo.torneodeportivo;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Jugador extends Persona {
+public class Jugador extends Persona implements Participante {
     private final LocalDate fechaNacimiento;
 
     public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento) {
@@ -29,5 +29,10 @@ public class Jugador extends Persona {
      */
     public byte calcularEdad(LocalDate fecha){
         return (byte) Period.between(fechaNacimiento, fecha).getYears();
+    }
+
+    @Override
+    public String getNombreCompleto() {
+        return getNombre()+ " "+getApellido();
     }
 }
