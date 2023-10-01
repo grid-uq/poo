@@ -10,9 +10,7 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 
 Se desea incluir los equipos que participaran en el torneo, para lo cual se requiere una forma de registrar cada uno de los equipos. Cada equipo se espera conocer el nombre del equipo y su representante de quien se requiere su nombre, apellido, email y número de celular. Durante el registro se debe tener en cuenta que no debe excederse el número máximo de equipos y que la inscripción se realice dentro de las fechas permitidas. Así mismo, no se permiten dos equipos con el mismo nombre en el torneo. 
 
-## Ejercicio
 
-Diseñe la prueba para verificar que no se permitan registrar más equipos del límite indicado en el Torneo, codifíquela y modifique el código para que pase dicha prueba.
 
 ## Herramientas
 
@@ -21,6 +19,7 @@ Diseñe la prueba para verificar que no se permitan registrar más equipos del l
 - [maven](https://maven.apache.org)
 - [yUML](https://yuml.me)
 - [Marp for VS Code](https://marp.app)
+- JavaFX 19
 
 ### Opcional
 
@@ -45,3 +44,16 @@ Para ejecutar las pruebas puede usar el comando:
  mvn clean test
 ```
 
+Para compilar y ejecutar el proyecto puede usar el siguiente comandos:
+
+```shel 
+mvn clean javafx:run
+```
+
+Para generar un ejecutable de la aplicación puede usar el siguiente comando:
+
+```shell
+mvn javafx:jlink
+```
+
+La aplicación se genera en la ruta target/app y de igual forma se genera un comprimido target/app.zip
