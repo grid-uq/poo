@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import static co.edu.uniquindio.poo.torneodeportivo.gui.MessageFXUtil.mostrarInformacion;
 import static co.edu.uniquindio.poo.torneodeportivo.gui.MessageFXUtil.mostrarMensaje;
 
+import java.util.function.Function;
+
 public class TorneoController {
     @FXML
     private TextField tfNombre;
@@ -41,9 +43,11 @@ public class TorneoController {
     public void onRegistrarClick() {
         try {
             var torneo = new Torneo(tfNombre.getText(), dpFechaInicio.getValue(),dpFechaInicioInscripciones.getValue(), dpFechaFinInscripciones.getValue(), Byte.valueOf(tfNumeroParticipantes.getText()), Byte.valueOf(tfLimiteEdad.getText()), Integer.valueOf(tfValorInscripcion.getText()), cbTipoTorneo.getValue() );
+            
+
             limpiarCampos();
             mostrarInformacion("El torneo fue creado");
-        } catch (Throwable e) {
+        } catch (Exception e) {
             mostrarMensaje(e.getMessage());
         }
     }

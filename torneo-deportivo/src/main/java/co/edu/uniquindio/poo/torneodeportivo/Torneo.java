@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Predicate;
+import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public class Torneo {
     private final String nombre;
@@ -29,18 +30,18 @@ public class Torneo {
             LocalDate fechaInicioInscripciones,
             LocalDate fechaCierreInscripciones, byte numeroParticipantes,
             byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo) {
-        assert nombre != null;
+        ASSERTION.assertion( nombre != null , "El nombre es requerido");
+        ASSERTION.assertion( numeroParticipantes >= 0, "El número de participantes no puede ser negativo");
+        ASSERTION.assertion( limiteEdad >= 0,"El limite de edad no puede ser negativo");
+        ASSERTION.assertion( valorInscripcion >= 0,"El valor de la inscripción no puede ser negativo");        
         
         
-        assert fechaCierreInscripciones != null;
-        assert numeroParticipantes >= 0;
-        assert limiteEdad >= 0;
-        assert valorInscripcion >= 0;
-        
-        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
         this.nombre = nombre;
         
         setFechaInicioInscripciones(fechaInicioInscripciones);
+
+        ASSERTION.assertion( fechaCierreInscripciones != null , "La fecha de cierre es requerida");
+        ASSERTION.assertion( fechaCierreInscripciones.isAfter(fechaInicioInscripciones),"La fecha de cierre de inscripciones debe ser posterior a la fecha de inicio de inscripciones" );
         this.fechaCierreInscripciones = fechaCierreInscripciones;
         setFechaInicio(fechaInicio);
         this.numeroParticipantes = numeroParticipantes;
@@ -83,14 +84,14 @@ public class Torneo {
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
-        assert fechaInicio != null;
-        assert ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
-                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) );
+        ASSERTION.assertion( fechaInicio != null , "La fecha de inicio es requerida");
+        ASSERTION.assertion( ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
+                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) ),"La fecha de inicio no es válida" );
         this.fechaInicio = fechaInicio;
     }
 
     public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
-        assert fechaInicioInscripciones != null;
+        ASSERTION.assertion( fechaInicioInscripciones != null , "La fecha de inicio de inscripciones es requerida");
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
 
@@ -112,7 +113,7 @@ public class Torneo {
      */
     private void validarInscripciopnesAbiertas() {
         boolean inscripcionAbierta = fechaInicioInscripciones.isBefore(LocalDate.now()) && fechaCierreInscripciones.isAfter(LocalDate.now());
-        assert inscripcionAbierta:"Las inscripciones no estan abiertas";
+        ASSERTION.assertion( inscripcionAbierta,"Las inscripciones no están abiertas");
     }
 
     /**
@@ -120,7 +121,7 @@ public class Torneo {
      */
     private void validarEquipoExiste(Equipo equipo) {
         boolean existeEquipo = buscarEquipoPorNombre(equipo.nombre()).isPresent();
-        assert !existeEquipo:"El equipo ya esta registrado";
+        ASSERTION.assertion( !existeEquipo,"El equipo ya esta registrado");
     }
 
     /**
