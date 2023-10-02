@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import static co.edu.uniquindio.poo.torneodeportivo.gui.MessageFXUtil.mostrarInformacion;
 import static co.edu.uniquindio.poo.torneodeportivo.gui.MessageFXUtil.mostrarMensaje;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 public class TorneoController {
@@ -42,7 +43,11 @@ public class TorneoController {
 
     public void onRegistrarClick() {
         try {
-            var torneo = new Torneo(tfNombre.getText(), dpFechaInicio.getValue(),dpFechaInicioInscripciones.getValue(), dpFechaFinInscripciones.getValue(), Byte.valueOf(tfNumeroParticipantes.getText()), Byte.valueOf(tfLimiteEdad.getText()), Integer.valueOf(tfValorInscripcion.getText()), cbTipoTorneo.getValue() );
+            byte numeroParticipantes = valueOf(tfNumeroParticipantes.getText(), Byte::valueOf).orElseThrow(()->new Exception("El número de participantes es requerio"));
+            byte limiteEdad = valueOf(tfLimiteEdad.getText(), Byte::valueOf).orElseThrow(()->new Exception("El límite de edad es requerio"));
+            int valorInscripcion = valueOf(tfValorInscripcion.getText(), Integer::valueOf).orElseThrow(()->new Exception("El valor de la inscripción es requerio"));
+            
+            var torneo = new Torneo(tfNombre.getText(), dpFechaInicio.getValue(),dpFechaInicioInscripciones.getValue(), dpFechaFinInscripciones.getValue(), numeroParticipantes, limiteEdad, valorInscripcion, cbTipoTorneo.getValue() );
             
 
             limpiarCampos();
@@ -50,6 +55,14 @@ public class TorneoController {
         } catch (Exception e) {
             mostrarMensaje(e.getMessage());
         }
+    }
+
+    private <T> Optional<T> valueOf(String texto,Function<String,T> parser){
+        T value = null;
+        if( texto != null && !texto.isBlank() ){
+            value = parser.apply(texto);
+        }
+        return Optional.ofNullable(value);
     }
 
     private void limpiarCampos() {
