@@ -9,12 +9,14 @@ package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
 import java.time.Period;
+import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public class Jugador extends Persona {
     private final LocalDate fechaNacimiento;
 
     public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento) {
         super(nombre, apellido, email, celular);
+        ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
         this.fechaNacimiento = fechaNacimiento;
     }
 
