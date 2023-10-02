@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.function.Function;
 
 import static co.edu.uniquindio.poo.torneodeportivo.gui.AppController.INSTANCE;
@@ -81,7 +82,11 @@ public class TorneoController {
 
     public void onRegistrarClick() {
         try {
-            var torneo = new Torneo(tfNombre.getText(), dpFechaInicio.getValue(),dpFechaInicioInscripciones.getValue(), dpFechaFinInscripciones.getValue(), Byte.valueOf(tfNumeroParticipantes.getText()), Byte.valueOf(tfLimiteEdad.getText()), Integer.valueOf(tfValorInscripcion.getText()), cbTipoTorneo.getValue() );
+            byte numeroParticipantes = valueOf(tfNumeroParticipantes.getText(), Byte::valueOf).orElseThrow(()->new Exception("El número de participantes es requerio"));
+            byte limiteEdad = valueOf(tfLimiteEdad.getText(), Byte::valueOf).orElseThrow(()->new Exception("El límite de edad es requerio"));
+            int valorInscripcion = valueOf(tfValorInscripcion.getText(), Integer::valueOf).orElseThrow(()->new Exception("El valor de la inscripción es requerio"));
+            
+            var torneo = new Torneo(tfNombre.getText(), dpFechaInicio.getValue(),dpFechaInicioInscripciones.getValue(), dpFechaFinInscripciones.getValue(), numeroParticipantes, limiteEdad, valorInscripcion, cbTipoTorneo.getValue() );
 
             INSTANCE.adicionar(torneo);
             llenarTabla(INSTANCE.getTorneos());
@@ -111,19 +116,19 @@ public class TorneoController {
     public void onBuscarClick() {
         llenarTabla(
                 INSTANCE.buscar(tfNombre.getText(),
-                valueOf(tfNumeroParticipantes.getText(),Byte::valueOf),
-                valueOf(tfLimiteEdad.getText(),Byte::valueOf),
-                valueOf(tfValorInscripcion.getText(),Integer::valueOf),
+                valueOf(tfNumeroParticipantes.getText(),Byte::valueOf).orElse((byte)0),
+                valueOf(tfLimiteEdad.getText(),Byte::valueOf).orElse((byte)0),
+                valueOf(tfValorInscripcion.getText(),Integer::valueOf).orElse(0),
                 cbTipoTorneo.getValue())
         );
     }
 
-    private <T> T valueOf(String texto,Function<String,T> parser){
+    private <T> Optional<T> valueOf(String texto,Function<String,T> parser){
         T value = null;
         if( texto != null && !texto.isBlank() ){
             value = parser.apply(texto);
         }
-        return value;
+        return Optional.ofNullable(value);
     }
 
     private void llenarCampos(Torneo torneo) {
