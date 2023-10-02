@@ -92,14 +92,14 @@ public class Torneo {
     }
 
     public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
-        assert fechaInicioInscripciones != null;
+        ASSERTION.assertion( fechaInicioInscripciones != null , "La fecha de inicio de inscripciones es requerida");
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
 
 
     public void setFechaCierreInscripciones(LocalDate fechaCierreInscripciones) {
-        assert fechaCierreInscripciones != null;
-        assert fechaCierreInscripciones.isAfter(fechaInicioInscripciones);
+        ASSERTION.assertion( fechaCierreInscripciones != null , "La fecha de cierre es requerida");
+        ASSERTION.assertion( fechaCierreInscripciones.isAfter(fechaInicioInscripciones),"La fecha de cierre de inscripciones debe ser posterior a la fecha de inicio de inscripciones" );
         this.fechaCierreInscripciones = fechaCierreInscripciones;
     }
     
