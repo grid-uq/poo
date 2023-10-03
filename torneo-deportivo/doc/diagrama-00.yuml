@@ -1,4 +1,4 @@
 // {type:class}
 
-[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero] * tipoTorneo -  1> [<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL]
+[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero] *  - tipoTorneo 1> [<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL]
 

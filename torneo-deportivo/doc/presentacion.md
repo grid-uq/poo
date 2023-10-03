@@ -36,7 +36,7 @@ Facultad de Ingeniería
 <div style="position: absolute; left: 45%; top:20%; background-color: rgb(212, 231, 205); width: 550px">
 <b>
 Problema: <br />
-Torneo deportivo - Requerimiento 01 <br />
+Torneo deportivo - Requerimiento 03 <br />
 </b>
 </div>
 
@@ -118,7 +118,7 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 <div style="position: absolute; left: 40%; top:30%; ">
 
 
-![](https://yuml.me/diagram/class;scale:150/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+![](https://yuml.me/diagram/class;scale:150/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
 </div>
 
 ---
@@ -150,7 +150,7 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 <div style="position: absolute; left: 60%; top:30%; ">
 
 
-![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+![](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
 </div>
 
 ---
@@ -167,7 +167,7 @@ Se desea incluir entre la información del torneo, el tipo de torneo según si e
 <div style="position: absolute; left: 60%; top:15%; ">
 
 
-![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
 </div>
 
 ---
@@ -185,7 +185,7 @@ del torneo
 <div style="position: absolute; left: 60%; top:15%; ">
 
 
-![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)]*tipoTorneo-1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
+![height:540](https://yuml.me/diagram/class;scale:100/class/[Torneo|-nombre:Texto;-fechaInicio:Fecha;-fechaInicioInscripciones:Fecha;-fechaCierreInscripciones:Fecha;-numeroParticipantes:Entero;-limiteEdad:Entero;-valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL])
 </div>
 
 ---
