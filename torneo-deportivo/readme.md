@@ -16,7 +16,7 @@ Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos s
 
 ## Ejercicio
 
-- Diseñe las pruebas, construyalas y haga las modificaciones pertinentes para:
+- Diseñe las pruebas, constrúyalas y haga las modificaciones pertinentes para:
 
     - Verificar que no se registren jugadores en un equipo cuando el torneo es de carácter individual.
     - Validar la edad de los participantes cuando el torneo es de carácter individual.
