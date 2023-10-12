@@ -14,15 +14,18 @@ El promotor deportivo desea que cada equipo tenga un listado de sus jugadores, p
 
 Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos sino también torneos de carácter individual. Esto implica que los participantes en un torneo pueden ser grupos (si es grupal) o jugadores si es un torneo individual.
 
-## Ejercicio
+El promotor deportivo desea que exista la posibilidad de registrar diversas estadísticas a los participantes de los torneo. Entre las estadísticas por ejemplo se desea llevar un registro del número de torneos ganados y todas aquellas estadísticas relevantes como lo son enfrentamientos ganados, perdidos entre otros (Cada estadística tiene un nombre, un valor y un tipo que indica si la estadística por si misma implica algo Positivo, Negativo o es Neutra).
 
-- Diseñe las pruebas, constrúyalas y haga las modificaciones pertinentes para:
+Adicionalmente, basado en dichas estadísticas se desea tener la posibilidad de proporcionar:
 
-    - Verificar que no se registren jugadores en un equipo cuando el torneo es de carácter individual.
-    - Validar la edad de los participantes cuando el torneo es de carácter individual.
-    - Validar que no se registren dos participantes con el mismo email cuando el torneo es de carácter individual.
-
-- Se desea que la lista de participantes sea devuelta en orden alfabético. Diseñe y construya las pruebas para verificar que el método getParticipantes funcione de esta forma y realice las modificaciones pertinentes para lograr que así sea.
+- Listado de participantes ordenado según la estadística.
+- Dada una estadística obtener el participante con la mayor valor en dicha estadística.
+- Dada una estadística obtener y un valor obtener los participantes con dicha estadística superior o igual a la dada.
+- Dada una estadística obtener y un valor obtener los participantes con dicha estadística inferior a la dada.
+- Dada una estadística obtener la media de dicha estadística entre los participantes del torneo.
+- Dado un participante devolver las estadísticas de dicho participante
+- Comparar una estadística presente en dos participantes (A,B) (Retornando un número positivo si el Participante A tiene mejor estadística que B, en el caso de las estadísticas positivas y neutras implica que la estadística de A sea mayor que la de B, en las negativas que la estadística de A sea inferior a la de B. Retorna 0 si las estadísticas son iguales, en caso contrario retorna un número negativo).
+- Se desea dados dos participantes (A,B) generar un reporte con las estadísticas de ambos participantes. El reporte contendrá N registros, donde N es el número de estadísticas. Cada registro indicará la estadística, el valor del participante A en dicha estadística y el valor del participante B en dicha estadística. En el caso de que una estadística aparezca solo en un participante el registro en el reporte aparecerá con el valor de la estadística del participante que la tiene y un valor que indique que el otro participante no la tiene. 
 
 ## PROYECTO FINAL - PARTE 1
 Se desea realizar torneos que permitan la inclusión de diversos géneros, torneos solo para hombres, torneos solo para mujeres o torneos mixtos. Para ello deberá incluir en la información del torneo el genero. Así mismo también deberá incluirse este dato en los jugadores y validarlo al momento de su registro.
