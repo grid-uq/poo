@@ -20,8 +20,8 @@ Adicionalmente, basado en dichas estadísticas se desea tener la posibilidad de 
 
 - Listado de participantes ordenado según la estadística.
 - Dada una estadística obtener el participante con la mayor valor en dicha estadística.
-- Dada una estadística obtener y un valor obtener los participantes con dicha estadística superior o igual a la dada.
-- Dada una estadística obtener y un valor obtener los participantes con dicha estadística inferior a la dada.
+- Dada una estadística y un valor obtener los participantes con dicha estadística superior o igual a la dada.
+- Dada una estadística y un valor obtener los participantes con dicha estadística inferior a la dada.
 - Dada una estadística obtener la media de dicha estadística entre los participantes del torneo.
 - Dado un participante devolver las estadísticas de dicho participante
 - Comparar una estadística presente en dos participantes (A,B) (Retornando un número positivo si el Participante A tiene mejor estadística que B, en el caso de las estadísticas positivas y neutras implica que la estadística de A sea mayor que la de B, en las negativas que la estadística de A sea inferior a la de B. Retorna 0 si las estadísticas son iguales, en caso contrario retorna un número negativo).

@@ -99,12 +99,37 @@ Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos s
 
 ---
 
+## RQ 10
+
+El promotor deportivo desea que exista la posibilidad de registrar diversas estadísticas a los participantes de los torneo. Entre las estadísticas por ejemplo se desea llevar un registro del número de torneos ganados y todas aquellas estadísticas relevantes como lo son enfrentamientos ganados, perdidos entre otros (Cada estadística tiene un nombre, un valor y un tipo que indica si la estadística por si misma implica algo Positivo, Negativo o es Neutra).
+
+___
+
+<style scoped>
+  section{font-size:13.5pt}
+</style>
+
+## RQ 10
+
+Adicionalmente, basado en dichas estadísticas se desea tener la posibilidad de proporcionar:
+
+- Listado de participantes ordenado según la estadística.
+- Dada una estadística obtener el participante con la mayor valor en dicha estadística.
+- Dada una estadística y un valor obtener los participantes con dicha estadística superior o igual a la dada.
+- Dada una estadística y un valor obtener los participantes con dicha estadística inferior a la dada.
+- Dada una estadística obtener la media de dicha estadística entre los participantes del torneo.
+- Dado un participante devolver las estadísticas de dicho participante
+- Comparar una estadística presente en dos participantes (A,B) (Retornando un número positivo si el Participante A tiene mejor estadística que B, en el caso de las estadísticas positivas y neutras implica que la estadística de A sea mayor que la de B, en las negativas que la estadística de A sea inferior a la de B. Retorna 0 si las estadísticas son iguales, en caso contrario retorna un número negativo).
+- Se desea dados dos participantes (A,B) generar un reporte con las estadísticas de ambos participantes. El reporte contendrá N registros, donde N es el número de estadísticas. Cada registro indicará la estadística, el valor del participante A en dicha estadística y el valor del participante B en dicha estadística. En el caso de que una estadística aparezca solo en un participante el registro en el reporte aparecerá con el valor de la estadística del participante que la tiene y un valor que indique que el otro participante no la tiene. 
+
+---
+
 
 <style scoped>
 .texto:after {
     content: 'Abstracción: ¿Qué se solicita finalmente? (problema)';
   }
-  section{font-size:16pt}
+  section{font-size:15pt}
 </style>
 
 - Almacenar la información de un torneo
@@ -122,6 +147,28 @@ Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos s
   - Validar que dos jugadores no tengan el mismo nombre y apellido, independiente del equipo.
 - Recuperar la información de los jugadores  
 - Soportar torneos individuales (Un jugador sin representante) y grupales.
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Abstracción: ¿Qué se solicita finalmente? (problema)';
+  }
+  section{font-size:18pt}
+</style>
+
+- Almacenar la información de estadísticas de los participantes.
+- Recuperar la información de estadísticas de los participantes.
+- Realizar consultas sobre las estadísticas de los participantes:
+  - Dada una estadística obtener el participante con la mayor valor en dicha estadística.
+  - Dada una estadística y un valor obtener los participantes con dicha estadística superior o igual a la dada.
+  - Dada una estadística y un valor obtener los participantes con dicha estadística inferior a la dada.
+  - Dada una estadística obtener la media de dicha estadística entre los participantes del torneo.
+  - Dado un participante devolver las estadísticas de dicho participante
+- Comparar una estadística presente en dos participantes (A,B).
+- Generar un reporte con las estadísticas de dos participantes. 
+
 ---
 
 <style scoped>
@@ -155,7 +202,6 @@ Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos s
 - apellido del representante
 - email del representante
 - número de celular del representante
-
 ---
 
 <style scoped>
@@ -174,8 +220,28 @@ Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos s
 
 <style scoped>
 .texto:after {
+    content: 'Abstracción: ¿Qué información es relevante dado el problema anterior?';
+  }
+</style>
+
+- estadísticas del participante
+- nombre de la estadística
+- valor de la estadística
+- tipo de estadística (Positiva, Negativa y Neutra)
+- jugadores involucrados en el reporte 
+- fecha del reporte
+- registros del reporte
+- estadística en el registro del reporte
+- el valor obtenido por los jugadores en la estadística asociada al registro
+---
+
+<style scoped>
+.texto:after {
     content: 'Abstracción: ¿Cómo se agrupa la información relevante?';
   }
+section{
+  font-size: 18pt
+}  
 </style>
 
 - Torneo
@@ -185,6 +251,11 @@ Se desea ampliar la variedad de torneos, permitiendo no solo torneos de grupos s
 - Jugador
 - CatacterTorneo
 - Participante
+- Estadística
+- TipoEstadistica
+- RegistroEstadistica
+- Reporte
+- RegistroReporte
 
 <div style="position: absolute; left: 23%; top:20%; ">
 
