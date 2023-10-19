@@ -2,9 +2,32 @@ package co.edu.uniquindio.poo;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
-public record Finca(String nombre, Collection<Empleado> empleados) {
+public class Finca2 {
+
+    private final String nombre;
+    private final Collection<Empleado> empleados;
+
+    private final Predicate<Empleado> filtroEmpleadosRecoleccion = empleado -> empleado instanceof EmpleadoRecoleccion;
+    private final Predicate<Empleado> filtroEmpleadosTiempoParcial = empleado -> empleado instanceof EmpleadoTiempoParcial;
+    private final Predicate<Empleado> filtroEmpleadosTiempoCompleto = empleado -> empleado instanceof EmpleadoTiempoCompleto;
+
+    private final Function<Empleado,EmpleadoRecoleccion> toEmpleadoRecoleccion = empleado -> (EmpleadoRecoleccion) empleado;
+    private final Function<Empleado,EmpleadoTiempoParcial> toEmpleadoTiempoParcial = empleado -> (EmpleadoTiempoParcial) empleado;
+    private final Function<Empleado,EmpleadoTiempoCompleto> toEmpleadoTiempoCompleto = empleado -> (EmpleadoTiempoCompleto) empleado;
+
+    public Finca2(String nombre) {
+        this.nombre = nombre;
+        empleados = new LinkedList<>();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
 
     public void adicionarEmpleados(Empleado empleado){
         validarEmpleado(empleado);
@@ -19,12 +42,11 @@ public record Finca(String nombre, Collection<Empleado> empleados) {
     }
 
     public Collection<EmpleadoRecoleccion> listarEmpleadosRecoleccion(int numeroKilos){
-        Predicate<Empleado> condicion = empleado -> empleado instanceof EmpleadoRecoleccion;
-        Predicate<EmpleadoRecoleccion> condicion2 = empleado-> empleado.getNumeroKilos() > numeroKilos;
+        Predicate<EmpleadoRecoleccion> condicion = empleado-> empleado.getNumeroKilos() > numeroKilos;
         return empleados.stream()
+                .filter(filtroEmpleadosRecoleccion)
+                .map(toEmpleadoRecoleccion)
                 .filter(condicion)
-                .map(empleado -> (EmpleadoRecoleccion)empleado)
-                .filter(condicion2)
                 .sorted(Comparator.comparing(EmpleadoRecoleccion::getNumeroKilos))
                 .toList();
     }
@@ -46,10 +68,9 @@ public record Finca(String nombre, Collection<Empleado> empleados) {
     }
 
     public Collection<EmpleadoTiempoParcial> listarEmpleadosTiempoParcial(){
-        Predicate<Empleado> condicion = empleado -> empleado instanceof EmpleadoTiempoParcial;
         return empleados.stream()
-                .filter(condicion)
-                .map(empleado -> (EmpleadoTiempoParcial)empleado)
+                .filter(filtroEmpleadosTiempoParcial)
+                .map(toEmpleadoTiempoParcial)
                 .toList();
     }
 
@@ -57,35 +78,33 @@ public record Finca(String nombre, Collection<Empleado> empleados) {
         double promedioHorasLaboradas = calcularPromedioHorasLaboradas();
         double promedioKilosRecolectados = calcularPromedioKilosRecolectados();
 
-        Predicate<Empleado> condicion = empleado -> {
-            if( empleado instanceof EmpleadoTiempoParcial e && e.getNumeroHoras() < promedioHorasLaboradas ){
-                return true;
-            }
-            if( empleado instanceof EmpleadoRecoleccion e && e.getNumeroKilos() < promedioKilosRecolectados ){
-                return true;
-            }
-            return false;
-        };
+        Predicate<Empleado> empleadoRecoleccionMenorRendimiento = filtroEmpleadosRecoleccion.and( e->((EmpleadoRecoleccion)e).getNumeroKilos()<promedioKilosRecolectados );
 
-        return empleados.stream().filter(condicion).toList();
+        Predicate<Empleado> empleadoTiempoParcialMenorRendimiento = filtroEmpleadosTiempoParcial.and( e-> ((EmpleadoTiempoParcial)e).getNumeroHoras()<promedioHorasLaboradas);
+
+
+        Stream<Empleado> empleadosRecoleccion = empleados.stream()
+                .filter(empleadoRecoleccionMenorRendimiento);
+
+        Stream<Empleado> empleadoTiempoParcial = empleados.stream().filter(empleadoTiempoParcialMenorRendimiento);
+
+        return Stream.concat(empleadosRecoleccion, empleadoTiempoParcial).toList();
 
     }
 
     private double calcularPromedioKilosRecolectados() {
-        Predicate<Empleado> condicion = empleado -> empleado instanceof EmpleadoRecoleccion;
         return empleados.stream()
-                .filter(condicion)
-                .map(empleado -> (EmpleadoRecoleccion)empleado)
+                .filter(filtroEmpleadosRecoleccion)
+                .map(toEmpleadoRecoleccion)
                 .mapToInt(EmpleadoRecoleccion::getNumeroKilos)
                 .summaryStatistics()
                 .getAverage();
     }
 
     private double calcularPromedioHorasLaboradas() {
-        Predicate<Empleado> condicion = empleado -> empleado instanceof EmpleadoTiempoParcial;
         return empleados.stream()
-                .filter(condicion)
-                .map(empleado -> (EmpleadoTiempoParcial)empleado)
+                .filter(filtroEmpleadosTiempoParcial)
+                .map(toEmpleadoTiempoParcial)
                 .mapToInt(EmpleadoTiempoParcial::getNumeroHoras)
                 .summaryStatistics()
                 .getAverage();

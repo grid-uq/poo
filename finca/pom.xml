@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>co.edu.uniquindio.poo</groupId>
-  <artifactId>torneo-deportivo</artifactId>
+  <artifactId>finca</artifactId>
   <version>1.0</version>
 
-  <name>torneo-deportivo</name>
-  
+  <name>finca</name>
+   
   <url>https://github.com/grid-uq/poo/tree/tonero/01/torneo-deportivo</url>
 
   <properties>
@@ -20,17 +20,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>${javafx.version}</version>
-    </dependency>  
-    
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-fxml</artifactId>
-      <version>${javafx.version}</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
     <dependency>
         <groupId>org.junit.jupiter</groupId>
@@ -38,7 +27,7 @@
         <version>5.10.0</version>
         <scope>test</scope>
     </dependency>
-
+ 
   </dependencies>
 
   <build>
@@ -53,28 +42,6 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.1.2</version>
         </plugin>
-        <plugin>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-maven-plugin</artifactId>
-            <version>0.0.8</version>
-            <executions>
-                <execution>
-                    <!-- Default configuration for running with: mvn clean javafx:run -->
-                    <id>default-cli</id>
-                    <configuration>
-                        <mainClass>
-                            co.edu.uniquindio.poo.torneodeportivo.gui/co.edu.uniquindio.poo.torneodeportivo.gui.MainApp
-                        </mainClass>
-                        <launcher>app</launcher>
-                        <jlinkZipName>app</jlinkZipName>
-                        <jlinkImageName>app</jlinkImageName>
-                        <noManPages>true</noManPages>
-                        <stripDebug>true</stripDebug>
-                        <noHeaderFiles>true</noHeaderFiles>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>        
       </plugins>
     </pluginManagement>
   </build>

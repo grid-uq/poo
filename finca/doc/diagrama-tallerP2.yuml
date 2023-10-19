@@ -1,0 +1,16 @@
+
+// {type:class}
+// {direction:leftToRight}
+
+[Finca|-nombre:Texto;-empleados:Empleado［*］|+Constructor(nombre:Texto);+adicionarEmpleado(empleado:Empleado);+listarEmpleadosMenorRendimiento():Empleado［*］;+listarEmpleadosRecoleccion():EmpleadoRecoleccion［*］;+listarEmpleadosSalarioMayorPromedio():Empleado［*］;+listarEmpleadosTiempoParcial():EmpleadoTiempoParcial［*］]
+[<<abstract>>;Empleado|-nombre:Texto;-cargo:Texto|+Constructor(nombre:Texto;cargo:Texto);+<<abstract>>calcularSalario():Entero;+getNombre():Texto;+getCargo():Texto]
+
+[EmpleadoTiempoParcial|-numeroHoras:Entero;-salarioHora:Entero|+Constructor(nombre:Texto;cargo:Texto;numeroHoras:Entero;salarioHora:Entero);+calcularSalario():Entero;+getNumeroHoras():Entero;+getSalarioHora():Entero]
+[EmpleadoRecoleccion|-numeroKilos:Entero;-valorKilo:Entero|+Constructor(nombre:Texto;cargo:Texto;numeroKilos:Entero;valorKilo:Entero);+calcularSalario():Entero;+getNumeroKilos():Entero;+getValorKilo():Entero]
+[EmpleadoTiempoCompleto|-salario:Entero|+Constructor(nombre:Texto;cargo:Texto;salario:Entero);+calcularSalario():Entero;+getSalario():Entero]
+
+[Finca]1-empleados*>[<<abstract>>;Empleado]
+[<<abstract>>;Empleado]^-[EmpleadoTiempoParcial]
+[<<abstract>>;Empleado]^-[EmpleadoRecoleccion]
+[<<abstract>>;Empleado]^-[EmpleadoTiempoCompleto]
+
