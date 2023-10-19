@@ -1,11 +1,11 @@
 // {type:class}
 // {direction:leftToRight}
-// {generate:false}
+// {generate:true}
 
 
 [Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]
 [<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL]
-[<<abstract>>;Participante|estadisticas:RegistroEstadistica]
+[<<abstract>>;Participante|estadisticas:RegistroEstadistica［*］]
 [Equipo|nombre:Texto]
 [Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]
 [Jugador|fechaNacimiento:Fecha]

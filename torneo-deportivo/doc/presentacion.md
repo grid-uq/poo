@@ -260,7 +260,7 @@ section{
 <div style="position: absolute; left: 23%; top:20%; ">
 
 
-![](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
+![](diagrama-00.svg)
 </div>
 
 ---
@@ -274,7 +274,7 @@ section{
 - Almacenar la información de un torneo
 
 
-![](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo);+registrarParticipante(participante:Participante)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
+![](diagrama-01.svg)
 
 ---
 
@@ -287,7 +287,7 @@ section{
 
 - Recuperar la información de un torneo
 
-![height:450](https://yuml.me/diagram/class;scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
+![](diagrama-02.svg)
 
 ---
 
@@ -297,19 +297,12 @@ section{
     content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
   }
 </style>
-
-<!--
-_header: ''
-_footer: '' 
--->
 
 
 - Modificar las fechas de inscripción e inicio 
 del torneo
 
-![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante],[Equipo|nombre:Texto]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
-
-
+![](diagrama-03.svg)
 
 ---
 
@@ -318,28 +311,19 @@ del torneo
 .texto:after {
     content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
   }
+section{
+  font-size:14.5pt
+}  
 </style>
 
-<!--
-_header: ''
-_footer: '' 
--->
-
-
-<div style="position: absolute; left: 5%; top:25%; ">
-
-![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto)]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
-
-</div>
-
-<div style="position: absolute; left: 25%; top:1%; font-size: 16pt ">
 
 - Almacenar la información de los equipos y su representante
   - Validar que no se debe excederse el número máximo de equipos
   - Validar que la inscripción se realice dentro de las fechas permitidas
   - Validar que no se permita registrar un equipo con el mismo nombre de uno ya registrado
-</div>
 
+
+![](diagrama-04.svg)
 
 
 ---
