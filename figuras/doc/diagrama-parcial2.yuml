@@ -1,0 +1,11 @@
+// {type:class}
+// {direction:leftToRight}
+
+[Figura|-nombre:Texto|+Constructor(nombre:Texto);+getNombre():Texto;+<<abstract>> calcularArea():Real]
+[Triangulo|-base:Real;-altura:Real|+Constructor(base:Real;altura:Real);+calcularArea():Real]
+[Rectangulo|-ancho:Real;-alto:Real|+Constructor(ancho:Real;alto:Real);+calcularArea():Real;+getAncho():Real;+getAlto():Real]
+[Cuadrado| |+Constructor(lado:Real);]
+
+[Figura]^-[Triangulo]
+[Figura]^-[Rectangulo]
+[Rectangulo]^-[Cuadrado]
