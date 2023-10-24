@@ -1,0 +1,43 @@
+// {type:class}
+// {direction:leftToRight}
+// {generate:true}
+
+[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo)+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador);+registrarEstadisticaParticipante(participante:Participante;estadistica:RegistroEstadistica);+getEstadisticas():Estadistica［*］;+buscarMejor(estadistica:Estadistica):Participante;+buscarSuperiorIgualA(estadistica:Estadistica;valor:Real):Participante［*］;+buscarInferiorA(estadistica:Estadistica;valor:Real):Participante［*］;+promedioEstadistica(estadistica:Estadistica):Real;+obtenerEstadisticas(participante:Participante):RegistroEstadistica［*］]
+
+[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL]
+[<<abstract>>;Participante|estadisticas:RegistroEstadistica［*］|+Constructor();+getEstadisticas():RegistroEstadistica［*］;+<<abstract>>getNombreCompleto():Texto;+registrarEstadistica(estadistica:RegistroEstadistica)]
+
+[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);+getNombre():Texto;+getRepresentante():Persona;+getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]
+[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);+getNombre():Texto;+getApellido():Texto;+getEmail():Texto;+getCelular():Texto]
+[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha);+getFechaNacimiento():Fecha;+calcularEdad(fecha:Fecha):Entero]
+[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL]
+[Estadistica|nombre:Texto|+Constructor(nombre:Texto;tipo:TipoEstadistica);+getNombre():Texto;+getTipo():TipoEstadistica]
+[RegistroEstadistica|valor:Real;estadistica:Estadistica|+Constructor(valor:Real;estadistica:Estadistica);+getValor():Real;+getEstadistica():Estadistica]
+[Reporte|fecha:Fecha;participanteA:Participante;participanteB:Participante]
+[RegistroReporte|estadisticaParticipanteA:RegistroEstadistica;estadisticaParticipanteB:RegistroEstadistica]
+[<<Enum>>;TipoEstadistica|POSITIVA;NEGATIVA;NEUTRA]
+
+[Torneo]-.->[Reporte]
+
+[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo]
+
+[Torneo]*-tipoTorneo1> [<<Enum>>;TipoTorneo] 
+[Torneo]<>1-participantes*>[<<abstract>>;Participante]
+[Equipo]<>1-representante1>[Persona]
+[Persona]^-[Jugador]
+[Equipo]<>1-jugador*>[Jugador]
+[<<abstract>>;Participante]^-[Jugador]
+[<<abstract>>;Participante]^-[Equipo]
+
+[<<abstract>>;Participante]*-*>[Estadistica][RegistroEstadistica]
+[Estadistica]*-tipo1>[<<Enum>>;TipoEstadistica]
+[Reporte]<>1-registros*>[RegistroReporte]
+[RegistroReporte]<>*-2>[RegistroEstadistica]
+[Reporte]<>*-2>[<<abstract>>;Participante]
+
+
+
+
+
+
+

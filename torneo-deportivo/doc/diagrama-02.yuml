@@ -10,7 +10,7 @@
 [Jugador|fechaNacimiento:Fecha]
 [<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL]
 [Estadistica|nombre:Texto]
-[RegistroEstadistica|valor:Real]
+[RegistroEstadistica|valor:Real;estadistica:Estadistica]
 [Reporte|fecha:Fecha;participanteA:Participante;participanteB:Participante]
 [RegistroReporte|estadisticaParticipanteA:RegistroEstadistica;estadisticaParticipanteB:RegistroEstadistica]
 [<<Enum>>;TipoEstadistica|POSITIVA;NEGATIVA;NEUTRA]

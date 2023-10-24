@@ -328,32 +328,19 @@ section{
 
 ---
 
-
 <style scoped>
 .texto:after {
     content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
   }
 </style>
 
-<!--
-_header: ''
-_footer: '' 
--->
-
-
-<div style="position: absolute; left: 1%; top:15%; ">
-
-![](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
-</div>
-
-<div style="position: absolute; left: 60%; top:5%; font-size: 16pt ">
 
 - Recuperar la información de los equipos y su representante
 
-</div>
+
+![](diagrama-05.svg)
 
 ---
-
 
 <style scoped>
 .texto:after {
@@ -366,16 +353,11 @@ img[alt~="center"] {
 
 </style>
 
-<!--
-_header: ''
-_footer: '' 
-
--->
 
 
 - Almacenar la información de los jugadores
 
-![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha)],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
+![Alt center](diagrama-06.svg)
 
 ---
 
@@ -390,14 +372,119 @@ img[alt~="center"] {
 }
 </style>
 
-<!--
-_header: ''
-_footer: '' 
--->
-
 - Recuperar la información de los jugadores
 
-![Alt center](https://yuml.me/diagram/scale:100;dir:lr/class/[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo);+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador)]*-tipoTorneo1>[<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL],[Torneo]<>1-participantes*>[<<Interface>>;Participante|getNombreCompleto():Texto],[Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);getNombre():Texto;getRepresentante():Persona;getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]<>1-representante1>[Persona|nombre:Texto;apellido:Texto;email:Texto;celular:Texto|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto);getNombre():Texto;getApellido():Texto;getEmail():Texto;getCelular():Texto]^-[Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha);+getFechaNacimiento():Fecha;+calcularEdad(fecha:Fecha):Entero],[Equipo]<>1-jugador*>[Jugador|fechaNacimiento:Fecha],[Torneo]*-caracter1>[<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL],[Jugador]-^[<<Interface>>;Participante]^-[Equipo])
+![Alt center](diagrama-07.svg)
+
+---
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+- Soportar torneos individuales (Un jugador sin representante) y grupales. (Ya se han realizado los cambios necesarios)
+
+![Alt center](diagrama-08.svg)
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+- Almacenar la información de estadísticas de los participantes.
+
+![Alt center](diagrama-09.svg)
+
+---
+
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+- Recuperar la información de estadísticas de los participantes.
+
+![Alt center](diagrama-10.svg)
+
+---
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+section{
+  font-size: 8pt
+}
+
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+- Realizar consultas sobre las estadísticas de los participantes:
+  - Dada una estadística obtener el participante con la mayor valor en dicha estadística.
+  - Dada una estadística y un valor obtener los participantes con dicha estadística superior o igual a la dada.
+  - Dada una estadística y un valor obtener los participantes con dicha estadística inferior a la dada.
+  - Dada una estadística obtener la media de dicha estadística entre los participantes del torneo.
+  - Dado un participante devolver las estadísticas de dicho participante
+
+![Alt center height:380](diagrama-11.svg)
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+- Comparar una estadística presente en dos participantes (A,B).
+
+![Alt center](diagrama-12.svg)
+
+---
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Cómo se distribuyen las funcionalidades?';
+  }
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+</style>
+
+- Generar un reporte con las estadísticas de dos participantes. 
+
+![Alt center](diagrama-13.svg)
 
 ---
 
