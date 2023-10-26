@@ -629,7 +629,32 @@ img[alt~="center"] {
 </div>
 
 ---
+Registrar estadistica a un participante
 
+Registrar estadistica a un participante que no esta registrado en el torneo
+
+Datos nulos (participante o estadística nulos)
+
+Registrar una estadística a un participante que ya la posee (actualizar estadística)
+
+
+Obtener los datos estadísticos de un participante registrado
+
+Solicitar los datos estadísticos de un participante no registrado
+
+solicitar los datos estadísticos de un participante null
+
+
+
+- Realizar consultas sobre las estadísticas de los participantes:
+  - Dada una estadística obtener el participante con la mayor valor en dicha estadística.
+  - Dada una estadística y un valor obtener los participantes con dicha estadística superior o igual a la dada.
+  - Dada una estadística y un valor obtener los participantes con dicha estadística inferior a la dada.
+  - Dada una estadística obtener la media de dicha estadística entre los participantes del torneo.
+  - Dado un participante devolver las estadísticas de dicho participante
+
+- Comparar una estadística presente en dos participantes (A,B).
+- Generar un reporte con las estadísticas de dos participantes.   
 ---
 
 
