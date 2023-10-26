@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public class Jugador extends Persona implements Participante {
+public class Jugador extends Persona extends Participante {
     private final LocalDate fechaNacimiento;
 
     public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento) {

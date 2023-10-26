@@ -227,4 +227,8 @@ public class Torneo {
         var edadAlInicioTorneo = jugador.calcularEdad(fechaInicio);
         ASSERTION.assertion( limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo , "No se pueden registrar jugadores que excedan el limite de edad del torneo"); 
     }
+
+    public void registrarEstadisticaParticipante(Participante participante, RegistroEstadistica registroEstadistica) {
+        // TODO falta implementar
+    }
 }
