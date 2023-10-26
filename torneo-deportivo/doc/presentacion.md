@@ -629,34 +629,6 @@ img[alt~="center"] {
 </div>
 
 ---
-Registrar estadistica a un participante
-
-Registrar estadistica a un participante que no esta registrado en el torneo
-
-Datos nulos (participante o estadística nulos)
-
-Registrar una estadística a un participante que ya la posee (actualizar estadística)
-
-
-Obtener los datos estadísticos de un participante registrado
-
-Solicitar los datos estadísticos de un participante no registrado
-
-solicitar los datos estadísticos de un participante null
-
-
-
-- Realizar consultas sobre las estadísticas de los participantes:
-  - Dada una estadística obtener el participante con la mayor valor en dicha estadística.
-  - Dada una estadística y un valor obtener los participantes con dicha estadística superior o igual a la dada.
-  - Dada una estadística y un valor obtener los participantes con dicha estadística inferior a la dada.
-  - Dada una estadística obtener la media de dicha estadística entre los participantes del torneo.
-  - Dado un participante devolver las estadísticas de dicho participante
-
-- Comparar una estadística presente en dos participantes (A,B).
-- Generar un reporte con las estadísticas de dos participantes.   
----
-
 
 
 <style scoped>
@@ -674,6 +646,85 @@ solicitar los datos estadísticos de un participante null
 | Registrar un participante individual con nombre repetido                     | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}, Jugador {Christian,Candela,ccandela@email.com,6067431235, fechaActual - 15 años}                          | Error, el participante ya existe                                                     |
 | Registrar un participante individual en un torneo grupal                     | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|GRUPAL}  Jugador {Christian,Candela,chrcandela@email.com,6067431234, fechaActual - 15 años}                          | Error, no es posible registrar un participante individual en un torneo grupal                                                     |
 | Registrar un equipo en un torneo individual                     | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}                          | Error, no es posible registrar un equipo en un torneo individual                                                     |
+
+---
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Registrar estadística a un participante                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años} RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años} RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} } | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL\|[Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años,[ RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años,[RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años, [RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} }]}] |
+| Registrar estadística a un participante que no esta registrado en el torneo                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } | Error, el participante no está registrado en el torneo |
+
+
+---
+
+
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica null | Error, la estadística es requerida |
+| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador null Estadistica{Efectividad,POSITIVA} | Error, el jugador es requerido |
+| Registrar una estadística a un participante que ya la posee (actualizar estadística) | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL\|[Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años,[ RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA}}]}] |
+
+| Obtener las estadísticas de un participante | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años} RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años} RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} } | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL\|[Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años,[ RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años,[RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años, [RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} }]}] |
+
+
+---
+
+
+
+Obtener las estadísticas de un participante, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) y una estadística (NEGATIVA) con 3 valores distintos, se solicitan las estadísticas de un participante y debe devolver las dos registradas.
+
+Obtener las estadisticas de un participante sin estadisticas, se crea el torneo, se registran 3 participantes y a 2 de ellos se les registra una estadística (POSITIVA) y una estadística (NEGATIVA) con 3 valores distintos, se solicitan las estadísticas del participante sin estadisticas y debe devolver la lista vacia.
+
+Obtener las estadisticas de un participante no existente, se crea el torneo, se registran 3 participantes y a todos ellos se les registra una estadística (POSITIVA) y una estadística (NEGATIVA) con 3 valores distintos, se solicitan las estadísticas de un participante no registrado, se espera un error.
+
+
+Solicitar los datos estadísticos de un participante no registrado
+
+solicitar los datos estadísticos de un participante null
+
+Obtener el participante con la mayor estadística, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita el participante con mayor estadistica (POSITIVA), se espera el participante con mayor valor de la estadística.
+
+Obtener el participante con la mayor estadística, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita el participante con mayor estadistica (NEGATIVA), se espera el participante con menor valor de la estadística.
+
+Pedir del participante de mayor estadistica de una estadistica que no existe, se crea el torneo, se registran 3 participantes y a los 3 una estadística con 3 valores distintos, se solicita el participante con mayor estadistica de una inexistente,  se espera una lista vacia.
+
+Pedir del participante de mayor estadistica de en un torneo sin participantes, se crea el torneo, se solicita el participante con mayor estadistica de una inexistente,  se espera una lista vacia.
+
+Obtener los participantes con estadistica superior o igual a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (POSITIVA) con el valor medio de las 3 registradas, se espera un listado con dos participantes.
+
+Obtener los participantes con estadistica superior o igual a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (NEGATIVA) con el valor medio de las 3 registradas, se espera un listado con dos participantes.
+
+Obtener los participantes con estadistica superior o igual a la dada de una estadística que no existe, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica diferente con el valor medio de las 3 registradas, se espera un listado vacío.
+
+Obtener los participantes con dicha estadística inferior a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (POSITIVA) con el valor medio de las 3 registradas, se espera un listado con un participant.
+
+Obtener los participantes con dicha estadística inferior a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (NEGATIVA) con el valor medio de las 3 registradas, se espera un listado con un participante.
+
+Obtener los participantes con dicha estadística inferior a la dada de una estadística que no existe, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica diferente con el valor medio de las 3 registradas, se espera un listado vacío.
+
+Obtener la media de una estadística dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita la media de dicha estadistica, se espera la media de la estadística dada.
+
+Obtener la media de una estadística dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita la media de una estadistica distinta a la registrada, se espera un error.
+
 
 ---
 
