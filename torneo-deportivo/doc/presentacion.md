@@ -655,17 +655,108 @@ img[alt~="center"] {
   }
 </style>
 
+- Para el siguiente conjunto de pruebas se va a asumir la creación del siguiente conjunto de datos por defecto.
+
+```json
+{
+  torneos: [
+    {nombre:"Copa Mundo Ajedrez",
+    "fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", 
+    "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"LOCAL","caracter":"INDIVIDUAL", 
+    "participantes": [
+      {"nombre":"ParticipanteA","apellido":"JugadorA","email":"jugadora@email.com","telefono":"6067431234", "fechaNacimiento":"fechaActual - 15 años", "estadisticas":[ 
+        {"valor":3.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
+        {"valor":4.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
+      {"nombre":"ParticipanteB","apellido":"JugadorB","email":"jugadorb@email.com","telefono":"6067431235", "fechaNacimiento":"fechaActual - 16 años", "estadisticas":[ 
+        {"valor":4.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
+        {"valor":3.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
+      {"nombre":"ParticipanteC","apellido":"JugadorC","email":"jugadorc@email.com","telefono":"6067431236", "fechaNacimiento":"fechaActual - 17 años", "estadisticas":[ 
+        {"valor":2.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
+        {"valor":2.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]}]},
+    {nombre:"Copa Mundo Futbol",
+    "fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", 
+    "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"MUNDIAL","caracter":"GRUPAL", 
+    "participantes": [
+      {"nombre":"Uniquindio","representante":{"nombre":"robinson","apellido":"pulgarin","email":"rpulgarin@email.com","telefono":"6067359300"},"estadisticas":[ 
+        {"valor":3.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
+        {"valor":4.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
+      {"nombre":"Armenia","representante":{"nombre":"alcalde","apellido":"politico","email":"politico@email.com","telefono":"6067369300"}, "estadisticas":[ 
+        {"valor":4.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
+        {"valor":3.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
+      {"nombre":"Cafeteros","representante":{"nombre":"representante","apellido":"cafetero","email":"rcafetero@email.com","telefono":"6067379300"}, "estadisticas":[ 
+        {"valor":2.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
+        {"valor":2.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
+      {"nombre":"Novatos","representante":{"nombre":"novato","apellido":"cafetero","email":"novato@email.com","telefono":"6067389300"}, "estadisticas":[ ]}]}
+  ]
+}
+```
+
+---
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
 <div style="font-size: 9pt">
 <!-- https://www.tablesgenerator.com/markdown_tables -->
 
 | Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
 |---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Registrar estadística a un participante                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años} RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años} RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} } | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL\|[Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años,[ RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años,[RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años, [RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} }]}] |
-| Registrar estadística a un participante que no esta registrado en el torneo                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } | Error, el participante no está registrado en el torneo |
+| Registrar estadística a un participante                       | datos por defecto | Como resultado se espera los dos torneos creados, cada uno con 3 participantes, cada uno de ellos con dos estadísticas. (Ver datos por defecto) |
+| Registrar estadística a un participante que no esta registrado en el torneo                       | Torneo "Copa Mundo Ajedrez",  Jugador {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } | Error, el participante no está registrado en el torneo |
+| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" RegistroEstadistica null | Error, la estadística es requerida |
+| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador null RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} | Error, el jugador es requerido |
+| Registrar una estadística a un participante que ya la posee (actualizar estadística) | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } | Jugador "ParticipanteA" con estadisticas [ RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA}}, RegistroEstadistica{4.5 , Estadistica{Errores,NEGATIVA}}] |
 
 
 ---
 
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Obtener las estadísticas de un participante | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" Al solicitar las estadísticas del participante  | [ RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},RegistroEstadistica{4.5 , Estadistica{Errores,NEGATIVA} }]|
+| Obtener las estadísticas de un participante sin estadisticas | Torneo "Copa Mundo",  Equipo "Novatos" Al solicitar las estadísticas del participante  | [ ]|
+| Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} 
+Al solicitar las estadísticas | Error, el participante no está registrado en el torneo |
+| Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador null 
+Al solicitar las estadísticas | Error, el participante es requerido |
+| Obtener el participante con la mayor estadística (POSITIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Efectividad" | Jugador "ParticipanteB" |
+
+---
+
+<style scoped>
+.texto:after {
+    content: 'Descomposición: ¿Qué debo hacer para probar las funcionalidades?';
+  }
+</style>
+
+<div style="font-size: 9pt">
+<!-- https://www.tablesgenerator.com/markdown_tables -->
+
+| Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
+|---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Obtener el participante con la mayor estadística (NEGATIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Errores" | Jugador "ParticipanteC" |
+| Obtener el participante con la mayor estadística de una estadística inexistente                     | Torneo "Copa Mundo Ajedrez" Estadistica {"Mejor",POSITIVA} | [] |
+| Pedir del participante de mayor estadística de en un torneo sin participantes | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL} Estadistica {"Mejor",POSITIVA} | [] | 
+| Obtener los participantes con estadística superior o igual a la dada (POSITIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Efectividad" , 3.3 | [Jugador "ParticipanteA",Jugador "ParticipanteB"] |
+| Obtener los participantes con estadística superior o igual a la dada (NEGATIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Errores" , 3.5 | [Jugador "ParticipanteB",Jugador "ParticipanteC"] |
+| Obtener los participantes con estadística superior o igual a la dada de estadística inexistente | Torneo "Copa Mundo Ajedrez" Estadistica {"Mejor",POSITIVA} , 3 | [] |
+| Obtener los participantes con estadística inferior a la dada (POSITIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Efectividad" , 3.3 | [Jugador "ParticipanteC"] |
+| Obtener los participantes con estadística inferior a la dada (NEGATIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Errores" , 3.5 | [Jugador "ParticipanteA"] |
+
+--- 
+
+---
 
 
 <style scoped>
@@ -679,52 +770,13 @@ img[alt~="center"] {
 
 | Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
 |---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica null | Error, la estadística es requerida |
-| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador null Estadistica{Efectividad,POSITIVA} | Error, el jugador es requerido |
-| Registrar una estadística a un participante que ya la posee (actualizar estadística) | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL\|[Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años,[ RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA}}]}] |
-
-| Obtener las estadísticas de un participante | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años} RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} } Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años} RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} } RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} } | Torneo creado con los datos proporcionados Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL\|[Jugador {Participante,JugadorA,jugadora@email.com,6067431234, fechaActual - 15 años,[ RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},RegistroEstadistica{4.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorB,jugadorb@email.com,6067431235, fechaActual - 16 años,[RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{3.5 , Estadistica{Efectividad,NEGATIVA} }]}, Jugador {Participante,JugadorC,jugadorc@email.com,6067431236, fechaActual - 17 años, [RegistroEstadistica{2.3 , Estadistica{Efectividad,POSITIVA} }, RegistroEstadistica{2.5 , Estadistica{Efectividad,NEGATIVA} }]}] |
-
-
----
-
-
-
-Obtener las estadísticas de un participante, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) y una estadística (NEGATIVA) con 3 valores distintos, se solicitan las estadísticas de un participante y debe devolver las dos registradas.
-
-Obtener las estadisticas de un participante sin estadisticas, se crea el torneo, se registran 3 participantes y a 2 de ellos se les registra una estadística (POSITIVA) y una estadística (NEGATIVA) con 3 valores distintos, se solicitan las estadísticas del participante sin estadisticas y debe devolver la lista vacia.
-
-Obtener las estadisticas de un participante no existente, se crea el torneo, se registran 3 participantes y a todos ellos se les registra una estadística (POSITIVA) y una estadística (NEGATIVA) con 3 valores distintos, se solicitan las estadísticas de un participante no registrado, se espera un error.
-
-
-Solicitar los datos estadísticos de un participante no registrado
-
-solicitar los datos estadísticos de un participante null
-
-Obtener el participante con la mayor estadística, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita el participante con mayor estadistica (POSITIVA), se espera el participante con mayor valor de la estadística.
-
-Obtener el participante con la mayor estadística, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita el participante con mayor estadistica (NEGATIVA), se espera el participante con menor valor de la estadística.
-
-Pedir del participante de mayor estadistica de una estadistica que no existe, se crea el torneo, se registran 3 participantes y a los 3 una estadística con 3 valores distintos, se solicita el participante con mayor estadistica de una inexistente,  se espera una lista vacia.
-
-Pedir del participante de mayor estadistica de en un torneo sin participantes, se crea el torneo, se solicita el participante con mayor estadistica de una inexistente,  se espera una lista vacia.
-
-Obtener los participantes con estadistica superior o igual a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (POSITIVA) con el valor medio de las 3 registradas, se espera un listado con dos participantes.
-
-Obtener los participantes con estadistica superior o igual a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (NEGATIVA) con el valor medio de las 3 registradas, se espera un listado con dos participantes.
-
-Obtener los participantes con estadistica superior o igual a la dada de una estadística que no existe, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica diferente con el valor medio de las 3 registradas, se espera un listado vacío.
-
-Obtener los participantes con dicha estadística inferior a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (POSITIVA) con el valor medio de las 3 registradas, se espera un listado con un participant.
-
-Obtener los participantes con dicha estadística inferior a la dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica superior o igual estadistica (NEGATIVA) con el valor medio de las 3 registradas, se espera un listado con un participante.
-
-Obtener los participantes con dicha estadística inferior a la dada de una estadística que no existe, se crea el torneo, se registran 3 participantes y a los 3 una estadística (NEGATIVA) con 3 valores distintos, se solicita los participante con estadistica diferente con el valor medio de las 3 registradas, se espera un listado vacío.
-
-Obtener la media de una estadística dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita la media de dicha estadistica, se espera la media de la estadística dada.
-
-Obtener la media de una estadística dada, se crea el torneo, se registran 3 participantes y a los 3 una estadística (POSITIVA) con 3 valores distintos, se solicita la media de una estadistica distinta a la registrada, se espera un error.
-
+| Obtener los participantes con estadística inferior a la dada de estadística inexistente | Torneo "Copa Mundo Ajedrez" Estadistica "Mejor" , 3 | [] |
+| Obtener la medía de una estadística dada                      | Torneo "Copa Mundo Ajedrez" Estadistica "Efectividad"  | 3.3 |
+| Obtener la medía de una estadística inexistente                     | Torneo "Copa Mundo Ajedrez" Estadistica {"Mejor",POSITIVA} | Error, no se cuentan con datos para calcular la media |
+| Comparar una estadística (POSITIVA) presente en dos participantes A<B                      | Torneo "Copa Mundo Ajedrez" Jugador "ParticipanteA" Jugador "ParticipanteB" Estadistica "Efectividad"  | Resultado Negativo ( < 0) |
+| Comparar una estadística (POSITIVA) presente en dos participantes B>A                      | Torneo "Copa Mundo Ajedrez" Jugador "ParticipanteB" Jugador "ParticipanteA" Estadistica "Efectividad"  | Resultado Positivo ( > 0) |
+| Comparar una estadística (NEGATIVA) presente en dos participantes A<B                      | Torneo "Copa Mundo Ajedrez" Jugador "ParticipanteA" Jugador "ParticipanteB" Estadistica "Errores"  | Resultado Negativo ( < 0) |
+| Comparar una estadística (NEGATIVA) presente en dos participantes B>A                      | Torneo "Copa Mundo Ajedrez" Jugador "ParticipanteB" Jugador "ParticipanteA" Estadistica "Errores"  | Resultado Positivo ( > 0) |
 
 ---
 
