@@ -726,10 +726,8 @@ img[alt~="center"] {
 |---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | Obtener las estadísticas de un participante | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" Al solicitar las estadísticas del participante  | [ RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},RegistroEstadistica{4.5 , Estadistica{Errores,NEGATIVA} }]|
 | Obtener las estadísticas de un participante sin estadisticas | Torneo "Copa Mundo",  Equipo "Novatos" Al solicitar las estadísticas del participante  | [ ]|
-| Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} 
-Al solicitar las estadísticas | Error, el participante no está registrado en el torneo |
-| Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador null 
-Al solicitar las estadísticas | Error, el participante es requerido |
+| Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años}, Al solicitar las estadísticas | Error, el participante no está registrado en el torneo |
+| Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador null, Al solicitar las estadísticas | Error, el participante es requerido |
 | Obtener el participante con la mayor estadística (POSITIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Efectividad" | Jugador "ParticipanteB" |
 
 ---
@@ -755,9 +753,6 @@ Al solicitar las estadísticas | Error, el participante es requerido |
 | Obtener los participantes con estadística inferior a la dada (NEGATIVA)                     | Torneo "Copa Mundo Ajedrez" Estadistica "Errores" , 3.5 | [Jugador "ParticipanteA"] |
 
 --- 
-
----
-
 
 <style scoped>
 .texto:after {
