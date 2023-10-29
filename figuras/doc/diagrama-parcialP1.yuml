@@ -1,6 +1,6 @@
 // {type:class}
 // {direction:leftToRight}
-
+// {generate:true}
 [EmpresaSeguros|-nombre]
 [Seguro|-coberturas:Cobertura［*］;-valor:Entero]
 [SeguroVida]
