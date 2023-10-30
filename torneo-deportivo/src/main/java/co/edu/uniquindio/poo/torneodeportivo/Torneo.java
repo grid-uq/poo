@@ -228,7 +228,7 @@ public class Torneo {
         ASSERTION.assertion( limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo , "No se pueden registrar jugadores que excedan el limite de edad del torneo"); 
     }
 
-    public void registrarEstadisticaParticipante(Participante participante, RegistroEstadistica registroEstadistica) {
-        buscarParticipantePorNombre(participante.getNombreCompleto()).ifPresent(p->p.registrarEstadistica(registroEstadistica));
+    public void registrarEstadisticaParticipante(Participante participante, ValorEstadistica valorEstadistica) {
+        buscarParticipantePorNombre(participante.getNombreCompleto()).ifPresent(p->p.registrarEstadistica(valorEstadistica));
     }
 }

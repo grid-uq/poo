@@ -2,12 +2,12 @@
 // {direction:leftToRight}
 // {generate:true}
 
-[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo)+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador);+registrarEstadisticaParticipante(participante:Participante;estadistica:RegistroEstadistica);+getEstadisticas():Estadistica［*］;+buscarMejor(estadistica:Estadistica):Participante;+buscarSuperiorIgualA(estadistica:Estadistica;valor:Real):Participante［*］;+buscarInferiorA(estadistica:Estadistica;valor:Real):Participante［*］;+promedioEstadistica(estadistica:Estadistica):Real;+obtenerEstadisticas(participante:Participante):RegistroEstadistica［*］;+compararParticipantes(participanteA:Participante;participanteB:Participante;estadistica:Estadistica):Entero]
+[Torneo|nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero|+Constructor(nombre:Texto;fechaInicio:Fecha;fechaInicioInscripciones:Fecha;fechaCierreInscripciones:Fecha;numeroParticipantes:Entero;limiteEdad:Entero;valorInscripcion:Entero;tipoTorneo:TipoTorneo;caracter:CaracterTorneo)+registrarParticipante(participante:Participante);+getNombre():Texto;+getFechaInicio():Fecha;+getFechaInicioInscripciones():Fecha;+getFechaCierreInscripciones():Fecha;+getNumeroParticipantes():Entero;+getLimiteEdad():Entero;+getValorInscripcion():Entero;+getTipoTorneo():TipoTorneo;+getParticipantes():Participante［*］;+getCaracter():CaracterTorneo;+setFechaInicio(fechaInicio:Fecha);+setFechaInicioInscripciones(fechaInicioInscripciones:Fecha);+setFechaCierreInscripciones(fechaCierreInscripciones:Fecha);buscarParticipante(nombre:Texto):Participante;+registrarJugador(equipo:Equipo,jugador:Jugador);+registrarJugador(nombreEquipo:Texto,jugador:Jugador);+registrarEstadisticaParticipante(participante:Participante;estadistica:ValorEstadistica);+getEstadisticas():Estadistica［*］;+buscarMejor(estadistica:Estadistica):Participante;+buscarSuperiorIgualA(estadistica:Estadistica;valor:Real):Participante［*］;+buscarInferiorA(estadistica:Estadistica;valor:Real):Participante［*］;+promedioEstadistica(estadistica:Estadistica):Real;+obtenerEstadisticas(participante:Participante):ValorEstadistica［*］;+compararParticipantes(participanteA:Participante;participanteB:Participante;estadistica:Estadistica):Entero]
 
 [<<Enum>>;TipoTorneo|LOCAL;REGIONAL;NACIONAL;MUNDIAL]
-[<<interface>>;EstadisticaParticipanteRegister||+getEstadisticas():RegistroEstadistica［*］;+registrarEstadistica(estadistica:RegistroEstadistica);+comparar(participante:Participante;estadistica:Estadistica):Entero]
-[<<interface>>;Participante|  |+getNombreCompleto():Texto;+getEstadisticaParticipanteRegister():EstadisticaParticipanteRegister]
-[EstadisticaParticipanteRegisterImpl|estadisticas:RegistroEstadistica［*］|+Constructor()]
+[<<interface>>;RegistroEstadistica||+getEstadisticas():ValorEstadistica［*］;+registrarEstadistica(estadistica:ValorEstadistica);+comparar(participante:Participante;estadistica:Estadistica):Entero]
+[<<interface>>;Participante|  |+getNombreCompleto():Texto;+getRegistroEstadistica():RegistroEstadistica]
+[RegistroEstadisticaImpl|estadisticas:ValorEstadistica［*］|+Constructor()]
 
 
 [Equipo|nombre:Texto|+Constructor(nombre:Texto;representante:Persona);+getNombre():Texto;+getRepresentante():Persona;+getJugadores():Jugador［*］;+registrarJugador(jugador:Jugador)]
@@ -15,9 +15,9 @@
 [Jugador|fechaNacimiento:Fecha|+Constructor(nombre:Texto;apellido:Texto;email:Texto;celular:Texto;fechaNacimiento:Fecha);+getFechaNacimiento():Fecha;+calcularEdad(fecha:Fecha):Entero]
 [<<Enum>>;CaracterTorneo|INDIVIDUAL;GRUPAL]
 [Estadistica|nombre:Texto|+Constructor(nombre:Texto;tipo:TipoEstadistica);+getNombre():Texto;+getTipo():TipoEstadistica]
-[RegistroEstadistica|valor:Real;estadistica:Estadistica|+Constructor(valor:Real;estadistica:Estadistica);+getValor():Real;+getEstadistica():Estadistica;compareTo(registro:RegistroEstadistica):Entero]
+[ValorEstadistica|valor:Real;estadistica:Estadistica|+Constructor(valor:Real;estadistica:Estadistica);+getValor():Real;+getEstadistica():Estadistica;compareTo(registro:ValorEstadistica):Entero]
 [Reporte|fecha:Fecha;participanteA:Participante;participanteB:Participante|+Constructor(participanteA:Participante;participanteB:Participante);+getRegistros():RegistroReporte［*］]
-[RegistroReporte|estadisticaParticipanteA:RegistroEstadistica;estadisticaParticipanteB:RegistroEstadistica|+Constructor(estadisticaParticipanteA:RegistroEstadistica;estadisticaParticipanteB:RegistroEstadistica);+getEstadisticaParticianteA():ResgistroEstadistica;+getEstadisticaParticianteB():ResgistroEstadistica]
+[RegistroReporte|estadisticaParticipanteA:ValorEstadistica;estadisticaParticipanteB:ValorEstadistica|+Constructor(estadisticaParticipanteA:ValorEstadistica;estadisticaParticipanteB:ValorEstadistica);+getEstadisticaParticianteA():ResgistroEstadistica;+getEstadisticaParticianteB():ResgistroEstadistica]
 [<<Enum>>;TipoEstadistica|POSITIVA;NEGATIVA;NEUTRA]
 
 [Torneo]-.->[Reporte]
@@ -32,16 +32,16 @@
 [<<interface>>;Participante]^-[Jugador]
 [<<interface>>;Participante]^-[Equipo]
 
-[<<interface>>;Participante]*-*>[Estadistica][RegistroEstadistica]
+[<<interface>>;RegistroEstadistica]*-*>[Estadistica][ValorEstadistica]
 [Estadistica]*-tipo1>[<<Enum>>;TipoEstadistica]
 [Reporte]<>1-registros*>[RegistroReporte]
-[RegistroReporte]<>*-2>[RegistroEstadistica]
+[RegistroReporte]<>*-2>[ValorEstadistica]
 [Reporte]<>*-2>[<<interface>>;Participante]
 
-[<<interface>>;EstadisticaParticipanteRegister]^-[<<interface>>;Participante]
-[<<interface>>;EstadisticaParticipanteRegister]^-[EstadisticaParticipanteRegisterImpl]
-[Jugador]->[<<interface>>;EstadisticaParticipanteRegister]
-[Equipo]->[<<interface>>;EstadisticaParticipanteRegister]
+[<<interface>>;RegistroEstadistica]^-[<<interface>>;Participante]
+[<<interface>>;RegistroEstadistica]^-[RegistroEstadisticaImpl]
+[Jugador]->[<<interface>>;RegistroEstadistica]
+[Equipo]->[<<interface>>;RegistroEstadistica]
 
 
 

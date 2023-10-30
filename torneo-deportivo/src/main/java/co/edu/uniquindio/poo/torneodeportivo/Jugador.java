@@ -14,12 +14,12 @@ import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 public class Jugador extends Persona implements Participante {
     private final LocalDate fechaNacimiento;
 
-    private final EstadisticaRegister estadisticaRegister;
+    private final RegistroEstadistica registroEstadistica;
     public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento) {
         super(nombre, apellido, email, celular);
         ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
         this.fechaNacimiento = fechaNacimiento;
-        estadisticaRegister = new EstadisticaRegisterImpl();
+        registroEstadistica = new RegistroEstadisticaImpl();
     }
 
     public LocalDate getFechaNacimiento() {
@@ -41,7 +41,7 @@ public class Jugador extends Persona implements Participante {
     }
 
     @Override
-    public EstadisticaRegister getEstadisticaRegister() {
-        return estadisticaRegister;
+    public RegistroEstadistica getEstadisticaRegister() {
+        return registroEstadistica;
     }
 }

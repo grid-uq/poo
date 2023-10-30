@@ -14,7 +14,8 @@ import java.util.function.Predicate;
 
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public record Equipo(String nombre,Persona representante,Collection<Jugador> jugadores,EstadisticaRegister estadisticaRegister) implements Participante {
+public record Equipo(String nombre, Persona representante, Collection<Jugador> jugadores,
+                     RegistroEstadistica registroEstadistica) implements Participante {
 
     public Equipo{
         ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
@@ -22,7 +23,7 @@ public record Equipo(String nombre,Persona representante,Collection<Jugador> jug
     }
 
     public Equipo(String nombre,Persona representante){
-        this(nombre,representante,new LinkedList<>(),new EstadisticaRegisterImpl());
+        this(nombre,representante,new LinkedList<>(),new RegistroEstadisticaImpl());
     }
 
     /**
@@ -60,7 +61,7 @@ public record Equipo(String nombre,Persona representante,Collection<Jugador> jug
     }
 
     @Override
-    public EstadisticaRegister getEstadisticaRegister() {
-        return estadisticaRegister;
+    public RegistroEstadistica getEstadisticaRegister() {
+        return registroEstadistica;
     }
 }

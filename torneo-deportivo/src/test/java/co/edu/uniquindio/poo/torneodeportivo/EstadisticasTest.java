@@ -53,7 +53,7 @@ public class EstadisticasTest {
                 .orElseGet(Collections::emptyList);
 
         assertEquals( 2 , estadisticasRegistradas.size());
-        var estadisticas = estadisticasRegistradas.stream().map(RegistroEstadistica::estadistica).toList();
+        var estadisticas = estadisticasRegistradas.stream().map(ValorEstadistica::estadistica).toList();
         assertTrue(estadisticas.contains(efectividad));
         assertTrue(estadisticas.contains(errores));
 
@@ -124,9 +124,9 @@ public class EstadisticasTest {
 
     private void crearParticipante(Torneo torneo, Participante participante, double valorEfectividad,double valorErrores ) {
         torneo.registrarParticipante(participante);
-        var registroEstadistica = new RegistroEstadistica(valorEfectividad, efectividad);
+        var registroEstadistica = new ValorEstadistica(valorEfectividad, efectividad);
         torneo.registrarEstadisticaParticipante(participante,registroEstadistica);
-        registroEstadistica = new RegistroEstadistica(valorErrores, errores);
+        registroEstadistica = new ValorEstadistica(valorErrores, errores);
         torneo.registrarEstadisticaParticipante(participante,registroEstadistica);
 
         participantes.put(participante.getNombreCompleto(),participante);

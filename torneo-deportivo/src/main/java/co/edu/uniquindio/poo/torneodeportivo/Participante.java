@@ -3,23 +3,23 @@ package co.edu.uniquindio.poo.torneodeportivo;
 import java.util.Collection;
 import java.util.Optional;
 
-public interface Participante extends EstadisticaRegister {
+public interface Participante extends RegistroEstadistica {
     String getNombreCompleto();
 
-    EstadisticaRegister getEstadisticaRegister();
+    RegistroEstadistica getEstadisticaRegister();
 
     @Override
-    default Collection<RegistroEstadistica> getEstadisticas(){
+    default Collection<ValorEstadistica> getEstadisticas(){
         return getEstadisticaRegister().getEstadisticas();
     }
 
     @Override
-    default Optional<RegistroEstadistica> getEstadistica(Estadistica estadistica){
+    default Optional<ValorEstadistica> getEstadistica(Estadistica estadistica){
         return getEstadisticaRegister().getEstadistica(estadistica);
     }
 
     @Override
-    default void registrarEstadistica(RegistroEstadistica estadistica){
+    default void registrarEstadistica(ValorEstadistica estadistica){
         getEstadisticaRegister().registrarEstadistica(estadistica);
     }
 
