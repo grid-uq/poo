@@ -8,11 +8,7 @@
 package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
@@ -113,7 +109,7 @@ public class Torneo {
     /**
      * Permite registrar un participante en el torneo
      * @param participante Participante a ser registrado
-     * @throws Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no estén abiertas.
+     * @throws RuntimeException, Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no estén abiertas.
      */
     public void registrarParticipante(Participante participante) {
         validarParticipanteExiste(participante); 
@@ -226,5 +222,60 @@ public class Torneo {
     private void validarLimiteEdadJugador(Jugador jugador) {
         var edadAlInicioTorneo = jugador.calcularEdad(fechaInicio);
         ASSERTION.assertion( limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo , "No se pueden registrar jugadores que excedan el limite de edad del torneo"); 
+    }
+
+    public void registrarEstadisticaParticipante(Participante participante, ValorEstadistica valorEstadistica) {
+        final var participanteRegistrado = buscarParticipante(participante);
+        participanteRegistrado.registrarEstadistica(valorEstadistica);
+    }
+
+    public Collection<ValorEstadistica> obtenerEstadisticas(Participante participante) {
+        final var participanteRegistrado = buscarParticipante(participante);
+        return participanteRegistrado.getEstadisticas();
+    }
+
+    private Participante buscarParticipante(Participante participante) {
+        Objects.requireNonNull(participante,"El participante es requerido");
+        var participanteRegistrado = buscarParticipantePorNombre(participante.getNombreCompleto());
+        ASSERTION.assertion( participanteRegistrado.isPresent() ,"El participante no esta registrado");
+        return participanteRegistrado.get();
+    }
+
+
+    public Optional<Participante> buscarMejor(Estadistica estadistica) {
+        Predicate<Participante> condicion = participante -> participante.getEstadisticas()
+                .stream()
+                .anyMatch( e->e.estadistica().equals(estadistica) );
+        Comparator<Participante> comparator = (p1,p2)->p1.comparar(p2,estadistica);
+        return participantes.stream().filter(condicion).max(comparator);
+    }
+
+    public Collection<Participante> buscarSuperiorIgualA(Estadistica estadistica, double valor) {
+        ValorEstadistica valorEstadistica = new ValorEstadistica(valor,estadistica);
+        Predicate<Participante> condicion = participante -> participante.getEstadisticas().stream()
+                .anyMatch(  e->e.estadistica().equals(estadistica)&&e.compareTo(valorEstadistica) >= 0 );
+        return participantes.stream().filter(condicion).toList();
+    }
+
+    public Collection<Participante>  buscarInferiorA(Estadistica estadistica, double valor) {
+        ValorEstadistica valorEstadistica = new ValorEstadistica(valor,estadistica);
+        Predicate<Participante> condicion = participante -> participante.getEstadisticas().stream()
+                .anyMatch(  e->e.estadistica().equals(estadistica)&&e.compareTo(valorEstadistica) < 0 );
+        return participantes.stream().filter(condicion).toList();
+    }
+
+    public double promedioEstadistica(Estadistica estadistica) {
+        var promedio = participantes.stream().flatMap( participante -> participante.getEstadisticas().stream() )
+                .filter(e->e.estadistica().equals(estadistica))
+                .mapToDouble(ValorEstadistica::valor)
+                .average();
+        ASSERTION.assertion(promedio.isPresent(),"No se encuentran datos para calcular la media");
+        return promedio.getAsDouble();
+    }
+
+    public int compararParticipantes(Participante participanteA, Participante participanteB, Estadistica estadistica) {
+        var a = buscarParticipante(participanteA);
+        var b = buscarParticipante(participanteB);
+        return a.comparar(participanteB,estadistica);
     }
 }

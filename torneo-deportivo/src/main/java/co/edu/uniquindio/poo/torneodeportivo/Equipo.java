@@ -2,7 +2,7 @@
  * Registro que agrupa los datos de un Equipo
  * @author Área de programación UQ
  * @since 2023-09
- * 
+ *
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
 package co.edu.uniquindio.poo.torneodeportivo;
@@ -14,14 +14,16 @@ import java.util.function.Predicate;
 
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public record Equipo(String nombre,Persona representante,Collection<Jugador> jugadores) implements Participante {
+public record Equipo(String nombre, Persona representante, Collection<Jugador> jugadores,
+                     RegistroEstadistica registroEstadistica) implements Participante {
+
     public Equipo{
         ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
         ASSERTION.assertion( representante != null , "El representante es requerido");
     }
 
     public Equipo(String nombre,Persona representante){
-        this(nombre,representante,new LinkedList<>());
+        this(nombre,representante,new LinkedList<>(),new RegistroEstadisticaImpl());
     }
 
     /**
@@ -36,7 +38,7 @@ public record Equipo(String nombre,Persona representante,Collection<Jugador> jug
     /**
      * Permimte buscar un jugador en el equipo basado en su nombre y apellido.
      * @param jugador Jugador que se desea buscar
-     * @return Optional con el jugador que coincida con el nombre y apellido del jugador buscado, 
+     * @return Optional con el jugador que coincida con el nombre y apellido del jugador buscado,
      * o Optinal vacío en caso de no encontrar un jugador en el equipo con dicho nombre y apellido.
      */
     public Optional<Jugador> buscarJugador(Jugador jugador){
@@ -56,5 +58,10 @@ public record Equipo(String nombre,Persona representante,Collection<Jugador> jug
     @Override
     public String getNombreCompleto() {
         return nombre;
+    }
+
+    @Override
+    public RegistroEstadistica getEstadisticaRegister() {
+        return registroEstadistica;
     }
 }
