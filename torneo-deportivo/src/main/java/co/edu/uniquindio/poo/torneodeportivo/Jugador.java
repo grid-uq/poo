@@ -11,13 +11,15 @@ import java.time.LocalDate;
 import java.time.Period;
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public class Jugador extends Persona extends Participante {
+public class Jugador extends Persona implements Participante {
     private final LocalDate fechaNacimiento;
 
+    private final EstadisticaRegister estadisticaRegister;
     public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento) {
         super(nombre, apellido, email, celular);
         ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
         this.fechaNacimiento = fechaNacimiento;
+        estadisticaRegister = new EstadisticaRegisterImpl();
     }
 
     public LocalDate getFechaNacimiento() {
@@ -36,5 +38,10 @@ public class Jugador extends Persona extends Participante {
     @Override
     public String getNombreCompleto() {
         return getNombre()+ " "+getApellido();
+    }
+
+    @Override
+    public EstadisticaRegister getEstadisticaRegister() {
+        return estadisticaRegister;
     }
 }

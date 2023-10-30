@@ -3,29 +3,37 @@ package co.edu.uniquindio.poo.torneodeportivo;
 import java.util.Collection;
 import java.util.Optional;
 
-public interface Participante {
+public interface Participante extends EstadisticaRegister {
     String getNombreCompleto();
 
-    EstadisticaParticipanteRegister getEstadisticaParticipanteRegister();
+    EstadisticaRegister getEstadisticaRegister();
 
+    @Override
     default Collection<RegistroEstadistica> getEstadisticas(){
-        return getEstadisticaParticipanteRegister().getEstadisticas();
+        return getEstadisticaRegister().getEstadisticas();
     }
 
+    @Override
     default Optional<RegistroEstadistica> getEstadistica(Estadistica estadistica){
-        return getEstadisticaParticipanteRegister().getEstadistica(estadistica);
+        return getEstadisticaRegister().getEstadistica(estadistica);
     }
 
+    @Override
     default void registrarEstadistica(RegistroEstadistica estadistica){
-        getEstadisticaParticipanteRegister().registrarEstadistica(this,estadistica);
+        getEstadisticaRegister().registrarEstadistica(estadistica);
     }
 
     default int comparar(Participante participante,Estadistica estadistica){
         var estadisticaInterna = getEstadistica(estadistica);
         var estadisticaExterna = participante.getEstadistica(estadistica);
 
-        // TODO Terminar la comparacion
+        int resultado = 0;
+        if( estadisticaInterna.isPresent() ){
+            resultado = estadisticaInterna.get().compareTo( estadisticaExterna.orElse(null) );
+        } else if( estadisticaExterna.isPresent() ){
+            resultado = 1;
+        }
+        return resultado;
     }
-
 
 }

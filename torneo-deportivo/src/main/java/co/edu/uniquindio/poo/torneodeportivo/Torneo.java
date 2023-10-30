@@ -113,7 +113,7 @@ public class Torneo {
     /**
      * Permite registrar un participante en el torneo
      * @param participante Participante a ser registrado
-     * @throws Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no estén abiertas.
+     * @throws RuntimeException, Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no estén abiertas.
      */
     public void registrarParticipante(Participante participante) {
         validarParticipanteExiste(participante); 
@@ -229,6 +229,6 @@ public class Torneo {
     }
 
     public void registrarEstadisticaParticipante(Participante participante, RegistroEstadistica registroEstadistica) {
-        // TODO falta implementar
+        buscarParticipantePorNombre(participante.getNombreCompleto()).ifPresent(p->p.registrarEstadistica(registroEstadistica));
     }
 }

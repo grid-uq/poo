@@ -7,19 +7,16 @@
  */
 package co.edu.uniquindio.poo.torneodeportivo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EstadisticasTest {
     /**
@@ -43,8 +40,22 @@ public class EstadisticasTest {
     public void registrarEstadisticasTest() {
         LOG.info("Inicio de prueba registrarEstadisticasTest...");
 
-        var estadisticas = torneos.get("Copa Mundo Ajedrez").buscarParticipantePorNombre("ParticipanteA JugadorA").map( Participante::getEstadisticas )
+        var participante = participantes.values().stream().filter(p->p instanceof Jugador).findAny().orElse(null);
 
+        assertNotNull(participante);
+
+        var participanteRegistrado = torneos.get("Copa Mundo Ajedrez")
+                .buscarParticipantePorNombre(participante.getNombreCompleto());
+
+        assertEquals(participante,participanteRegistrado.orElse(null));
+
+        var estadisticasRegistradas = participanteRegistrado.map( Participante::getEstadisticas )
+                .orElseGet(Collections::emptyList);
+
+        assertEquals( 2 , estadisticasRegistradas.size());
+        var estadisticas = estadisticasRegistradas.stream().map(RegistroEstadistica::estadistica).toList();
+        assertTrue(estadisticas.contains(efectividad));
+        assertTrue(estadisticas.contains(errores));
 
         LOG.info("Fin de prueba registrarEstadisticasTest...");
     }
