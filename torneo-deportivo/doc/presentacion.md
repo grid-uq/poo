@@ -240,7 +240,7 @@ Adicionalmente, basado en dichas estadísticas se desea tener la posibilidad de 
     content: 'Abstracción: ¿Cómo se agrupa la información relevante?';
   }
 section{
-  font-size: 18pt
+  font-size: 15pt
 }  
 </style>
 
@@ -251,9 +251,11 @@ section{
 - Jugador
 - CatacterTorneo
 - Participante
+- RegistroEstadistica
+- RegistroEstadisticaImpl
 - Estadística
 - TipoEstadistica
-- RegistroEstadistica
+- ValorEstadistica
 - Reporte
 - RegistroReporte
 
@@ -705,10 +707,10 @@ img[alt~="center"] {
 | Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
 |---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
 | Registrar estadística a un participante                       | datos por defecto | Como resultado se espera los dos torneos creados, cada uno con 3 participantes, cada uno de ellos con dos estadísticas. (Ver datos por defecto) |
-| Registrar estadística a un participante que no esta registrado en el torneo                       | Torneo "Copa Mundo Ajedrez",  Jugador {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } | Error, el participante no está registrado en el torneo |
-| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" RegistroEstadistica null | Error, la estadística es requerida |
-| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador null RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} | Error, el jugador es requerido |
-| Registrar una estadística a un participante que ya la posee (actualizar estadística) | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } | Jugador "ParticipanteA" con estadisticas [ RegistroEstadistica{4.3 , Estadistica{Efectividad,POSITIVA}}, RegistroEstadistica{4.5 , Estadistica{Errores,NEGATIVA}}] |
+| Registrar estadística a un participante que no esta registrado en el torneo                       | Torneo "Copa Mundo Ajedrez",  Jugador {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} ValorEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} } | Error, el participante no está registrado en el torneo |
+| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" ValorEstadistica null | Error, la estadística es requerida |
+| Registrar estadística con datos nulos (participante o estadística nulos)                       | Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL\|INDIVIDUAL}  Jugador null ValorEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} | Error, el jugador es requerido |
+| Registrar una estadística a un participante que ya la posee (actualizar estadística) | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" ValorEstadistica{4.3 , Estadistica{Efectividad,POSITIVA} } | Jugador "ParticipanteA" con estadisticas [ ValorEstadistica{4.3 , Estadistica{Efectividad,POSITIVA}}, ValorEstadistica{4.5 , Estadistica{Errores,NEGATIVA}}] |
 
 
 ---
@@ -724,7 +726,7 @@ img[alt~="center"] {
 
 | Prueba                                | Entrada de datos                                          | Salida (Resultado)                                                                                  |
 |---------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Obtener las estadísticas de un participante | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" Al solicitar las estadísticas del participante  | [ RegistroEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},RegistroEstadistica{4.5 , Estadistica{Errores,NEGATIVA} }]|
+| Obtener las estadísticas de un participante | Torneo "Copa Mundo Ajedrez",  Jugador "ParticipanteA" Al solicitar las estadísticas del participante  | [ ValorEstadistica{3.3 , Estadistica{Efectividad,POSITIVA}},ValorEstadistica{4.5 , Estadistica{Errores,NEGATIVA} }]|
 | Obtener las estadísticas de un participante sin estadisticas | Torneo "Copa Mundo",  Equipo "Novatos" Al solicitar las estadísticas del participante  | [ ]|
 | Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años}, Al solicitar las estadísticas | Error, el participante no está registrado en el torneo |
 | Obtener las estadisticas de un participante no existente                      | Torneo "Copa Mundo Ajedrez",  Jugador null, Al solicitar las estadísticas | Error, el participante es requerido |
