@@ -1,7 +1,5 @@
 package co.edu.uniquindio.poo.torneodeportivo;
 
-import co.edu.uniquindio.poo.util.AssertionUtil;
-
 import java.util.*;
 
 public class RegistroEstadisticaImpl implements RegistroEstadistica {

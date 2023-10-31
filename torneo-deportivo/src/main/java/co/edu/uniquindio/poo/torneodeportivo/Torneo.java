@@ -276,6 +276,6 @@ public class Torneo {
     public int compararParticipantes(Participante participanteA, Participante participanteB, Estadistica estadistica) {
         var a = buscarParticipante(participanteA);
         var b = buscarParticipante(participanteB);
-        return a.comparar(participanteB,estadistica);
+        return a.comparar(b,estadistica);
     }
 }
