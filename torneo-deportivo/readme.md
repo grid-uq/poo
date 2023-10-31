@@ -27,6 +27,14 @@ Adicionalmente, basado en dichas estadísticas se desea tener la posibilidad de 
 - Comparar una estadística presente en dos participantes (A,B) (Retornando un número positivo si el Participante A tiene mejor estadística que B, en el caso de las estadísticas positivas y neutras implica que la estadística de A sea mayor que la de B, en las negativas que la estadística de A sea inferior a la de B. Retorna 0 si las estadísticas son iguales, en caso contrario retorna un número negativo).
 - Se desea dados dos participantes (A,B) generar un reporte con las estadísticas de ambos participantes. El reporte contendrá N registros, donde N es el número de estadísticas. Cada registro indicará la estadística, el valor del participante A en dicha estadística y el valor del participante B en dicha estadística. En el caso de que una estadística aparezca solo en un participante el registro en el reporte aparecerá con el valor de la estadística del participante que la tiene y un valor que indique que el otro participante no la tiene. 
 
+## Ejercicio
+
+- Diseñe las pruebas, constrúyalas y haga las modificaciones pertinentes para:
+
+    - Generar un reporte con las estadísticas de dos participantes.
+    - Dada una estadística obtener el participante con el menor valor en dicha estadística.
+
+
 ## PROYECTO FINAL - PARTE 1
 Se desea realizar torneos que permitan la inclusión de diversos géneros, torneos solo para hombres, torneos solo para mujeres o torneos mixtos. Para ello deberá incluir en la información del torneo el genero. Así mismo también deberá incluirse este dato en los jugadores y validarlo al momento de su registro.
 
