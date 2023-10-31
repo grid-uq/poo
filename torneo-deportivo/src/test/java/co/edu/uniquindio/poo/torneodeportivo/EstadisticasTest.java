@@ -26,9 +26,6 @@ public class EstadisticasTest {
     private static final Logger LOG = Logger.getLogger(EstadisticasTest.class.getName());
 
     private Map<String,Torneo> torneos;  
-    private Map<String,Jugador> jugadores;  
-    private Map<String,Equipo> equipos;
-
     private Map<String,Participante> participantes;
     private Estadistica efectividad;
     private Estadistica errores;
