@@ -32,7 +32,7 @@
 [<<interface>>;Participante]^-[Jugador]
 [<<interface>>;Participante]^-[Equipo]
 
-[<<interface>>;RegistroEstadistica]*-*>[Estadistica][ValorEstadistica]
+[RegistroEstadisticaImpl]*-*>[Estadistica][ValorEstadistica]
 [Estadistica]*-tipo1>[<<Enum>>;TipoEstadistica]
 [Reporte]<>1-registros*>[RegistroReporte]
 [RegistroReporte]<>*-2>[ValorEstadistica]
@@ -42,5 +42,3 @@
 [<<interface>>;RegistroEstadistica]^-[RegistroEstadisticaImpl]
 [Jugador]->[<<interface>>;RegistroEstadistica]
 [Equipo]->[<<interface>>;RegistroEstadistica]
-
-
