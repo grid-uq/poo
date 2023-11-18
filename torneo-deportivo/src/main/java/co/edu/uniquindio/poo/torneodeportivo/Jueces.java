@@ -6,7 +6,7 @@ public class Jueces extends Persona{
 
     private final String Licencia; 
 
-    public Juez (String nombre, String apellido, String email, String celular, String Licencia)
+    public Jueces (String nombre, String apellido, String email, String celular, String Licencia)
     {
         super(nombre, apellido, email, celular);
 
