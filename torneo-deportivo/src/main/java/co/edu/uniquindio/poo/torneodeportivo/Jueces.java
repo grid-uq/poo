@@ -2,7 +2,7 @@ package co.edu.uniquindio.poo.torneodeportivo;
 
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public class Juez extends Persona{
+public class Jueces extends Persona{
 
     private final String Licencia; 
 
@@ -15,13 +15,8 @@ public class Juez extends Persona{
         this.Licencia=Licencia;
 
     }
-
-    
     //GET Y SET
     public String getLicencia() {
         return Licencia;
     }
-
-
-
 }
