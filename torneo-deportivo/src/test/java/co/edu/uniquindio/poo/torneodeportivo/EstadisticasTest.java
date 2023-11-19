@@ -432,7 +432,7 @@ public class EstadisticasTest {
 
     private Torneo inicizalizarDatosPruebaTorneo1() {
         //{nombre:"Copa Mundo Ajedrez","fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"LOCAL","caracter":"INDIVIDUAL",
-        var torneo = new Torneo("Copa Mundo Ajedrez",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL,CaracterTorneo.INDIVIDUAL);
+        var torneo = new Torneo("Copa Mundo Ajedrez",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL,CaracterTorneo.INDIVIDUAL,GeneroTorneo.MASCULINO);
 
         crearParticipante1A(torneo);
         crearParticipante1B(torneo);
@@ -479,7 +479,7 @@ public class EstadisticasTest {
 
     private Torneo inicizalizarDatosPruebaTorneo2() {
         //{nombre:"Copa Mundo Futbol","fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"MUNDIAL","caracter":"GRUPAL", 
-        var torneo = new Torneo("Copa Mundo Futbol",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL);
+        var torneo = new Torneo("Copa Mundo Futbol",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL,GeneroTorneo.MASCULINO);
 
         crearParticipante2A(torneo);
         crearParticipante2B(torneo);
@@ -522,7 +522,7 @@ public class EstadisticasTest {
 
     private Torneo inicizalizarDatosTorneoVacio() {
         //{nombre:"Copa Mundo Futbol","fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"MUNDIAL","caracter":"GRUPAL",
-        return new Torneo("Vacío",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL);
+        return new Torneo("Vacío",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL,GeneroTorneo.MASCULINO);
     }
 
 }

@@ -15,15 +15,15 @@ import java.util.function.Predicate;
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public record Equipo(String nombre, Persona representante, Collection<Jugador> jugadores,
-                     RegistroEstadistica registroEstadistica) implements Participante {
+                                 RegistroEstadistica registroEstadistica) implements Participante {
 
-    public Equipo{
-        ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
-        ASSERTION.assertion( representante != null , "El representante es requerido");
+    public Equipo {
+        ASSERTION.assertion(nombre != null && !nombre.isBlank(), "El nombre es requerido");
+        ASSERTION.assertion(representante != null, "El representante es requerido");
     }
 
-    public Equipo(String nombre,Persona representante){
-        this(nombre,representante,new LinkedList<>(),new RegistroEstadisticaImpl());
+    public Equipo(String nombre, Persona representante) {
+        this(nombre, representante, new LinkedList<>(), new RegistroEstadisticaImpl());
     }
 
     /**
@@ -41,18 +41,28 @@ public record Equipo(String nombre, Persona representante, Collection<Jugador> j
      * @return Optional con el jugador que coincida con el nombre y apellido del jugador buscado,
      * o Optinal vacío en caso de no encontrar un jugador en el equipo con dicho nombre y apellido.
      */
-    public Optional<Jugador> buscarJugador(Jugador jugador){
-        Predicate<Jugador> nombreIgual = j->j.getNombre().equals(jugador.getNombre());
-        Predicate<Jugador> apellidoIgual = j->j.getApellido().equals(jugador.getApellido());
+    public Optional<Jugador> buscarJugador(Jugador jugador) {
+        Predicate<Jugador> nombreIgual = j -> j.getNombre().equals(jugador.getNombre());
+        Predicate<Jugador> apellidoIgual = j -> j.getApellido().equals(jugador.getApellido());
         return jugadores.stream().filter(nombreIgual.and(apellidoIgual)).findAny();
     }
 
     /**
      * Valida que no exista ya un jugador registrado con el mismo nombre y apellido, en caso de haberlo genera un assertion error.
+     * @param jugador Jugador que se desea validar.
      */
     private void validarJugadorExiste(Jugador jugador) {
         boolean existeJugador = buscarJugador(jugador).isPresent();
-        ASSERTION.assertion( !existeJugador,"El jugador ya esta registrado");
+        ASSERTION.assertion(!existeJugador, "El jugador ya esta registrado");
+    }
+
+    /**
+     * Permite registrar un representante para el equipo.
+     * @param representante Persona que se desea registrar como representante.
+     */
+    public void registrarRepresentante(Persona representante) {
+        //this.representante = representante;
+        ASSERTION.assertion(representante != null, "El representante es requerido");
     }
 
     @Override
