@@ -427,7 +427,7 @@ public class EstadisticasTest {
 
     private void crearParticipanteNoRegistrado() {
         // {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} ValorEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} }
-        noRegistrado = new Jugador("ParticipanteX", "JugadorX", "jugadorx@email.com", "6067431239", LocalDate.now().minusYears(15));
+        noRegistrado = new Jugador("ParticipanteX", "JugadorX", "jugadorx@email.com", "6067431239", LocalDate.now().minusYears(15), Genero.FEMENINO);
     }
 
     private Torneo inicizalizarDatosPruebaTorneo1() {
@@ -445,7 +445,7 @@ public class EstadisticasTest {
         // "nombre":"ParticipanteA","apellido":"JugadorA","email":"jugadora@email.com","telefono":"6067431234", "fechaNacimiento":"fechaActual - 15 años", "estadisticas":[
         //{"valor":3.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
         //{"valor":4.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
-        var participante = new Jugador("ParticipanteA", "JugadorA", "jugadora@email.com", "6067431234", LocalDate.now().minusYears(15));
+        var participante = new Jugador("ParticipanteA", "JugadorA", "jugadora@email.com", "6067431234", LocalDate.now().minusYears(15), Genero.MASCULINO);
         crearParticipante(torneo,participante,3.3,4.5);
     }
 
@@ -454,7 +454,7 @@ public class EstadisticasTest {
         //        {"valor":4.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
         //        {"valor":3.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
 
-        var participante = new Jugador("ParticipanteB", "JugadorB", "jugadorb@email.com", "6067431235", LocalDate.now().minusYears(16));
+        var participante = new Jugador("ParticipanteB", "JugadorB", "jugadorb@email.com", "6067431235", LocalDate.now().minusYears(16), Genero.MASCULINO);
         crearParticipante(torneo,participante,4.3,3.5);
     }
 
@@ -463,7 +463,7 @@ public class EstadisticasTest {
         //        {"valor":2.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
         //        {"valor":2.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]}]},
 
-        var participante = new Jugador("ParticipanteC", "JugadorC", "jugadorc@email.com", "6067431236", LocalDate.now().minusYears(17));
+        var participante = new Jugador("ParticipanteC", "JugadorC", "jugadorc@email.com", "6067431236", LocalDate.now().minusYears(17),Genero.MASCULINO);
         crearParticipante(torneo,participante,2.3,2.5);
     }
 
