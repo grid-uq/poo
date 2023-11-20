@@ -33,27 +33,27 @@ public class Enfrentamientos {
 
         switch (estadoEnfrentamiento) {
             case PENDIENTE:
-                if(fecha.isBefore(LocalDate.now())){
+                if(fecha.isBefore(LocalDate.now()) && hora.isBefore(LocalDate.now())){
                     return "el enfrentamiento todavia no a empezado";
-                }else if(fecha.isAfter(LocalDate.now())){
+                }else if(fecha.isAfter(LocalDate.now()) && hora.isAfter(LocalDate.now())){
                     return "el enfrentamiento fue aplazado";
-                }else if(fecha.isEqual(LocalDate.now())){
+                }else if(fecha.isEqual(LocalDate.now()) && hora.isEqual(LocalDate.now())){
                     return "el enfrentamiento esta en curso";
                 }else 
                     return "el enfrentamiento ya finalizo"; 
                
 
             case ENJUEGO:
-                if(fecha.isAfter(LocalDate.now())){
+                if(fecha.isAfter(LocalDate.now()) && hora.isAfter(LocalDate.now())){
                     return "el enfrentamiento fue aplazado";
-                }else if(fecha.isEqual(LocalDate.now())){
+                }else if(fecha.isEqual(LocalDate.now()) && hora.isEqual(LocalDate.now())){
                     return "el enfrentamiento esta en curso";
                 }else 
                     return "el enfrentamiento ya finalizo"; 
                
 
             case APLAZADO:
-                if(fecha.isAfter(LocalDate.now())){
+                if(fecha.isAfter(LocalDate.now()) && hora.isAfter(LocalDate.now())){
                     return "el enfrentamiento fue aplazado";
                 }
 
