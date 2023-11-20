@@ -24,12 +24,13 @@ public class Torneo {
     private final Collection<Participante> participantes;
     private final CaracterTorneo caracter;
     private final GeneroTorneo generoTorneo;//se agrega la clase enum a torneo
+    private ArrayList<Enfrentamientos>enfrentamientos = new ArrayList<Enfrentamientos>();
 
 
 
     public Torneo(String nombre, LocalDate fechaInicio,LocalDate fechaInicioInscripciones,LocalDate fechaCierreInscripciones, 
                 byte numeroParticipantes,byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo,CaracterTorneo caracter,
-                GeneroTorneo generoTorneo) {//se agrega al constructor el atributo GeneroTorneo para que lo instancie
+                GeneroTorneo generoTorneo , ArrayList<Enfrentamientos>enfrentamientos) {//se agrega al constructor el atributo GeneroTorneo para que lo instancie
         
         ASSERTION.assertion( nombre != null , "El nombre es requerido");
 
@@ -45,6 +46,7 @@ public class Torneo {
         this.limiteEdad = limiteEdad;
         this.valorInscripcion = valorInscripcion;
         this.tipoTorneo = tipoTorneo;
+        this.enfrentamientos = enfrentamientos;
         this.participantes = new LinkedList<>();
         this.caracter = Objects.requireNonNull(caracter,"El carácter del torneo es requerido");
         this.generoTorneo=Objects.requireNonNull(generoTorneo,"El generoTorneo del torneo es requerido");//se instancia el atributo como objeto
@@ -261,6 +263,12 @@ public class Torneo {
     
     public GeneroTorneo getgeneroTorneo() {// se retorna el genero del torneo si se pide
         return generoTorneo;
+        
+    }public ArrayList<Enfrentamientos> getEnfrentamientos() {
+        return enfrentamientos;
+
+    }public void setEnfrentamientos(ArrayList<Enfrentamientos> enfrentamientos) {
+        this.enfrentamientos = enfrentamientos;
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
@@ -274,6 +282,8 @@ public class Torneo {
         ASSERTION.assertion( fechaInicioInscripciones != null , "La fecha de inicio de inscripciones es requerida");
         this.fechaInicioInscripciones = fechaInicioInscripciones;
     }
+
+
     public void setFechaCierreInscripciones(LocalDate fechaCierreInscripciones) {
         ASSERTION.assertion( fechaCierreInscripciones != null , "La fecha de cierre es requerida");
         ASSERTION.assertion( fechaCierreInscripciones.isAfter(fechaInicioInscripciones),"La fecha de cierre de inscripciones debe ser posterior a la fecha de inicio de inscripciones" );
