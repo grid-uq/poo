@@ -3,8 +3,7 @@ package co.edu.uniquindio.poo.torneodeportivo;
 import java.time.LocalDate;
 
 public class Enfrentamientos {
-    
-    private String nombre ;
+ private String nombre ;
     private String ubicacion;
     private LocalDate fecha;
     private LocalDate hora;
@@ -108,5 +107,8 @@ public class Enfrentamientos {
 
     }public void setEstadoEnfrentamiento(EstadoEnfrentamiento estadoEnfrentamiento) {
         this.estadoEnfrentamiento = estadoEnfrentamiento;
+    }
+
+    public static void add(Enfrentamientos enfrentamientos) {
     }
 }

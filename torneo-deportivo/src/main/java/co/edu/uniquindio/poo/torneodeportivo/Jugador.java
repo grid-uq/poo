@@ -9,6 +9,8 @@ package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Optional;
+
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public class Jugador extends Persona implements Participante {
@@ -44,5 +46,16 @@ public class Jugador extends Persona implements Participante {
     @Override
     public RegistroEstadistica getEstadisticaRegister() {
         return registroEstadistica;
+    }
+
+    public static Optional<Jugador> stream() {
+        return null;
+    }
+
+    public static Optional<Jugador> findAnyOptional(){
+        return null; 
+    }
+
+    public static void add(Jugador jugador) {
     }
 }
