@@ -65,7 +65,7 @@ public class Equipo
         Predicate<Jugador> nombreIgual = j -> j.getNombre().equals(jugador.getNombre());
         Predicate<Jugador> apellidoIgual = j -> j.getApellido().equals(jugador.getApellido());
         
-        return Jugador.stream().filter(nombreIgual.and(apellidoIgual)).findAny();
+        return Jugador.stream().filter(nombreIgual.and(apellidoIgual)); //.findAny();
     }
 
     private void validarJugadorExiste(Jugador jugador)
