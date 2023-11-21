@@ -7,96 +7,70 @@
  */
 package co.edu.uniquindio.poo.torneodeportivo;
 
-import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
-
 import java.util.Collection;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Predicate;
+import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public class Equipo
-{
+public record Equipo(String nombre, Persona representante, Collection<Jugador> jugadores,
+                    RegistroEstadistica registroEstadistica) implements Participante {
 
-    private final String nombre;
-    private final Persona representante;
-    private final List<Enfrentamientos> enfrentamientos;
-    private int victorias = 0;
-    private int empates = 0;
-    private int derrotas = 0;
-    private List<Jugador> jugador;
-
-
-    public Equipo(String nombre, Persona representante, List<Jugador> jugador, List<Enfrentamientos> enfrentamientos)
-    {
+    public Equipo {
         ASSERTION.assertion(nombre != null && !nombre.isBlank(), "El nombre es requerido");
         ASSERTION.assertion(representante != null, "El representante es requerido");
-
-        this.nombre = nombre;
-        this.representante = representante;
-        this.jugador = jugador;
-        this.enfrentamientos = enfrentamientos;
     }
 
-    public String getNombre()
-    { return nombre;}
+    public Equipo(String nombre, Persona representante) {
+        this(nombre, representante, new LinkedList<>(), new RegistroEstadisticaImpl());
+    }
 
-    public Persona getRepresentante()
-    { return representante;}
-
-    public Collection<Jugador> getJugadores()
-    { return jugador;}
-
-    public List<Enfrentamientos> getEnfrentamientos()
-    { return enfrentamientos;}
-
-
-    public void registrarJugador(Jugador jugador)
-    {
+    /**
+     * Permite registrar un jugador en un equipo siempre y cuando no exista ya un jugador registrado en el equipo con el mismo nombre y apellido
+     * @param jugador Jugador que se desea registrar.
+     */
+    public void registrarJugador(Jugador jugador) {
         validarJugadorExiste(jugador);
-        Jugador.add(jugador);
+        jugadores.add(jugador);
     }
 
-    public void agregarEnfrentamiento(Enfrentamientos enfrentamientos)
-    {
-        Enfrentamientos.add(enfrentamientos);
-    }
-
-    public Optional<Jugador> buscarJugador(Jugador jugador)
-    {
+    /**
+     * Permimte buscar un jugador en el equipo basado en su nombre y apellido.
+     * @param jugador Jugador que se desea buscar
+     * @return Optional con el jugador que coincida con el nombre y apellido del jugador buscado,
+     * o Optinal vacío en caso de no encontrar un jugador en el equipo con dicho nombre y apellido.
+     */
+    public Optional<Jugador> buscarJugador(Jugador jugador) {
         Predicate<Jugador> nombreIgual = j -> j.getNombre().equals(jugador.getNombre());
         Predicate<Jugador> apellidoIgual = j -> j.getApellido().equals(jugador.getApellido());
-    
-        Optional<Jugador> jugadorEncontrado = Jugador.stream().filter(nombreIgual.and(apellidoIgual)).findAny();
-    
-        if (jugadorEncontrado.isPresent()) {
-            return jugadorEncontrado;
-        } else {
-            return Optional.empty();
-        }
+        return jugadores.stream().filter(nombreIgual.and(apellidoIgual)).findAny();
     }
 
-    private void validarJugadorExiste(Jugador jugador)
-    {
+    /**
+     * Valida que no exista ya un jugador registrado con el mismo nombre y apellido, en caso de haberlo genera un assertion error.
+     * @param jugador Jugador que se desea validar.
+     */
+    private void validarJugadorExiste(Jugador jugador) {
         boolean existeJugador = buscarJugador(jugador).isPresent();
         ASSERTION.assertion(!existeJugador, "El jugador ya esta registrado");
     }
 
-    public void incrementarVictorias()
-    { victorias++;}
+    /**
+     * Permite registrar un representante para el equipo.
+     * @param representante Persona que se desea registrar como representante.
+     */
+    public void registrarRepresentante(Persona representante) {
+        //this.representante = representante;
+        ASSERTION.assertion(representante != null, "El representante es requerido");
+    }
 
-    public void incrementarEmpates()
-    { empates++;}
+    @Override
+    public String getNombreCompleto() {
+        return nombre;
+    }
 
-    public void incrementarDerrotas()
-    { derrotas++;}
-
-    public int getVictorias()
-    { return victorias;}
-
-    public int getEmpates()
-    { return empates;}
-
-    public int getDerrotas()
-    { return derrotas;}
-    
+    @Override
+    public RegistroEstadistica getEstadisticaRegister() {
+        return registroEstadistica;
+    }
 }

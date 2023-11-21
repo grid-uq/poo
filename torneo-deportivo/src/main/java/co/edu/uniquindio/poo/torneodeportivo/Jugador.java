@@ -9,11 +9,13 @@ package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Collection;
 import java.util.Optional;
 
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public class Jugador extends Persona implements Participante {
+    public static Collection<Jugador> add;
     private final LocalDate fechaNacimiento;
     private final RegistroEstadistica registroEstadistica;
     

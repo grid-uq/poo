@@ -427,12 +427,12 @@ public class EstadisticasTest {
 
     private void crearParticipanteNoRegistrado() {
         // {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} ValorEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} }
-        noRegistrado = new Jugador("ParticipanteX", "JugadorX", "jugadorx@email.com", "6067431239", LocalDate.now().minusYears(15), Genero.FEMENINO);
+        noRegistrado = new Jugador("ParticipanteX", "JugadorX", "jugadorx@email.com", "6067431239", LocalDate.now().minusYears(15), null);
     }
 
     private Torneo inicizalizarDatosPruebaTorneo1() {
         //{nombre:"Copa Mundo Ajedrez","fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"LOCAL","caracter":"INDIVIDUAL",
-        var torneo = new Torneo("Copa Mundo Ajedrez",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL,CaracterTorneo.INDIVIDUAL,GeneroTorneo.MASCULINO);
+        var torneo = new Torneo("Copa Mundo Ajedrez",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL,CaracterTorneo.INDIVIDUAL, GeneroTorneo.MIXTO, null);
 
         crearParticipante1A(torneo);
         crearParticipante1B(torneo);
@@ -445,7 +445,7 @@ public class EstadisticasTest {
         // "nombre":"ParticipanteA","apellido":"JugadorA","email":"jugadora@email.com","telefono":"6067431234", "fechaNacimiento":"fechaActual - 15 años", "estadisticas":[
         //{"valor":3.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
         //{"valor":4.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
-        var participante = new Jugador("ParticipanteA", "JugadorA", "jugadora@email.com", "6067431234", LocalDate.now().minusYears(15), Genero.MASCULINO);
+        var participante = new Jugador("ParticipanteA", "JugadorA", "jugadora@email.com", "6067431234", LocalDate.now().minusYears(15), null);
         crearParticipante(torneo,participante,3.3,4.5);
     }
 
@@ -454,7 +454,7 @@ public class EstadisticasTest {
         //        {"valor":4.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
         //        {"valor":3.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]},
 
-        var participante = new Jugador("ParticipanteB", "JugadorB", "jugadorb@email.com", "6067431235", LocalDate.now().minusYears(16), Genero.MASCULINO);
+        var participante = new Jugador("ParticipanteB", "JugadorB", "jugadorb@email.com", "6067431235", LocalDate.now().minusYears(16), null);
         crearParticipante(torneo,participante,4.3,3.5);
     }
 
@@ -463,7 +463,7 @@ public class EstadisticasTest {
         //        {"valor":2.3 , "Estadistica":{"nombre":"Efectividad","tipo":"POSITIVA"}},
         //        {"valor":2.5 , "Estadistica":{"nombre":"Errores","tipo":"NEGATIVA"}}]}]},
 
-        var participante = new Jugador("ParticipanteC", "JugadorC", "jugadorc@email.com", "6067431236", LocalDate.now().minusYears(17),Genero.MASCULINO);
+        var participante = new Jugador("ParticipanteC", "JugadorC", "jugadorc@email.com", "6067431236", LocalDate.now().minusYears(17), null);
         crearParticipante(torneo,participante,2.3,2.5);
     }
 
@@ -479,7 +479,7 @@ public class EstadisticasTest {
 
     private Torneo inicizalizarDatosPruebaTorneo2() {
         //{nombre:"Copa Mundo Futbol","fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"MUNDIAL","caracter":"GRUPAL", 
-        var torneo = new Torneo("Copa Mundo Futbol",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL,GeneroTorneo.MASCULINO);
+        var torneo = new Torneo("Copa Mundo Futbol",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL, GeneroTorneo.MIXTO, null);
 
         crearParticipante2A(torneo);
         crearParticipante2B(torneo);
@@ -522,7 +522,7 @@ public class EstadisticasTest {
 
     private Torneo inicizalizarDatosTorneoVacio() {
         //{nombre:"Copa Mundo Futbol","fechaInicio":"fechaActual + 1mes", "fechaInicioInscripciones": "fechaActual - 15 días", "fechaCierreInscripciones": "fechaActual+15 días", "numeroParticipante": 24, "limiteEdad":0,"valorInscripcion":0, "tipoTorneo":"MUNDIAL","caracter":"GRUPAL",
-        return new Torneo("Vacío",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL,GeneroTorneo.MASCULINO);
+        return new Torneo("Vacío",  LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.MUNDIAL,CaracterTorneo.GRUPAL, GeneroTorneo.MIXTO, null);
     }
 
 }

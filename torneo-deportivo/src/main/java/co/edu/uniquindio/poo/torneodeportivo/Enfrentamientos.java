@@ -1,10 +1,13 @@
 package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Enfrentamientos {
     
-    private String nombre ;
+    public static RegistroEstadistica add;
+    private String nombre;
     private String ubicacion;
     private LocalDate fecha;
     private LocalDate hora;
@@ -13,9 +16,10 @@ public class Enfrentamientos {
     private final Equipo equipo;
     private final Jueces jueces;
     private EstadoEnfrentamiento estadoEnfrentamiento;
+    private List<Enfrentamientos> enfrentamientos;
 
-    public Enfrentamientos(String nombre, String ubicacion, LocalDate fecha, LocalDate hora, Equipo equipo,Jueces jueces,
-    int puntosA,int puntosB,EstadoEnfrentamiento estadoEnfrentamiento) {
+    public Enfrentamientos(String nombre, String ubicacion, LocalDate fecha, LocalDate hora, Equipo equipo, Jueces jueces,
+                        int puntosA, int puntosB, EstadoEnfrentamiento estadoEnfrentamiento, List<Enfrentamientos> enfrentamientos){
 
         this.nombre = nombre;
         this.ubicacion = ubicacion;
@@ -26,6 +30,7 @@ public class Enfrentamientos {
         this.puntosA = puntosA;
         this.puntosB= puntosB;
         this.estadoEnfrentamiento = estadoEnfrentamiento;
+        this.enfrentamientos=enfrentamientos;
 
     }
 
@@ -36,24 +41,24 @@ public class Enfrentamientos {
                 if(fecha.isBefore(LocalDate.now())){
                     return "el enfrentamiento todavia no a empezado";
                 }else if(fecha.isAfter(LocalDate.now())){
-                    this.estadoEnfrentamiento= estadoEnfrentamiento.APLAZADO;
+                    this.estadoEnfrentamiento= EstadoEnfrentamiento.APLAZADO;
                     return "el enfrentamiento fue aplazado";
                 }else if(fecha.isEqual(LocalDate.now())){
-                    this.estadoEnfrentamiento= estadoEnfrentamiento.ENJUEGO;
+                    this.estadoEnfrentamiento= EstadoEnfrentamiento.ENJUEGO;
                     return "el enfrentamiento esta en curso";
                 }else 
-                this.estadoEnfrentamiento= estadoEnfrentamiento.FINALIZADO;
+                this.estadoEnfrentamiento= EstadoEnfrentamiento.FINALIZADO;
                     return "el enfrentamiento ya finalizo"; 
                
 
             case ENJUEGO:
                 if(fecha.isAfter(LocalDate.now())){
-                    this.estadoEnfrentamiento= estadoEnfrentamiento.APLAZADO;
+                    this.estadoEnfrentamiento= EstadoEnfrentamiento.APLAZADO;
                     return "el enfrentamiento fue aplazado";
                 }else if(fecha.isEqual(LocalDate.now())){
                     return "el enfrentamiento esta en curso";
                 }else 
-                    this.estadoEnfrentamiento= estadoEnfrentamiento.FINALIZADO;
+                    this.estadoEnfrentamiento= EstadoEnfrentamiento.FINALIZADO;
                     return "el enfrentamiento ya finalizo"; 
                
 
@@ -71,6 +76,14 @@ public class Enfrentamientos {
         }
 
     }
+
+    public void agregarEnfrentamiento(Enfrentamientos enfrentamiento) {
+    if (this.enfrentamientos == null) {
+        this.enfrentamientos = new ArrayList<>();
+    }
+        this.enfrentamientos.add(enfrentamiento);
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -113,5 +126,16 @@ public class Enfrentamientos {
 
     }public void setEstadoEnfrentamiento(EstadoEnfrentamiento estadoEnfrentamiento) {
         this.estadoEnfrentamiento = estadoEnfrentamiento;
+    }
+        public List<Enfrentamientos> getEnfrentamiento() {
+        return enfrentamientos;
+    }
+    public void setEnfrentamientos(List<Enfrentamientos> enfrentamientos) {
+       this.enfrentamientos= enfrentamientos;
+    }
+
+    public void add(Enfrentamientos enfrentamiento) {
+
+        this.enfrentamientos.add(enfrentamiento);
     }
 }

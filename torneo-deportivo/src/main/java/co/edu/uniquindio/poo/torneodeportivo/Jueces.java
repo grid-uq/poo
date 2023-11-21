@@ -5,6 +5,7 @@ import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 import java.util.ArrayList;
 
 public class Jueces extends Persona{
+
     private final String Licencia; 
     private ArrayList<Enfrentamientos>enfrentamientosJueces = new ArrayList<Enfrentamientos>();
 
@@ -25,9 +26,7 @@ public class Jueces extends Persona{
     public ArrayList<Enfrentamientos> getEnfrentamientosJueces() {
         return enfrentamientosJueces;
     }
-    public void setEnfrentamientosJueces(ArrayList<Enfrentamientos> enfrentamientosJueces) 
-    {
+    public void setEnfrentamientosJueces(ArrayList<Enfrentamientos> enfrentamientosJueces) {
         this.enfrentamientosJueces = enfrentamientosJueces;
     }
-
 }
