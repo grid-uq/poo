@@ -3,7 +3,8 @@ package co.edu.uniquindio.poo.torneodeportivo;
 import java.time.LocalDate;
 
 public class Enfrentamientos {
- private String nombre ;
+    
+    private String nombre ;
     private String ubicacion;
     private LocalDate fecha;
     private LocalDate hora;
@@ -32,27 +33,32 @@ public class Enfrentamientos {
 
         switch (estadoEnfrentamiento) {
             case PENDIENTE:
-                if(fecha.isBefore(LocalDate.now()) && hora.isBefore(LocalDate.now())){
+                if(fecha.isBefore(LocalDate.now())){
                     return "el enfrentamiento todavia no a empezado";
-                }else if(fecha.isAfter(LocalDate.now()) && hora.isAfter(LocalDate.now())){
+                }else if(fecha.isAfter(LocalDate.now())){
+                    this.estadoEnfrentamiento= estadoEnfrentamiento.APLAZADO;
                     return "el enfrentamiento fue aplazado";
-                }else if(fecha.isEqual(LocalDate.now()) && hora.isEqual(LocalDate.now())){
+                }else if(fecha.isEqual(LocalDate.now())){
+                    this.estadoEnfrentamiento= estadoEnfrentamiento.ENJUEGO;
                     return "el enfrentamiento esta en curso";
                 }else 
+                this.estadoEnfrentamiento= estadoEnfrentamiento.FINALIZADO;
                     return "el enfrentamiento ya finalizo"; 
                
 
             case ENJUEGO:
-                if(fecha.isAfter(LocalDate.now()) && hora.isAfter(LocalDate.now())){
+                if(fecha.isAfter(LocalDate.now())){
+                    this.estadoEnfrentamiento= estadoEnfrentamiento.APLAZADO;
                     return "el enfrentamiento fue aplazado";
-                }else if(fecha.isEqual(LocalDate.now()) && hora.isEqual(LocalDate.now())){
+                }else if(fecha.isEqual(LocalDate.now())){
                     return "el enfrentamiento esta en curso";
                 }else 
+                    this.estadoEnfrentamiento= estadoEnfrentamiento.FINALIZADO;
                     return "el enfrentamiento ya finalizo"; 
                
 
             case APLAZADO:
-                if(fecha.isAfter(LocalDate.now()) && hora.isAfter(LocalDate.now())){
+                if(fecha.isAfter(LocalDate.now())){
                     return "el enfrentamiento fue aplazado";
                 }
 
@@ -107,8 +113,5 @@ public class Enfrentamientos {
 
     }public void setEstadoEnfrentamiento(EstadoEnfrentamiento estadoEnfrentamiento) {
         this.estadoEnfrentamiento = estadoEnfrentamiento;
-    }
-
-    public static void add(Enfrentamientos enfrentamientos) {
     }
 }
