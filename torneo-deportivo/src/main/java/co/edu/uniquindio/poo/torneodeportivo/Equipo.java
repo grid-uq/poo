@@ -19,13 +19,14 @@ public class Equipo
 
     private final String nombre;
     private final Persona representante;
-    private final Collection<Jugador> jugador;
     private final List<Enfrentamientos> enfrentamientos;
     private int victorias = 0;
     private int empates = 0;
     private int derrotas = 0;
+    private List<Jugador> jugador;
 
-    public Equipo(String nombre, Persona representante, Collection<Jugador> jugador, List<Enfrentamientos> enfrentamientos)
+
+    public Equipo(String nombre, Persona representante, List<Jugador> jugador, List<Enfrentamientos> enfrentamientos)
     {
         ASSERTION.assertion(nombre != null && !nombre.isBlank(), "El nombre es requerido");
         ASSERTION.assertion(representante != null, "El representante es requerido");
@@ -64,9 +65,14 @@ public class Equipo
     {
         Predicate<Jugador> nombreIgual = j -> j.getNombre().equals(jugador.getNombre());
         Predicate<Jugador> apellidoIgual = j -> j.getApellido().equals(jugador.getApellido());
-        
-        return Jugador.stream().filter(nombreIgual.and(apellidoIgual)).findFirst();
-        
+    
+        Optional<Jugador> jugadorEncontrado = Jugador.stream().filter(nombreIgual.and(apellidoIgual)).findAny();
+    
+        if (jugadorEncontrado.isPresent()) {
+            return jugadorEncontrado;
+        } else {
+            return Optional.empty();
+        }
     }
 
     private void validarJugadorExiste(Jugador jugador)
