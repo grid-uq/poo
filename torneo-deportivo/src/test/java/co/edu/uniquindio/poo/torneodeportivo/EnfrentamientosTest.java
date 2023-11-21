@@ -9,32 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class EnfrentamientosTest {
     private static final Logger LOG = Logger.getLogger(EquipoTest.class.getName());
-
-    /** 
-     * Verificar que sea posible registrar un equipo en el torneo 
-
-    @Test
-    public void registrarEquipo() {
-        LOG.info("Inicio de prueba registrarEquipo...");
-        // Almacenar los datos de prueba Torneo{Copa Mundo\|fechaActual+ 1mes\| fechaActual - 15 días\|fechaActual+15 días\|24\|0\|0\|LOCAL|GRUPAL}  Equipo{Uniquindio} Representante{Robinson,Pulgarin,rpulgarin@email.com,6067359300}
-
-        
-        //Torneo torneo = new Torneo("Copa Mundo", LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0,TipoTorneo.LOCAL,CaracterTorneo.GRUPAL, enfrentamientos:null);
-        Torneo torneo= new Torneo("COPA MUNDO", LocalDate.now().plusMonths(1), LocalDate.now().minusDays(15), LocalDate.now().plusDays(15), (byte)24, (byte)0, 0, TipoTorneo.LOCAL, CaracterTorneo.GRUPAL, GeneroTorneo.MIXTO, null);
-
-        var representante = new Persona("Robinson", "Pulgarin", "rpulgarin@email.com", "6067359300");
-
-        var equipo = new Equipo("Uniquindio", representante);
-
-        torneo.registrarParticipante(equipo);
-
-        // Recuperación y verificación de datos
-        assertTrue(torneo.getParticipantes().contains(equipo));
-        assertEquals(1, torneo.getParticipantes().size());
-        LOG.info("Fin de prueba registrarEquipo...");
-    }
-     */
-
+    
     /**
      * Agregar enfrentamiento 
      */
@@ -65,7 +40,8 @@ public class EnfrentamientosTest {
 
     enfrentamientos.add(new Enfrentamientos("Enfrentamiento 1", "Estadio1", LocalDate.of(2023, 11, 25), LocalDate.now(), new Equipo("Los mas", new Persona("Yorman", "Arias", "yotu@gmail.com", "7454252")), new Jueces("Sara", "Faustino", "sara@gmail.com", "62425", "202-222", null), 0, 0, EstadoEnfrentamiento.PENDIENTE, enfrentamientos));
     enfrentamientos.add(new Enfrentamientos("Enfrentamiento 2", "Estadio2", LocalDate.of(2023, 11, 26), LocalDate.now(), new Equipo("Los+", new Persona("Yorman2", "Arias2", "yot2u@gmail.com", "7754252")), new Jueces("Julian", "Naranjo", "julian@gmail.com", "62428", "202-333", null), 0, 0, EstadoEnfrentamiento.PENDIENTE, enfrentamientos));
-    enfrentamientos.add(new Enfrentamientos("Enfrentamiento 1", "Estadio3", LocalDate.of(2023, 11, 27), LocalDate.now(), new Equipo("Los menos", new Persona("Yorman3", "Arias3", "yot3u@gmail.com", "7854252")), new Jueces("Juan", "Faustino", "juan@gmail.com", "62426", "202-444", null), 0, 0, EstadoEnfrentamiento.PENDIENTE, enfrentamientos));   
+    enfrentamientos.add(new Enfrentamientos("Enfrentamiento 1", "Estadio3", LocalDate.of(2023, 11, 27), LocalDate.now(), new Equipo("Los menos", new Persona("Yorman3", "Arias3", "yot3u@gmail.com", "7854252")), new Jueces("Juan", "Faustino", "juan@gmail.com", "62426", "202-444", null), 0, 0, EstadoEnfrentamiento.PENDIENTE, enfrentamientos));
+
     // Agregar el enfrentamiento con el mismo nombre
     Enfrentamientos enfrentamiento = new Enfrentamientos("Enfrentamiento 1", "Estadio3", LocalDate.of(2023, 11, 27), LocalDate.now(), new Equipo("Los menos", new Persona("Yorman3", "Arias3", "yot3u@gmail.com", "7854252")), new Jueces("Juan", "Faustino", "juan@gmail.com", "62426", "202-444", null), 0, 0, EstadoEnfrentamiento.PENDIENTE, enfrentamientos);
     enfrentamientos.add(enfrentamiento);
@@ -80,14 +56,12 @@ public class EnfrentamientosTest {
     }
 
     // Assert
-    assertThat((Boolean) existeEnfrentamiento).isTrue();
+    assertThat(Boolean.valueOf(existeEnfrentamiento)).isTrue();
 
     LOG.info("Fin de prueba agregar Enfrentamiento Ya Existente...");
 }
 
-    private Object assertThat(boolean existeEnfrentamiento) {
-        return null;
+    private Boolean assertThat(boolean existeEnfrentamiento) {
+    return Boolean.valueOf(existeEnfrentamiento);
     }
 }
-
-

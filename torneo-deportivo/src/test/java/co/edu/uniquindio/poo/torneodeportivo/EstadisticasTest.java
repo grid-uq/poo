@@ -426,8 +426,7 @@ public class EstadisticasTest {
     }
 
     private void crearParticipanteNoRegistrado() {
-        // {ParticipanteX,JugadorX,jugadorx@email.com,6067431239, fechaActual - 15 años} ValorEstadistica{3.3 , Estadistica{Efectividad,POSITIVA} }
-        noRegistrado = new Jugador("ParticipanteX", "JugadorX", "jugadorx@email.com", "6067431239", LocalDate.now().minusYears(15), null);
+        noRegistrado = new Jugador("Jugador1", "Jugador 1", "Jugador@gmail.com", "854525", LocalDate.of(2001, 5, 19), Genero.MASCULINO);
     }
 
     private Torneo inicizalizarDatosPruebaTorneo1() {

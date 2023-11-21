@@ -9,7 +9,6 @@ package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Optional;
 
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
