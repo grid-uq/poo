@@ -52,9 +52,6 @@ public class Jugador extends Persona implements Participante {
         return null;
     }
 
-    public static Optional<Jugador> findAnyOptional(){
-        return null; 
-    }
 
     public static void add(Jugador jugador) {
     }
