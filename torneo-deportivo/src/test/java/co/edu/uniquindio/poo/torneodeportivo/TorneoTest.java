@@ -124,3 +124,4 @@ public class TorneoTest {
         LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
     }
 }
+

@@ -9,21 +9,20 @@ package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Collection;
 import java.util.Optional;
 
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public class Jugador extends Persona implements Participante {
-    public static Collection<Jugador> add;
     private final LocalDate fechaNacimiento;
     private final RegistroEstadistica registroEstadistica;
-    
-    public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, Genero Genero) {
+    private final Genero genero;//se crea un atributo de tipo Genero
+
+    public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento,Genero genero) {
         super(nombre, apellido, email, celular);
         ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
-        ASSERTION.assertion(Genero != null, "El género es requerido");
         this.fechaNacimiento = fechaNacimiento;
+        this.genero=genero;// se instancia el atributo Genero
         registroEstadistica = new RegistroEstadisticaImpl();
     }
 
@@ -50,11 +49,11 @@ public class Jugador extends Persona implements Participante {
         return registroEstadistica;
     }
 
-    public static Optional<Jugador> stream() {
-        return null;
+    public RegistroEstadistica getRegistroEstadistica() {//faltaba este getRegistro
+        return registroEstadistica;
     }
 
-
-    public static void add(Jugador jugador) {
+    public Genero getGenero() {//se crea el getGenero para saber que tiene genero
+        return genero;
     }
 }
