@@ -1,10 +1,3 @@
-/**
- * Clase que agrupa los datos de un Torneo
- * @author Área de programación UQ
- * @since 2023-08
- * 
- * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
- */
 package co.edu.uniquindio.poo.torneodeportivo;
 
 import java.time.LocalDate;
@@ -17,95 +10,41 @@ public class Torneo {
     private LocalDate fechaInicio;
     private LocalDate fechaInicioInscripciones;
     private LocalDate fechaCierreInscripciones;
-    private final byte numeroParticipantes;
+    private final byte numeroParticipantes; 
     private final byte limiteEdad;
     private final int valorInscripcion;
     private final TipoTorneo tipoTorneo;
     private final Collection<Participante> participantes;
     private final CaracterTorneo caracter;
+    private final GeneroTorneo generoTorneo;//se agrega la clase enum a torneo
+    private ArrayList<Enfrentamientos>enfrentamientos = new ArrayList<Enfrentamientos>();
 
-    public Torneo(String nombre, LocalDate fechaInicio,
-            LocalDate fechaInicioInscripciones,
-            LocalDate fechaCierreInscripciones, byte numeroParticipantes,
-            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo,CaracterTorneo caracter) {
+
+
+    public Torneo(String nombre, LocalDate fechaInicio,LocalDate fechaInicioInscripciones,LocalDate fechaCierreInscripciones, 
+                byte numeroParticipantes,byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo,CaracterTorneo caracter,
+                GeneroTorneo generoTorneo , ArrayList<Enfrentamientos>enfrentamientos) {//se agrega al constructor el atributo GeneroTorneo para que lo instancie
         
         ASSERTION.assertion( nombre != null , "El nombre es requerido");
-        
-        
-        
+
         ASSERTION.assertion( numeroParticipantes >= 0, "El número de participantes no puede ser negativo");
         ASSERTION.assertion( limiteEdad >= 0,"El limite de edad no puede ser negativo");
         ASSERTION.assertion( valorInscripcion >= 0,"El valor de la inscripción no puede ser negativo");
-        
-        
-        this.nombre = nombre;
-        
         setFechaInicioInscripciones(fechaInicioInscripciones);
         setFechaCierreInscripciones(fechaCierreInscripciones); 
         setFechaInicio(fechaInicio);
+
+        this.nombre = nombre;
         this.numeroParticipantes = numeroParticipantes;
         this.limiteEdad = limiteEdad;
         this.valorInscripcion = valorInscripcion;
         this.tipoTorneo = tipoTorneo;
+        this.enfrentamientos = enfrentamientos;
         this.participantes = new LinkedList<>();
         this.caracter = Objects.requireNonNull(caracter,"El carácter del torneo es requerido");
+        this.generoTorneo=Objects.requireNonNull(generoTorneo,"El generoTorneo del torneo es requerido");//se instancia el atributo como objeto
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public LocalDate getFechaInicioInscripciones() {
-        return fechaInicioInscripciones;
-    }
-
-    public LocalDate getFechaCierreInscripciones() {
-        return fechaCierreInscripciones;
-    }
-
-    public byte getNumeroParticipantes() {
-        return numeroParticipantes;
-    }
-
-    public byte getLimiteEdad() {
-        return limiteEdad;
-    }
-
-    public int getValorInscripcion() {
-        return valorInscripcion;
-    }
-
-    public TipoTorneo getTipoTorneo() {
-        return tipoTorneo;
-    }
-
-    public CaracterTorneo getCaracter() {
-        return caracter;
-    }
-
-    public void setFechaInicio(LocalDate fechaInicio) {
-        ASSERTION.assertion( fechaInicio != null , "La fecha de inicio es requerida");
-        ASSERTION.assertion( ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
-                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) ),"La fecha de inicio no es válida" );
-        this.fechaInicio = fechaInicio;
-    }
-
-    public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
-        ASSERTION.assertion( fechaInicioInscripciones != null , "La fecha de inicio de inscripciones es requerida");
-        this.fechaInicioInscripciones = fechaInicioInscripciones;
-    }
-
-
-    public void setFechaCierreInscripciones(LocalDate fechaCierreInscripciones) {
-        ASSERTION.assertion( fechaCierreInscripciones != null , "La fecha de cierre es requerida");
-        ASSERTION.assertion( fechaCierreInscripciones.isAfter(fechaInicioInscripciones),"La fecha de cierre de inscripciones debe ser posterior a la fecha de inicio de inscripciones" );
-        this.fechaCierreInscripciones = fechaCierreInscripciones;
-    }
-    
     /**
      * Permite registrar un participante en el torneo
      * @param participante Participante a ser registrado
@@ -277,5 +216,70 @@ public class Torneo {
         var a = buscarParticipante(participanteA);
         var b = buscarParticipante(participanteB);
         return a.comparar(b,estadistica);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public LocalDate getFechaInicioInscripciones() {
+        return fechaInicioInscripciones;
+    }
+
+    public LocalDate getFechaCierreInscripciones() {
+        return fechaCierreInscripciones;
+    }
+
+    public byte getNumeroParticipantes() {
+        return numeroParticipantes;
+    }
+
+    public byte getLimiteEdad() {
+        return limiteEdad;
+    }
+
+    public int getValorInscripcion() {
+        return valorInscripcion;
+    }
+
+    public TipoTorneo getTipoTorneo() {
+        return tipoTorneo;
+    }
+
+    public CaracterTorneo getCaracter() {
+        return caracter;
+    }
+    
+    public GeneroTorneo getgeneroTorneo() {// se retorna el genero del torneo si se pide
+        return generoTorneo;
+        
+    }public ArrayList<Enfrentamientos> getEnfrentamientos() {
+        return enfrentamientos;
+
+    }public void setEnfrentamientos(ArrayList<Enfrentamientos> enfrentamientos) {
+        this.enfrentamientos = enfrentamientos;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        ASSERTION.assertion( fechaInicio != null , "La fecha de inicio es requerida");
+        ASSERTION.assertion( ( fechaInicioInscripciones == null || fechaInicio.isAfter(fechaInicioInscripciones) ) &&
+                ( fechaCierreInscripciones == null || fechaInicio.isAfter(fechaCierreInscripciones) ),"La fecha de inicio no es válida" );
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setFechaInicioInscripciones(LocalDate fechaInicioInscripciones) {
+        ASSERTION.assertion( fechaInicioInscripciones != null , "La fecha de inicio de inscripciones es requerida");
+        this.fechaInicioInscripciones = fechaInicioInscripciones;
+    }
+
+
+    public void setFechaCierreInscripciones(LocalDate fechaCierreInscripciones) {
+        ASSERTION.assertion( fechaCierreInscripciones != null , "La fecha de cierre es requerida");
+        ASSERTION.assertion( fechaCierreInscripciones.isAfter(fechaInicioInscripciones),"La fecha de cierre de inscripciones debe ser posterior a la fecha de inicio de inscripciones" );
+        this.fechaCierreInscripciones = fechaCierreInscripciones;
     }
 }
